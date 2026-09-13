@@ -3,7 +3,7 @@
 Mailchimp. Reads dist/data.json so it can never disagree with the page.
 
     .venv/bin/python scripts/static_chart.py
-Writes charts/vlcc-earnings-weekly.png (moves to posts/<slug>/images/ at 2a).
+Writes posts/supertanker-rates/images/01-vlcc-earnings-weekly.png.
 """
 import json
 from datetime import date
@@ -16,7 +16,7 @@ from matplotlib.ticker import FuncFormatter
 
 ROOT = Path(__file__).resolve().parent.parent
 D = json.loads((ROOT / "dist" / "data.json").read_text())
-OUT = ROOT / "charts" / "vlcc-earnings-weekly.png"
+OUT = ROOT / "posts" / "supertanker-rates" / "images" / "01-vlcc-earnings-weekly.png"
 OUT.parent.mkdir(exist_ok=True)
 
 BG, INK, MUTED, GRID = "#181A1B", "#BBBDC0", "#8f9296", "#2c2f31"
