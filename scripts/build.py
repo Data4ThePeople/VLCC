@@ -22,6 +22,7 @@ from statistics import mean
 ROOT = Path(__file__).resolve().parent.parent
 BALTIC = ROOT / "data" / "baltic_td3c_weekly.csv"
 FEARN = ROOT / "data" / "fearnleys_vlcc_meg_feast_daily.csv"
+BRENT = ROOT / "data" / "brent_weekly.csv"
 TEMPLATE = ROOT / "scripts" / "template.html"
 DIST = ROOT / "dist"
 TIEOUT = ROOT / "research" / "TIEOUT.md"
@@ -70,11 +71,18 @@ def load_fearnleys_weekly():
     return [v for v in byweek.values() if v["ws"] is not None or v["tce"] is not None]
 
 
+def load_brent():
+    rows = list(csv.DictReader(BRENT.open()))
+    if len({r["date"] for r in rows}) != len(rows):
+        sys.exit("brent: duplicate week")
+    return [OrderedDict(d=r["date"], usd=float(r["brent_usd_bbl"])) for r in rows]
+
+
 def fmt(v):
     return "n/a" if v is None else f"${v:,.0f}"
 
 
-def tieout(baltic, fearn, fearn_daily):
+def tieout(baltic, fearn, fearn_daily, brent):
     b = {r["d"]: r for r in baltic}
     f = {r["d"]: r for r in fearn}
     lines = ["# Tie-out", "",
@@ -124,6 +132,27 @@ def tieout(baltic, fearn, fearn_daily):
     ovw = [(abs(b[d]["ws"] - f[d]["ws"])) for d in b if d in f and f[d]["ws"] is not None and b[d]["ws"] is not None and d <= "2023-04-28"]
     L(f"- Overlap Worldscale gap through Apr 2023: median {sorted(ovw)[len(ovw)//2]:.2f} points, max {max(ovw):.2f}.")
     L("")
+    br = {r["d"]: r["usd"] for r in brent}
+    def near_b(d):
+        dd = date.fromisoformat(d)
+        for k in range(0, 4):
+            for c in (dd - timedelta(days=k), dd + timedelta(days=k)):
+                if c.isoformat() in br: return c.isoformat(), br[c.isoformat()]
+        return None, None
+    L(f"- Brent weekly (EIA RBRTE): {brent[0]['d']} to {brent[-1]['d']}; latest ${brent[-1]['usd']:.2f} a barrel.")
+    for y in ("2022", "2026"):
+        hi = max((r for r in brent if r["d"].startswith(y)), key=lambda r: r["usd"])
+        bd = min(bt, key=lambda r: abs(date.fromisoformat(r["d"]) - date.fromisoformat(hi["d"])))
+        L(f"- Brent {y} high: {hi['d']} ${hi['usd']:.2f}; Baltic TD3C that week ({bd['d']}): {fmt(bd['tce'])} a day.")
+    w22 = [r for r in bt if "2022-02-25" <= r["d"] <= "2022-07-01"]
+    L(f"- Baltic Feb 25 to Jul 1, 2022 (invasion to Brent peak): average {fmt(mean(r['tce'] for r in w22))} a day, "
+      f"range {fmt(min(r['tce'] for r in w22))} to {fmt(max(r['tce'] for r in w22))}, {sum(1 for r in w22 if r['tce'] < 0)} of {len(w22)} weeks negative.")
+    neg = [r for r in bt if r["tce"] < 0]
+    L(f"- Baltic weeks below zero: {len(neg)}, from {neg[0]['d']} to {neg[-1]['d']}.")
+    h22 = [r for r in bt if "2022-10-01" <= r["d"] <= "2022-12-31"]
+    L(f"- Baltic Oct to Dec 2022 high: {fmt(max(r['tce'] for r in h22))} a day ({max(h22, key=lambda r: r['tce'])['d']}).")
+    d26, v26 = near_b("2026-02-27"); L(f"- Brent week of Feb 27, 2026: ${v26:.2f} ({d26}); week of Sep 4, 2026: ${br.get('2026-09-04', float('nan')):.2f}.")
+    L("")
     L("Cross-series comparisons are editorial, not published: the Sept 2026 Baltic high "
       f"is {pk['tce']/326000:.1f} times the Baltic TD3C March 2020 peak quoted by Hellenic "
       f"Shipping News (above $326,000) and {pk['tce']/300391:.1f} times the Oct 11, 2019 "
@@ -135,6 +164,7 @@ def main():
     baltic = load_baltic()
     fearn = load_fearnleys_weekly()
     fearn_daily = list(csv.DictReader(FEARN.open()))
+    brent = load_brent()
     data = OrderedDict(
         built=date.today().isoformat(),
         baltic=OrderedDict(name="Baltic Exchange TD3C", publisher="Baltic Exchange",
@@ -143,6 +173,9 @@ def main():
         fearnleys=OrderedDict(name="Fearnleys VLCC MEG/Far East", publisher="Fearnleys",
                               route="Middle East Gulf to Far East, TCE",
                               unit="US dollars per day", points=fearn),
+        brent=OrderedDict(name="Brent crude oil spot price", publisher="U.S. Energy Information Administration",
+                          route="Europe Brent spot price FOB, weekly (series RBRTE)",
+                          unit="US dollars per barrel", points=brent),
     )
     DIST.mkdir(exist_ok=True)
     (DIST / "data.json").write_text(json.dumps(data, indent=1))
@@ -150,12 +183,12 @@ def main():
     if "/*__DATA__*/" not in tpl:
         sys.exit("template has no data slot")
     import base64
-    logo = (ROOT / "logo" / "d4tp-text-light.svg").read_bytes()
+    logo = (ROOT / "logo" / "d4tp-text-dark.svg").read_bytes()
     logo_uri = "data:image/svg+xml;base64," + base64.b64encode(logo).decode()
     html = (tpl.replace("/*__DATA__*/", "const DATA = " + json.dumps(data, separators=(",", ":")) + ";")
                .replace("__LOGO__", logo_uri))
     (DIST / "index.html").write_text(html)
-    TIEOUT.write_text(tieout(baltic, fearn, fearn_daily))
+    TIEOUT.write_text(tieout(baltic, fearn, fearn_daily, brent))
     print(f"dist/index.html {len(html)//1024} KB; baltic {len(baltic)} weeks, fearnleys {len(fearn)} weeks")
     print(TIEOUT.read_text())
 
