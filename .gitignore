@@ -1,0 +1,16 @@
+# Secrets — never commit
+.env
+
+# macOS
+.DS_Store
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# PyCharm per-user state
+.idea/workspace.xml
+
+# Scratch
+scratch/
