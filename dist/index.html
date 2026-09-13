@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Supertanker Earnings</title>
+<meta name="description" content="What a supertanker earns per day carrying Middle East crude to China, every week since 2019, from the Baltic Exchange and Fearnleys.">
+<style>
+/* Editorial parchment house style, as in the CPI and CPS charts.
+   Single light theme, painted explicitly, so the page holds inside the
+   Prismic frame regardless of the viewer's OS theme. */
+:root {
+  --parch: #faf3df;
+  --panel: #f4ead2;
+  --ink:   #2b2317;
+  --muted: #6b5d3f;
+  --grid:  #cdbb96;
+  --hair:  #e2d7bb;
+  --baltic: #2e6485;   /* cool slate: the continuing series */
+  --fearn:  #8a3a1c;   /* warm coral: the earlier series. Cool vs warm
+                          survives protanopia and deuteranopia; both clear
+                          4.5:1 on the parchment. */
+  --serif: Georgia, "Times New Roman", "DejaVu Serif", serif;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--parch); color: var(--ink);
+  font-family: var(--serif); line-height: 1.5;
+}
+.wrap {
+  max-width: 1180px; margin: 0 auto; padding: 28px 24px 48px;
+  container-type: inline-size;
+  display: flex; flex-direction: column; gap: 0;
+}
+header.masthead { border-bottom: 2px solid var(--grid); padding-bottom: 14px; }
+.logo { height: 26px; width: auto; display: block; margin-bottom: 12px; }
+h1 { font-size: 28px; line-height: 1.2; margin: 0 0 6px; font-weight: 700; text-wrap: balance; }
+.standfirst { font-size: 16px; color: var(--muted); margin: 0; max-width: 72ch; }
+
+.bar {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 8px 24px; margin: 16px 0 8px; font-size: 14px;
+}
+.legend { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 0; padding: 0; list-style: none; }
+.legend li { font-weight: 700; }
+.legend .baltic { color: var(--baltic); }
+.legend .fearn  { color: var(--fearn); }
+.legend small { font-weight: 400; color: var(--muted); }
+.hint { color: var(--muted); font-size: 13px; margin: 0; }
+
+.chartbox { position: relative; }
+svg.chart { display: block; width: 100%; background: var(--panel); border: 1px solid var(--grid); }
+svg.chart:focus-visible { outline: 2px solid var(--baltic); outline-offset: 2px; }
+.chart text { font-family: var(--serif); fill: var(--muted); font-size: 12px; }
+.chart .ytick { font-variant-numeric: tabular-nums; }
+.chart .axis-title { font-size: 12px; fill: var(--muted); }
+.chart .ann { fill: var(--ink); font-size: 12.5px; }
+.chart .endlab { fill: var(--ink); font-size: 13px; font-weight: 700; }
+
+.tip {
+  position: absolute; pointer-events: none; z-index: 5;
+  min-width: 230px; max-width: 320px; padding: 10px 13px;
+  background: var(--ink); color: var(--parch);
+  border-radius: 4px; font-size: 13.5px; line-height: 1.4;
+  box-shadow: 0 6px 20px rgba(43,35,23,.3);
+  opacity: 0; transition: opacity .1s;
+}
+.tip.on { opacity: 1; }
+.tip .tdate { font-weight: 700; display: block; margin-bottom: 5px; }
+.tip .row { display: flex; align-items: baseline; gap: 8px; margin: 2px 0; }
+.tip .key { flex: 0 0 14px; height: 3px; border-radius: 2px; transform: translateY(-3px); }
+.tip .key.baltic { background: #7fb0cf; }
+.tip .key.fearn  { background: #d98a5f; }
+.tip .val { font-weight: 700; font-variant-numeric: tabular-nums; }
+.tip .who { color: var(--grid); font-size: 12.5px; }
+.tip .note { color: var(--grid); font-size: 12px; margin-top: 5px; }
+@media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
+
+.source { font-size: 13px; color: var(--muted); margin: 12px 0 0; max-width: 90ch; }
+.source a { color: var(--ink); }
+.notes { font-size: 14px; color: var(--ink); max-width: 78ch; margin-top: 14px; }
+.notes p { margin: 0 0 10px; }
+
+details.tbl { margin-top: 16px; font-size: 13.5px; }
+details.tbl summary { cursor: pointer; color: var(--muted); }
+details.tbl summary:focus-visible { outline: 2px solid var(--baltic); }
+.tblwrap { overflow-x: auto; margin-top: 8px; max-height: 420px; overflow-y: auto; border: 1px solid var(--grid); }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 4px 10px; border-bottom: 1px solid var(--hair); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { position: sticky; top: 0; background: var(--panel); font-weight: 700; }
+
+/* Inside the Prismic frame: fill the frame height, trim the chrome. */
+html.embed, html.embed body { height: 100%; overflow: hidden; }
+html.embed .wrap { height: 100%; padding: 14px 16px 12px; }
+html.embed .logo { height: 20px; margin-bottom: 8px; }
+html.embed h1 { font-size: 22px; }
+html.embed .standfirst { font-size: 14px; }
+html.embed .chartbox { flex: 1 1 auto; min-height: 0; }
+html.embed svg.chart { height: 100%; }
+html.embed .notes, html.embed details.tbl { display: none; }
+html.embed .source { font-size: 12px; margin-top: 8px; }
+
+@container (max-width: 640px) {
+  h1 { font-size: 22px; }
+  .standfirst { font-size: 14px; }
+  .hint { display: none; }
+}
+@media (max-width: 640px) {
+  .wrap { padding-left: 16px; padding-right: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <header class="masthead">
+    <a href="https://www.data4thepeople.com" aria-label="Data 4 The People"><img class="logo" alt="Data 4 The People" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGlkPSJMYXllcl8yIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODk0LjA2IDI5MS4wOCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNmZmY7fTwvc3R5bGU+PC9kZWZzPjxnIGlkPSJMYXllcl8xIj48ZyBpZD0ibGlnaHQiPjxyZWN0IGNsYXNzPSJjbHMtMSIgeD0iNzIwLjQ2IiB5PSIwIiB3aWR0aD0iMTE3My42IiBoZWlnaHQ9IjI5MS4wOCIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTcxNi43Niw4djI3NS4wOEg3LjYyVjhoNzA5LjE0TTcyNC4zOCwwSDB2MjkxLjA4aDcyNC4zOFYwaDBaIi8+PGcgaWQ9InRoZXBlb3BsZSI+PHBhdGggZD0iTTkxMS4zNiwzNS45NWMtNS43MSw2LjAyLTExLjUxLDExLjkyLTE3LjcyLDE3LjQ2LTYuNTgsNS44Ny0xNC4xNCw5Ljc0LTIyLjI2LDEyLjc3LS44OS4zMy0xLjgyLjc0LTIuNzUuNzctNC44OC4xMy05LjMsMi4xNS0xMy45NiwzLjIxLTMuMTMuNzItNi4yNCwxLjM0LTkuMDgsMS4yNy03LjE0LjEyLTEzLjY4LTEuNTEtMjAuMjgtMi41OC0yLjgzLS40Ni01LjYyLTEuMjYtOC4zNS0yLjE0LTguNTEtMi43MS0xNy4zLTQuMzEtMjUuOTMtNi41LTcuOS0yLjAxLTE1LjkxLTEuNTEtMjMuOC0uMzctNC4zOC42My04LjM3LDIuOTUtMTIuMDQsNS41NC0xLjMuOTItMi41MiwxLjk1LTMuNzksMi45MS0uNjIuNDctMS45Ni4xLTIuNTEtLjY4LS44NS0xLjE5LTEtMi43MS0uMzctMy41Ny4zNy0uNTEuNjQtMS4xMywxLjA5LTEuNTUsNy40My03LDE0LjQ1LTE0LjQ1LDIyLjUtMjAuNzgsMS40OS0xLjE4LDMuMDgtMi4yNyw0Ljc1LTMuMTcsNC40Ni0yLjQ0LDkuMDktNC41MywxMi45NS03Ljk5LDEuNC0xLjI2LDMuMzQtMS41OSw1LjQtMS4zNywzLjQ4LjM3LDcsLjU3LDEwLjUxLjUzLDYuMTctLjA3LDEyLjAxLjg1LDE3LjU1LDMuODIsMy4wNywxLjY1LDYuNDgsMi42OSw5Ljc1LDMuOTUsNi41NiwyLjUyLDEzLjEyLDUuMDQsMTkuMzcsOC4yNiw1LjIyLDIuNywxMC45MSwzLjUzLDE2LjYxLDQuMTgsNS41NC42MywxMC44My0uOCwxNS44MS0zLjA1LDYuOTgtMy4xNSwxMy43Ni02Ljc1LDIwLjE4LTEwLjk2LDEuMzItLjg2LDIuMzMtMi4xOSwzLjY0LTMuMDcuNzQtLjUsMS44LS42OSwyLjcyLS43MS4zOCwwLC45OS43NywxLjEsMS4yOS4yMiwxLjAxLS40NCwxLjg1LTEuMDksMi41M1pNODk5LjM1LDE4MS40OGMuOTQsNS4zMiwyLjQ3LDEwLjU3LDIuMDYsMTYuMS0uNTMsNy4wNi0xLjY1LDEzLjk4LTQuNTQsMjAuNDctNC45MiwxMS4wNS0xMi4wNSwyMC4xNi0yMi42MiwyNi41OC02LjA0LDMuNjctMTIuMDcsNy4yOS0xOC42Nyw5LjY5LTguNDQsMy4wNy0xNy4xOCw1LjAxLTI2LjI3LDQuODgtMi41Ni0uMDQtNS4xMi4wOC03LjE3LjEyLTQuOTktLjE3LTkuNDYtLjM0LTEzLjk0LS40Ny00Ljg3LS4xMy05LjQxLTEuNDgtMTMuODctMy4zOC03LjExLTMuMDQtMTMuNjMtNy4wNy0xOS41OC0xMS45MS00LjcxLTMuODMtOC43NS04LjQ3LTEyLjA5LTEzLjU0LTQuNDItNi43LTcuNDktMTMuOTctOS4yMS0yMS45NC0yLjE3LTEwLTEuNS0xOS42NywxLjM2LTI5LjMyLDMuMTMtMTAuNTIsOC40LTIwLjA0LDE0LjI0LTI5LjIyLDIuMDQtMy4yMSw0Ljc5LTUuOTksNy4zMy04Ljg1LDUuNTMtNi4yMiwxMS40Ni0xMi4wNywxNy45OC0xNy4yNSw4LjI2LTYuNTcsMTYuNTEtMTMuMTUsMjUuMzQtMTguOTUsMS42LTEuMDUsMy4yNy0yLjAzLDUuMDEtMi43OS44LS4zNSwxLjg2LS4xNiwyLjc5LS4xMS43Ni4wNCwxLjQsMS42NCwxLjA2LDIuMzEtLjg5LDEuNzYtMi4yNiwzLjEyLTMuODEsNC4yMy0yLjYxLDEuODUtNS4zMywzLjUzLTcuOTgsNS4zMi02Ljg5LDQuNjgtMTMuMzIsOS45My0xOS4yNSwxNS43OC0yLjk5LDIuOTUtNS40MSw2LjMxLTcuNDIsOS45Ny0xLjM4LDIuNTItMi43OCw1LjA0LTQuMDcsNy42MS0xLjI5LDIuNTctMi4zMyw1LjIyLTMuMDQsOC4wNS0xLjMxLDUuMjgtMi40MywxMC41OC0zLjQxLDE1LjkzLS43MSwzLjg0LS44LDcuNjUtLjQ0LDExLjQ2LjgsOC42NCwyLjcsMTcuMDIsNi41NiwyNC44OC43MSwxLjQzLDEuNDcsMi44NSwyLjAyLDQuMzUsMS4xMiwzLjA1LDIuNzQsNS43Niw1LjAyLDguMDkuNjcuNjgsMS4zNCwxLjM5LDEuODYsMi4xOSw0Ljg4LDcuNDgsMTIuMDksMTIuMjEsMTkuNjEsMTYuNTIsNSwyLjg3LDEwLjI0LDUuMjcsMTYsNi4yNywzLjc3LjY2LDcuMywyLjI1LDExLjE1LDIuNjgsNS4xNS41NywxMC4zLjI1LDE1LjI4LS43NCw2LjczLTEuMzQsMTIuNDMtNC45MiwxNy4wMi0xMC4xMS40Mi0uNDguODMtMSwxLjEtMS41NywyLjQ2LTUuMjIsNC42MS0xMC41NSw0LjgzLTE2LjQyLjEtMi41NS4wNy01LjEyLS4wMi03LjY3LS4xOC00Ljg2LTEuMzEtOS41MS0zLjU4LTEzLjgyLTEuNzktMy4zOC0zLjA0LTcuMDUtNS41Ni0xMC4wMy0uMjEtLjI0LS4zNy0uNTMtLjU0LS43OS0zLjQ2LTUuMjQtOC45OC04LjEyLTEzLjczLTExLjg0LTMuMjUtMi41NS03LjEtNC4yLTExLjIzLTUuMTktNC4xNC0xLTguMjYtMS4wNC0xMi4zNi0uMzUtMS44My4zMS0zLjYxLDEuMjUtNS4yOCwyLjE1LTEuNjcuODktMy4xNywyLjA5LTQuNzYsMy4xMy0uNTkuMzktMi0uNjEtMS45NC0xLjQ2LjA4LTEuMjYsMC0yLjY1LjUtMy43NCwxLjktNC4wOSw0LjU1LTcuNjIsOC0xMC42Myw0LjYyLTQuMDQsOS44Mi03LjExLDE1LjE2LTEwLjAxLDUuOTMtMy4yMSwxMi4xMS0zLjc4LDE4LjU4LTIuMDksMS4yNC4zMiwyLjUxLjUsMy43NC44NywxMi41OCwzLjc1LDIxLjg0LDExLjU3LDI4LjE0LDIzLjAzLDIuMDEsMy42NiwzLjksNy40MSw0LjYyLDExLjUyWk03NjguNjMsMjAxLjIzbC0uNTEtLjA2LjIuNTYuMzItLjVaIi8+PHBhdGggZD0iTTEwNDAuNiwyMzkuOTljLTUuNjYsMi45NC0xMS4zMSw1LjkxLTE3LjAxLDguNzYtMS43Ny44OC0zLjEsMi4xOC00LjQ1LDMuNTYtMS42LDEuNjYtNC4zNiwxLjYxLTUuOTYuMDctLjIzLS4yMi0uNS0uNDEtLjY5LS42Ny0zLjMyLTQuMzUtNy42NS03LjY3LTExLjctMTEuMjctNC43OC00LjI1LTkuNjEtOC40NS0xNC40Ni0xMi42My0xLjYxLTEuMzgtMi4yNy0zLjEtMS45Ny01LjExLjc5LTUuMzktLjA5LTEwLjgxLjUyLTE2LjI0LjU5LTUuMzcuMi0xMC44Ni4xNy0xNi4zLS4wMy01LjQ0LS4xNy0xMC44OC0uMjEtMTYuMzItLjA0LTQuOCwwLTkuNiwwLTE0LjQsMC0xLjk5LS41Mi0zLjc5LTIuMDMtNS4yLTYuMzItNS44OS0xMi42My0xMS43OS0xOS40OC0xNy4wNi0xLjY1LTEuMjctMy42MS0xLjMyLTUuNDItLjI5LTIuNzgsMS41Ny01LjUyLDMuMjEtOC4yMSw0LjkyLTEuMS43LTEuODQsMS44MS0xLjk2LDMuMTUtLjE1LDEuNTktLjIyLDMuMTktLjIsNC43OS4wNiw1LjQ0LjI1LDEwLjg3LjI1LDE2LjMxLDAsMy44My0uMiw3LjY2LS4zMiwxMS41LS4wNiwxLjkyLS4xOCwzLjg0LS4xNyw1Ljc2LjAzLDkuNTkuMDgsMTkuMTguMTQsMjguNzcsMCwuOTYuMDgsMS45Mi4xOSwyLjg3LjE1LDEuMzIuNzcsMi40NiwxLjczLDMuMzQsMS4xOCwxLjA3LDIuNDMsMi4wNywzLjczLDIuOTksNS41MSwzLjksMTAsOC45MiwxNC45NiwxMy40My42My41Ny41LDIuMTctLjE2LDIuNi0xLjA2LjY5LTIuMSwxLjQ0LTMuMjIsMi4wMi0yLjI3LDEuMTgtNC42MiwyLjIxLTYuODgsMy40LTIuNTQsMS4zNC01LjExLDIuNjctNy41Miw0LjIyLTIuMzgsMS41My00LjU4LDMuMzItNi44LDQuOTUtLjQzLS4yMS0uNzgtLjI5LTEtLjUtNi4yOS01LjkxLTEyLjcyLTExLjY1LTE5LjM4LTE3LjE0LS45OC0uODEtMS43Ni0xLjk2LTIuODYtMi41NS00LjEyLTIuMjEtNS42NC01LjM0LTUuMjItMTAuMTQuNTgtNi42NC0uMDUtMTMuMzcsMS0yMC4wMS4yLTEuMjUtLjAxLTIuNTUtLjAzLTMuODMtLjI0LTE5LjUyLS40OS0zOS4wNC0uNzEtNTguNTYtLjA2LTUuNzYuMTItMTEuNTMtLjA2LTE3LjI4LS4xMS0zLjE5LS40LTYuMzEuMjUtOS41MS41LTIuNDcuNC01LjA4LjM5LTcuNjMtLjAxLTcuOTktLjExLTE1Ljk5LS4xNy0yMy45OC0uMDEtMi4wNS0uNzgtMy44Mi0yLjMyLTUuMDgtNC40NS0zLjYzLTguMzMtNy45NS0xMy4zNi0xMC45LTEuNDQtLjg0LTEuMjUtMy4xNS4xOC00LjAyLjU1LS4zMywxLjA1LS43MywxLjYyLTEuMDMuNTYtLjMsMS4xOC0uNDksMS43NS0uNzcsMi44Ny0xLjQsNS43LTIuOSw4LjYxLTQuMjIsMy41Ny0xLjYyLDYuNDYtNC4wNyw5LjA4LTYuOTIuOS0uOTgsMy40NS0uODksNC41LS4wNC4yNS4yLjU5LjMxLjc4LjU1LDQuNjIsNS44NCwxMC45LDkuODQsMTYuMzMsMTQuNzgsMS4xOCwxLjA3LDIuNDcsMi4wNSwzLjU1LDMuMjEuODcuOTMsMS42NSwyLjE0LDEuMzYsMy40Ni0xLjEzLDUuMDctLjcxLDEwLjE0LS41NSwxNS4yNy4yNSw3Ljk4LjE0LDE2LS4xMywyMy45OC0uMjYsNy42OC4zLDE1LjM0LjE5LDIzLS4wMi45NS4yMiwxLjkuMzQsMi44NS4wOS43LDEuNTksMS41NywyLjIxLDEuMjguNTctLjI3LDEuMjEtLjQzLDEuNzUtLjc0LDguMjYtNC44NiwxNi44NS05LjE4LDI0Ljc0LTE0LjY2Ljc5LS41NSwxLjYzLTEuMDMsMi4zNC0xLjY3LDMuNjgtMy4zMiw1LjY3LTMuMDksOC41OC44My43NSwxLjAyLDEuNTQsMi4wNSwyLjUxLDIuODUsNy4zOSw2LjEyLDE0LjgzLDEyLjE5LDIyLjI3LDE4LjI0LDEuNDMsMS4xNiwyLjkzLDIuMjYsNC45LDIuMjcuMDYsMy4xMi4xNCw2LjI0LjE3LDkuMzYuMDIsMi41Ni0uMDksNS4xMi0uMDYsNy42OC4wNiw1LjEyLjUsMTAuMjYuMTYsMTUuMzYtLjMyLDQuNzkuNiw5LjU4LS4zMiwxNC4zMywxLjE5LDYuNjksMCwxMy4zOS0uMDYsMjAuMDgtLjAzLDIuNzguOTYsNC45NSwzLjA0LDYuNzIsNC4zNywzLjc0LDguNzUsNy40OSwxMy4wOCwxMS4yOCwyLjg4LDIuNTMsNS43LDUuMTMsOC41LDcuNzQsMS4wMy45Ni41MiwzLjQ2LS44MSw0LjE2Wk0xMDE3LjE2LDE0My4zYy0uMDgsMC0uMTYsMC0uMjQsMCwwLS4wOCwwLS4xNSwwLS4yMmwuMjQuMjNaIi8+PHBhdGggZD0iTTExNDguNjMsMjE2LjA5Yy0yLjEyLDEuNDItNC4xNiwyLjk4LTYuNDEsNC4xNS05LjA3LDQuNzItMTcuOTIsOS44Mi0yNi44NCwxNC44MS05LjIsNS4xMy0xOC42Niw5Ljc5LTI3Ljc3LDE1LjA4LS4yNy4xNi0uNi4yMS0uOS4zMS0xLjMyLjQzLTIuNjcuMjItMy42MS0uNjMtMi4zOC0yLjEyLTQuNTktNC40Mi02Ljg3LTYuNjctOC44OS04Ljc1LTE4Ljc0LTE2LjQyLTI3Ljg4LTI0LjktMS40LTEuMy0yLjg1LTIuNTgtNC4xMy0zLjk5LTEuMDktMS4yMS0xLjctMi42OS0xLjQ0LTQuNjIsMS4yNS00LjE2Ljg3LTguNjIuNzgtMTMuMTEtLjIxLTEwLjg3LS4yMy0yMS43NC0uMzUtMzIuNjEtLjA1LTQuMTUtLjIxLTguMy0uMjUtMTIuNDYtLjAyLTEuNy42Ni0zLjAzLDIuMjItMy45Miw4LjI5LTQuNzksMTYuNjQtOS40OSwyNC44My0xNC40Nyw1LjE3LTMuMTUsMTAuNy01LjcyLDE2LjEtOC40OSw0LjU2LTIuMzMsOS4xMS00LjY0LDEyLjktOC4yLjY4LS42NCwxLjY0LS45OCwyLjQ5LTEuNC45NC0uNDYsMS44OC0uMjIsMi43NS4yMi41Ni4yOCwxLjEuNjYsMS41NCwxLjExLDYuNTIsNi42LDE0LDEyLjEyLDIwLjgzLDE4LjM4LDQsMy42Nyw4LjI3LDcuMDUsMTIuNCwxMC41Ny40OC40MS44Ni45MywxLjMsMS40Ljk1LDEuMDIuODIsMy40LS4yOCw0LjM4LS43MS42My0xLjM3LDEuNDItMi4yMSwxLjgxLTMuMjMsMS40OC02LjA3LDMuNTMtOC44MSw1Ljc0LS41LjQtLjk3Ljg3LTEuNTIsMS4xNi03LjExLDMuODEtMTMuMDIsOS4yMS0xOS4xLDE0LjM5LTMuMTUsMi42OC02LjQ0LDUuMTUtMTAuMDQsNy4zLTQuMzgsMi42MS04LjM1LDUuOS0xMi41MSw4Ljg4LTIuNTksMS44NS01LjI0LDMuNjMtNy44Miw1LjUtMS4wOS43OS0xLjIzLDIuMzItLjQ5LDMuNDIsMi4xNSwzLjIxLDQuNjMsNi4xMyw3LjgxLDguMzYsMy45NSwyLjc2LDcuNDcsNS45NiwxMC43Niw5LjQ4LDMuNDgsMy43NCw3LjMsNy4xNiwxMS4wMSwxMC42Ny45Mi44NywyLjAxLDEuNTgsMy4wNSwyLjMxLDEuMTEuNzcsMi4zOC45OSwzLjYzLjQ5LDEuMTgtLjQ3LDIuMy0xLjEsMy40MS0xLjczLDguNjEtNC44OSwxNy4yLTkuODIsMjUuODMtMTQuNjksMS4xLS42MiwyLjM0LTEsMy41Mi0xLjQ1LjY4LS4yNiwyLjA4LjI3LDIuNTcuODkuNDguNjIuMjQsMi4wMi0uNDksMi41MlpNMTA5My40NywxNzkuNTdjNC45NC0zLjQ5LDkuODEtNy4wOCwxNC42OS0xMC42NC43Ny0uNTYsMS40Ni0xLjIzLDIuMTctMS44NywxLjA3LS45Ny45OC0zLjE3LS4xNS00LjMtLjIzLS4yMi0uNDEtLjUtLjY1LS43LTguMDQtNi43Ni0xNS44OS0xMy43My0yMy42OS0yMC43Ni0yLjEyLTEuOTEtNC41Mi0zLjUyLTYuODMtNS4yMi0xLjEyLS44My0zLjMyLS4yNS00LjE4LDEuMTEtLjUuNzktMS4wOSwxLjY2LTEuMTgsMi41NS0uMjIsMi4yMS0uMjYsNC40NS0uMjMsNi42Ny4wOCw2LjM3LjIzLDEyLjc0LjM0LDE5LjExLS4wNywwLS4xMywwLS4yLDAsLjE1LDcuOTcuMywxNS45My40NiwyMy45LDAsLjMyLjExLjYzLjE0Ljk1LjA3LjksMS4zNywxLjY4LDIuMDYsMS4yLDUuNzUtMy45OSwxMS41My03Ljk0LDE3LjI1LTExLjk5WiIvPjxwYXRoIGQ9Ik0xMzI0LjI5LDk4LjY5Yy0uMzMsMi4yLS4xNyw0LjQ3LS4zOSw2LjctLjE1LDEuNTgtLjQ2LDMuMTYtLjg3LDQuNjktMS45LDcuMTYtNC44OCwxMy45NC04Ljg2LDIwLjA5LTQuNTEsNi45OC05Ljk5LDEzLjM0LTE2LjQ5LDE4LjYtMy4yLDIuNTktNi44NCw0Ljc5LTEwLjU4LDYuNTQtOC4zNywzLjk0LTE2LjU2LDguMy0yNS4zMSwxMS40LTEuNS41My0yLjk2LDEuMjUtNC4zMSwyLjA4LTMuNjYsMi4yMy01Ljk3LDEuOTgtOS4yNi0xLjQ3LS42Ni0uNy0xLjM1LTEuMzktMi4xMi0xLjk1LTIuNjQtMS45MS01LjUzLTMuMjQtOC44Ny0zLjE1LTIuODcuMDgtNS43NC4yNi04LjYuNDYtLjk1LjA2LTIuNDQsMS41OS0yLjYxLDIuNTYtLjE3Ljk0LS4zOSwxLjg4LS40MSwyLjgyLS4wMywxLjkyLDAsMy44NC4xMiw1Ljc2LjYzLDkuMjYuMTgsMTguNTMuNDQsMjcuOC4yNCw4Ljk1LjM2LDE3LjkxLjUsMjYuODYuMDQsMi41NS4wNSw1LjEyLS4wOSw3LjY3LS4xMSwyLjAzLTEuMDcsMy43OS0yLjk3LDQuNi02LjUsMi43Ny0xMi4yNSw2Ljg4LTE4LjQ5LDEwLjExLTMuNjcsMS45LTcuMjIsNC4xLTkuNzksNy41My0uNjIuODMtMS42OCwxLjA0LTIuNi42NS0yLjA1LS44OC00LjA1LTEuODctNi4wNC0yLjg2LTMuNDQtMS43LTYuODItMy41MS0xMC4yOS01LjEyLTIuNjItMS4yMS01LjM2LTEuOTQtOC4zNi0xLjM3LTQuMi43OS03LjkzLDIuNDEtMTAuOTEsNS41My0xLjA5LDEuMTUtMi4wOSwyLjQtMy4xMywzLjYxLS41My42Mi0xLjEyLjY4LTEuNjcuMDctLjQyLS40Ni0uOTktMS4wMi0xLjAxLTEuNTUtLjAzLS45MS4xOS0xLjg4LjUzLTIuNzQuOTctMi40MywyLjc1LTQuMjksNC41Ny02LjEsMy44NS0zLjgzLDcuNzctNy42MSwxMS41Ny0xMS40OSw0LjY1LTQuNzYsMTAuNC03LjMxLDE2LjgyLTguNDYsMi4xOC0uNCw0LjQ2LS4yOSw2LjY4LS40NSwxLjEtLjA3LDIuNTctMS40OCwyLjYyLTIuNDYuMDQtLjYzLjA3LTEuMjcuMDgtMS45LjA5LTEyLjQ0LjIzLTI0Ljg5LjI2LTM3LjMzLjAyLTEwLjIzLS4wOC0yMC40Ny0uMTItMzAuNy0uMDYsMC0uMTMsMC0uMTksMC0uMTgtMjEuNzUtLjM2LTQzLjQ5LS41NS02NS4yNC0uMDItMS45Mi0uMTUtMy44NC0uMy01Ljc0LS4xLTEuMzEtLjY0LTIuNTgtMS42Ny0zLjM1LTMuNi0yLjcxLTYuNzItNS45LTkuNzgtOS4xOC0uNjQtLjY4LTEuNTEtMS4xOC0yLjM1LTEuNjItMS4xNi0uNjEtMi40LS45MS0zLjY1LS4yMi0zLjkxLDIuMTctNy43OSw0LjM5LTExLjczLDYuNDktMS4xNy42My0yLjUzLjQ1LTMuNjUtLjI2LS40Ny0uMy0uNzMtMS0uOTctMS41Ny0uMDgtLjE5LjE0LS42MS4zNC0uNzguNzQtLjYxLDEuNDYtMS4yNSwyLjI5LTEuNyw0Ljc5LTIuNTUsOS42Mi01LjA2LDE0LjQzLTcuNTcsNC4wNy0yLjEyLDE5LjU3LTExLjYyLDIyLjg0LTE0LjAyLDMuNjYtMi42OCwzLjYtMi42Miw2Ljc4LjUxLDIuMjcsMi4yNCw0LjczLDQuMjksNy4xLDYuNDIsMi44NSwyLjU2LDUuNjksNS4xNSw4LjU3LDcuNjgsMS41MiwxLjMzLDMuMzYsMS43Nyw1LjM2LDEuNTQuNjQtLjA3LDEuMjgtLjE1LDEuODktLjMxLDQuOTUtMS4yNiw5Ljk0LTIuNDIsMTQuODUtMy44Miw5LjgyLTIuODEsMTkuNTktNS44LDI5LjQxLTguNjIsMy4wOC0uODgsNi4wOC0xLjgzLDguODctMy41MSwzLjA2LTEuODUsNi41LTIuNTksMTAuMTEtMi40OCwyLjI0LjA3LDQuNDkuMTEsNi43MS0uMDUsMy4xOS0uMjMsNS42OS41NCw2LjkzLDMuODEuMjEuNTcuNzMsMS4wNiwxLjIsMS40OCwzLjYyLDMuMjQsNi40Myw3LjA4LDguNTUsMTEuNDMsNC43NSw1LjU1LDQuODgsMTAuNjUsNy4xNCwxNS42LjI2LjU3LjQ4LDEuMjMuNDgsMS44NC0uMDUsNS40MywxLjc2LDEwLjc0Ljk0LDE2LjIzWk0xMjk1LjI4LDEwMy41MmMtMS4zMS04Ljk4LTUuMDItMTcuMTMtOC43NC0yNS4yOC0uMTMtLjI5LS4zNS0uNTMtLjU1LS43OS0yLjE0LTIuNzktNC4yMi01LjYzLTYuNDQtOC4zNy0yLjAzLTIuNS00LjUyLTQuNTItNy4xNy02LjM0LTEuNC0uOTYtMi45NS0xLjE1LTQuNTgtLjkyLS45NS4xNC0xLjk1LjItMi44Mi41NS03LjQ0LDIuOTktMTUuNDEsNC4yMS0yMi45Niw2Ljg0LTMuOTEsMS4zNi03LjkyLDIuNTMtMTIuMDksMi45Ni0uNjIuMDYtMS4yMi4zNy0xLjgzLjU1LTEuMzIuMzktMi42OCwyLjE2LTIuNzcsMy42MS0uMDIuMzItLjA2LjY0LS4wNy45Ni0uMDcsNi4wOC0uNTksMTIuMTktLjA3LDE4LjIxLjU2LDYuNDEuMDYsMTIuOC41LDE4LjkxLjA0LDIuNS4wNiw0Ljc0LjE0LDYuOTkuMTYsNC44LS41MSw5LjYxLS4yOSwxNC4zNy4yMyw1LjE0LjA1LDEwLjIyLS4xNywxNS4zMy0uMDMuNjMuMTEsMS4yNy4xNiwxLjkxLjA2Ljc1LDEuNTcsMS43NiwyLjE1LDEuNDEsMS4zNy0uODMsMi43Ni0xLjYyLDQuMDgtMi41MiwzLjczLTIuNTYsNy43OC00LjI0LDEyLjE0LTUuNTQsOS43Ni0yLjkyLDE4LjkzLTIuMTEsMjcuNjUsMy4yMiwxLjA5LjY3LDIuMTQsMS40LDMuMjIsMi4wOS41NC4zNCwxLjEuNjMsMS42Ni45NS44MS40NiwyLjAxLjM2LDIuNy0uMTgsNi41Ni01LjA3LDEwLjYtMTEuODQsMTMuMjYtMTkuNTYsMy4yOS05LjU2LDQuMzUtMTkuMzIsMi45LTI5LjM1WiIvPjxwYXRoIGQ9Ik0xNDI3LjkzLDIxNi4wOWMtMi4xMiwxLjQyLTQuMTYsMi45OC02LjQxLDQuMTUtOS4wNyw0LjcyLTE3LjkyLDkuODItMjYuODQsMTQuODEtOS4yLDUuMTMtMTguNjYsOS43OS0yNy43NywxNS4wOC0uMjcuMTYtLjYuMjEtLjkuMzEtMS4zMi40My0yLjY3LjIyLTMuNjEtLjYzLTIuMzgtMi4xMi00LjU5LTQuNDItNi44Ny02LjY3LTguODktOC43NS0xOC43NC0xNi40Mi0yNy44OC0yNC45LTEuNC0xLjMtMi44NS0yLjU4LTQuMTMtMy45OS0xLjA5LTEuMjEtMS43LTIuNjktMS40NC00LjYyLDEuMjUtNC4xNi44Ny04LjYyLjc4LTEzLjExLS4yMS0xMC44Ny0uMjMtMjEuNzQtLjM1LTMyLjYxLS4wNS00LjE1LS4yMS04LjMtLjI1LTEyLjQ2LS4wMi0xLjcuNjYtMy4wMywyLjIyLTMuOTIsOC4yOS00Ljc5LDE2LjY0LTkuNDksMjQuODMtMTQuNDcsNS4xNy0zLjE1LDEwLjctNS43MiwxNi4xLTguNDksNC41Ni0yLjMzLDkuMTEtNC42NCwxMi45LTguMi42OC0uNjQsMS42NC0uOTgsMi40OS0xLjQuOTQtLjQ2LDEuODgtLjIyLDIuNzUuMjIuNTYuMjgsMS4xLjY2LDEuNTQsMS4xMSw2LjUyLDYuNiwxNCwxMi4xMiwyMC44MywxOC4zOCw0LDMuNjcsOC4yNyw3LjA1LDEyLjQsMTAuNTcuNDguNDEuODYuOTMsMS4zLDEuNC45NSwxLjAyLjgyLDMuNC0uMjgsNC4zOC0uNzEuNjMtMS4zNywxLjQyLTIuMjEsMS44MS0zLjIzLDEuNDgtNi4wNywzLjUzLTguODEsNS43NC0uNS40LS45Ny44Ny0xLjUyLDEuMTYtNy4xMSwzLjgxLTEzLjAyLDkuMjEtMTkuMSwxNC4zOS0zLjE1LDIuNjgtNi40NCw1LjE1LTEwLjA0LDcuMy00LjM4LDIuNjEtOC4zNSw1LjktMTIuNTEsOC44OC0yLjU5LDEuODUtNS4yNCwzLjYzLTcuODIsNS41LTEuMDkuNzktMS4yMywyLjMyLS40OSwzLjQyLDIuMTUsMy4yMSw0LjYzLDYuMTMsNy44MSw4LjM2LDMuOTUsMi43Niw3LjQ3LDUuOTYsMTAuNzYsOS40OCwzLjQ4LDMuNzQsNy4zLDcuMTYsMTEuMDEsMTAuNjcuOTIuODcsMi4wMSwxLjU4LDMuMDUsMi4zMSwxLjExLjc3LDIuMzguOTksMy42My40OSwxLjE4LS40NywyLjMtMS4xLDMuNDEtMS43Myw4LjYxLTQuODksMTcuMi05LjgyLDI1LjgzLTE0LjY5LDEuMS0uNjIsMi4zNC0xLDMuNTItMS40NS42OC0uMjYsMi4wOC4yNywyLjU3Ljg5LjQ4LjYyLjI0LDIuMDItLjQ5LDIuNTJaTTEzNzIuNzYsMTc5LjU3YzQuOTQtMy40OSw5LjgxLTcuMDgsMTQuNjktMTAuNjQuNzctLjU2LDEuNDYtMS4yMywyLjE3LTEuODcsMS4wNy0uOTcuOTgtMy4xNy0uMTUtNC4zLS4yMy0uMjItLjQxLS41LS42NS0uNy04LjA0LTYuNzYtMTUuODktMTMuNzMtMjMuNjktMjAuNzYtMi4xMi0xLjkxLTQuNTItMy41Mi02LjgzLTUuMjItMS4xMi0uODMtMy4zMi0uMjUtNC4xOCwxLjExLS41Ljc5LTEuMDksMS42Ni0xLjE4LDIuNTUtLjIyLDIuMjEtLjI2LDQuNDUtLjIzLDYuNjcuMDgsNi4zNy4yMywxMi43NC4zNCwxOS4xMS0uMDcsMC0uMTMsMC0uMiwwLC4xNSw3Ljk3LjMsMTUuOTMuNDYsMjMuOSwwLC4zMi4xMS42My4xNC45NS4wNy45LDEuMzcsMS42OCwyLjA2LDEuMiw1Ljc1LTMuOTksMTEuNTMtNy45NCwxNy4yNS0xMS45OVoiLz48cGF0aCBkPSJNMTU1MC4xNiwxOTEuNDJjLTEuMDksNy4zMi0uNTMsMTQuNjctLjQ4LDIyLjAxLDAsLjMyLS4wMi42NC4wMi45Ni41MSw1LjExLTEuOTQsOC41MS02LjE5LDEwLjk1LTIuNDksMS40My00Ljg0LDMuMTItNy4zOSw0LjQ1LTExLjYyLDYuMDUtMjIuNDcsMTMuNDYtMzQuMjksMTkuMTQtNi42MiwzLjE4LTEzLjExLDYuNjItMTkuOSw5LjQ1LTEuNjUuNjktMy4xMy42OS00LjQ0LS40Ni00LjU2LTQuMDEtOS4wOC04LjA3LTEzLjU5LTEyLjEzLTEuOS0xLjcxLTMuNjQtMy42LTUuNjQtNS4xOC01LjUxLTQuMzctMTAuMTQtOS42OS0xNS40Ni0xNC4yNi0uOTctLjgzLTEuODYtMS43Ny0yLjctMi43My0xLjUzLTEuNzQtMi40Ny0zLjc1LTIuMjctNi4xMi41OS03LjAxLS40Ny0xNC4wNi40MS0yMS4wNy4xMi0uOTQtLjAyLTEuOS0uMDQtMi44NmguMDRjLS4wNS0yLjg3LS4zNS01Ljc2LS4xMS04LjYxLjQyLTUuMTIuNS0xMC4yLS4yNS0xNS4yOS0uMTQtLjkzLS4wNi0xLjkxLjAyLTIuODUuMTctMiwuOTQtMy43MSwyLjcxLTQuODEsMi40NS0xLjUxLDQuODUtMy4xMSw3LjQtNC40NCwxMS45MS02LjE5LDIzLjM3LTEzLjE4LDM0Ljk3LTE5Ljg5LDUuMjMtMy4wMywxMC4zMy02LjMxLDE1LjQ2LTkuNTMsMy4yNC0yLjAzLDYuNDgtNC4wOCw5LjA0LTcuMDIuNzQtLjg1LDIuNzktLjgyLDMuNTMtLjEsNC44Miw0LjY3LDkuNzMsOS4yNiwxNC40NCwxNC4wNCw2Ljk2LDcuMDcsMTQuMjksMTMuNzMsMjIuMDgsMTkuODgsMS45NywxLjU1LDIuNjksMy40NSwyLjY4LDUuODEtLjAyLDUuMTItLjAzLDEwLjIzLS4wNSwxNS4zNC0uMDEsMy41Mi0uMDQsNy4wMy0uMDQsMTAuNTUsMCwxLjYuMjYsMy4yMy4wMyw0Ljc5Wk0xNTE4LjQzLDIyOS4wOGMtLjAzLTguNjQtLjA4LTE3LjI4LS4xMi0yNS45MmgtLjE1Yy4wNy04LjY0LjA5LTE3LjI4LjIyLTI1LjkxLjA0LTIuNDEtLjctNC4zOC0yLjQ4LTUuOTctOS43Ny04Ljc0LTE5LjU0LTE3LjQ4LTI5LjMyLTI2LjItLjQ3LS40Mi0xLjA0LS44Ny0xLjYzLS45OC0uOTEtLjE3LTIuMDctLjQyLTIuNzctLjAyLTMuNiwyLjA2LTcuMTMsNC4yNi0xMC42LDYuNTQtMS4zOS45Mi0yLjEyLDIuNDQtMi4xMSw0LjEyLjA0LDQuOC4yNiw5LjYuMjksMTQuNC4wNCw4LjY0LS4wMywxNy4yNy0uMDEsMjUuOTEuMDEsMy44NC4xMSw3LjY3LjIxLDExLjUxLjA3LDIuMzQuOTEsNC4yNCwyLjc5LDUuODMsNS4zOCw0LjU0LDEwLjY4LDkuMTYsMTUuOTIsMTMuODUsNC41Miw0LjA2LDguOTEsOC4yNywxMy4zOCwxMi4zOS43LjY0LDEuNDksMS4yMiwyLjMyLDEuNjcuNTMuMjksMS4zNS41NSwxLjgxLjM0LDMuNzctMS43Myw3LjU1LTMuNDksMTAuNzMtNi4yMS42Ny0uNTcsMS4wNC0xLjYsMS4yOC0yLjUuMjQtLjkuMjEtMS45LjIxLTIuODVaIi8+PHBhdGggZD0iTTE2ODYuNzMsMjEzLjNjLjMyLTMuMjEuNDctNi4zNy0uMjYtOS41NS0uMjItLjkyLS4zMS0xLjkzLS4xNi0yLjg2LDEuMDMtNi4zNy4zNy0xMi43OC42MS0xOS4xNi0uMDQtMS45Mi0uMDktMy44NC0uMTEtNS43Ni0uMDItMy44NC4wMi03LjY4LS4wNS0xMS41MS0uMDQtMi4wMS0uODQtMy42Ny0yLjQ5LTQuOTYtNy4zMy01LjctMTQuMzgtMTEuNzQtMjEuMDgtMTguMTgtMi4wNy0xLjk5LTQuMDMtNC4xNS02LjMzLTUuODUtNS4xNy0zLjgyLTkuOTMtOC4wNi0xNC4zNC0xMi43Mi0xLjUtMS41OS0zLjM0LTEuNjctNS4yNy0xLjczLTEuNjQtLjA1LTMuMzkuMDUtNC41MSwxLjI1LTQuNDgsNC43NS0xMC4xMiw3Ljc4LTE1Ljc4LDEwLjc1LTE0LjIsNy40NS05LjQxLDcuOTQtMjEuNTUtMi43OS0zLjM3LTIuOTctNy41Ny00LjgyLTEwLjU0LTguMjgtLjYzLS43My0xLjc0LS42OC0yLjU5LS4xMi03LjI1LDQuNjktMTQuNzUsOC45NS0yMi4yNSwxMy4yMy0xLjEuNjMtMi4wNywxLjQ4LTMuMDgsMi4yNS0uNjEuNDYtLjgzLDEuOTktLjUsMi42NC44OSwxLjc0LDEuOTksMy4zNSwzLjYzLDQuMzksNS43MiwzLjYzLDEwLjEyLDguODEsMTUuNDMsMTIuOTIsMS4wNS44MSwxLjYzLDIuMDEsMS43LDMuMzIuMTUsMi44OC4yMyw1Ljc2LjI0LDguNjQuMDgsMTYuOTcuMTcsMzMuOTQuMTgsNTAuOTEsMCw2LjM4LS4xOCwxMi43Ny0uMjcsMTkuMTUtLjA2LDMuODQtLjE4LDcuNjgtLjE1LDExLjUyLjA2LDYuMDcuMjksMTIuMTMuMzMsMTguMi4wMyw2LjA4LS4xMSwxMi4xNi0uMTQsMTguMjQsMCwxLjI4LDAsMi41Ni4wMSwzLjg0aDI5LjE3Yy43MS0uOTIsMS4xMy0yLjAzLDEuMTYtMy4zMS4wNy0yLjg4LDAtNS43Ni4wMS04LjY0LDAtMi4yNCwwLTQuNDguMDItNi43Mi4wMi0yLjU2LjIzLTUuMTMuMDMtNy42OC0uMTgtMi4yNSwxLjI4LTQuMzMuNS02LjU1LS44Ny0yLjQ2LS45MS01LjAyLTEuMDYtNy41OC0uMDItLjMxLjAzLS42My4wNy0uOTUuMDQtLjMyLjA2LS42NS4xOC0uOTQuMTItLjI5LjMtLjcxLjUzLS43Ny41My0uMTMsMS4yNC0uMzEsMS42My0uMDcsNC4xNiwyLjUxLDcuMzcsNi4xMSwxMC43LDkuNTYsMi4xNywyLjI2LDQuNjYsMi42Nyw2Ljc3Ljc1LDMuMTMtMi44NCw2LjcyLTQuODYsMTAuNC02Ljc5LDQuMjUtMi4yNCw4LjU0LTQuNCwxMi43MS02Ljc3LDEwLjg1LTYuMTYsMjEuNjEtMTIuNDcsMzIuNDctMTguNiwzLjIyLTEuODIsNC4yNC00LjU5LDQuMjctNy45Ni4wMS0xLjU5LS40My0zLjItLjI4LTQuNzdaTTE2NTMuMDIsMjM3LjI2Yy0xLjQyLjcxLTIuODIsMS40OC00LjI0LDIuMjEtLjI4LjE0LS41OS4yOC0uOS4yOC0uNjEsMC0xLjM1LjEtMS44My0uMTktMS4zNi0uODItMi43MS0xLjctMy44OC0yLjc1LTQuOTktNC40Ny05Ljk5LTguOTMtMTQuODQtMTMuNTUtNC44NS00LjYyLTkuNjEtOS4zMy0xNC45OS0xMy4zNi0xLjI2LS45NC0yLjQzLTIuMTEtMy4zNS0zLjM4LS43Mi0uOTgtMS0yLjI5LTEuNDktMy40NSwxLjA5LTMuNzcuMTUtNy42LjMyLTExLjQuMTctMy44Mi4xLTcuNjYuMTEtMTEuNDgsMC0xLjYtLjA1LTMuMTktLjA4LTQuNzguMTEsMCwuMjMsMCwuMzQsMC0uMTYtOC4yOS0uMzItMTYuNTgtLjQ2LTI0Ljg3LS4wMi0uOTUsMC0xLjkxLjA3LTIuODYuMjYtMy41NywzLjAzLTYuMjEsNy4wNS02LjUyLjg1LS4wNiwxLjk1LjMzLDIuNTkuOSw0LjA4LDMuNTgsOC4wNiw3LjI1LDEyLjA2LDEwLjkyLjcuNjQsMS4xNywxLjY2LDEuOTcsMi4wNiw0LjQsMi4xOCw3LjE3LDYuMjcsMTAuOTcsOS4xNiwzLjU1LDIuNyw2LjY2LDUuOTQsMTAuMDksOC44LDIuMzUsMS45NiwzLjc4LDQuMjcsMy44NCw3LjM2LjAxLjY0LjA3LDEuMjguMDgsMS45MS4xMSwxNi4yOC4yMywzMi41NS4yOSw0OC44MiwwLDIuNzQtMS4xNiw0LjkyLTMuNzMsNi4xOVoiLz48cGF0aCBkPSJNMTc1NS43NywyNDEuNjNjLS43OS41NC0xLjU0LDEuMTYtMi4zOCwxLjYtMi4yNiwxLjItNC41NywyLjMtNi44MywzLjQ4LTQuMjUsMi4yMS04LjU4LDQuMjgtMTEuODIsOC4wMS0uOTIsMS4wNi0zLjcxLDEuMDgtNC40Mi4wNC0yLjQ0LTMuNTYtNi40My01LjItOS41Mi03LjkzLTQuNzgtNC4yMy05LjQyLTguNjEtMTQuMjMtMTIuOC0xLjYzLTEuNDItMi4xNS0zLjA5LTIuMTgtNS4wNi0uMS04LS4yLTE1Ljk5LS4yNi0yMy45OS0uMDctOS41OS0uMzctMTkuMTktLjAxLTI4Ljc3LjE4LTQuNzctLjQ5LTkuNTUuMzItMTQuMy0xLjAyLTQuNzcuMzItOS41My4wNC0xNC4zMi0uMjktNC43OC0uMTQtOS41OS0uMjItMTQuMzgtLjA1LTMuMi0uMDYtNi40LS4yNi05LjU5LS4wOC0xLjIzLS41Ny0yLjQ2LTEtMy42My0uMzMtLjg5LS45NC0xLjc1LS40MS0yLjY4LDEuNjYtMi45NCwxLjUyLTYuMTMsMS40NS05LjM0LS4xNi04LjMxLS4yNS0xNi42My0uNC0yNC45NS0uMDMtMS45MS0uMTItMy44My0uMzMtNS43NC0uMTQtMS4yOS0uNzQtMi40Ny0xLjcyLTMuMzQtMy4zNC0yLjk2LTYuNzItNS44OC0xMC4wNi04Ljg0LS43LS42Mi0uNjYtMi4xMiwwLTIuNTkuNzgtLjU1LDEuNDctMS4yNSwyLjMxLTEuNjksMS40MS0uNzUsMi45My0xLjI5LDQuMzUtMi4wMiw0LjgzLTIuNDksOS41Ny01LjExLDEzLjMtOS4yMS42My0uNjksMS40Ny0xLjIxLDIuMjgtMS43MiwxLjE1LS43MywyLjQxLS44NSwzLjYzLS4xNy44My40NiwxLjc3LjksMi4zNSwxLjYxLDMuODgsNC43Myw4LjYsOC41MywxMy4zNywxMi4zLjUuMzkuOTQuODcsMS40LDEuMzEsMS4yLDEuMTUsMS44NiwyLjU3LDIuMDUsNC4yMS4wNy42My4xLDEuMjguMDgsMS45Mi0uNDcsMTEuNTEtLjA2LDIzLjAyLjE0LDM0LjUzLjE2LDkuMjcuMDksMTguNTUuMTMsMjcuODIuMDYsMCwuMTIsMCwuMTgsMCwuMjYsMTMuNzUuNTQsMjcuNDkuNzcsNDEuMjQuMDgsNC43OS0uNCw5LjY0LjE2LDE0LjM3LjcyLDYuMDYtLjEzLDEyLjA3LjEyLDE4LjA5LjA3LDEuNTgtLjA5LDMuMjItLjQ3LDQuNzUtLjY0LDIuNTUtLjM0LDUuMS0uMjYsNy42NC4xMSwzLjM1LDEuMzgsNi4xMiw0LjIzLDguMTksNS4xOCwzLjc2LDkuODEsOC4xNywxNC40NCwxMi41Ni44NS44MS42NSwyLjc1LS4yOCwzLjRaIi8+PHBhdGggZD0iTTE4NjguMDMsMjE2LjA5Yy0yLjEyLDEuNDItNC4xNiwyLjk4LTYuNDEsNC4xNS05LjA3LDQuNzItMTcuOTIsOS44Mi0yNi44NCwxNC44MS05LjIsNS4xMy0xOC42Niw5Ljc5LTI3Ljc3LDE1LjA4LS4yNy4xNi0uNi4yMS0uOS4zMS0xLjMyLjQzLTIuNjcuMjItMy42MS0uNjMtMi4zOC0yLjEyLTQuNTktNC40Mi02Ljg3LTYuNjctOC44OS04Ljc1LTE4Ljc0LTE2LjQyLTI3Ljg4LTI0LjktMS40LTEuMy0yLjg1LTIuNTgtNC4xMy0zLjk5LTEuMDktMS4yMS0xLjctMi42OS0xLjQ0LTQuNjIsMS4yNS00LjE2Ljg3LTguNjIuNzgtMTMuMTEtLjIxLTEwLjg3LS4yMy0yMS43NC0uMzUtMzIuNjEtLjA1LTQuMTUtLjIxLTguMy0uMjYtMTIuNDYtLjAyLTEuNy42Ni0zLjAzLDIuMjItMy45Miw4LjI5LTQuNzksMTYuNjQtOS40OSwyNC44My0xNC40Nyw1LjE3LTMuMTUsMTAuNy01LjcyLDE2LjEtOC40OSw0LjU2LTIuMzMsOS4xMS00LjY0LDEyLjktOC4yLjY4LS42NCwxLjY0LS45OCwyLjQ5LTEuNC45NC0uNDYsMS44OC0uMjIsMi43NS4yMi41Ni4yOCwxLjEuNjYsMS41NCwxLjExLDYuNTIsNi42LDE0LDEyLjEyLDIwLjgzLDE4LjM4LDQsMy42Nyw4LjI3LDcuMDUsMTIuNCwxMC41Ny40OC40MS44Ni45MywxLjMsMS40Ljk1LDEuMDIuODIsMy40LS4yOCw0LjM4LS43MS42My0xLjM3LDEuNDItMi4yMSwxLjgxLTMuMjMsMS40OC02LjA3LDMuNTMtOC44MSw1Ljc0LS41LjQtLjk3Ljg3LTEuNTIsMS4xNi03LjExLDMuODEtMTMuMDIsOS4yMS0xOS4xLDE0LjM5LTMuMTUsMi42OC02LjQ0LDUuMTUtMTAuMDQsNy4zLTQuMzgsMi42MS04LjM1LDUuOS0xMi41MSw4Ljg4LTIuNTksMS44NS01LjI0LDMuNjMtNy44Miw1LjUtMS4wOS43OS0xLjIzLDIuMzItLjQ5LDMuNDIsMi4xNSwzLjIxLDQuNjMsNi4xMyw3LjgxLDguMzYsMy45NSwyLjc2LDcuNDcsNS45NiwxMC43Niw5LjQ4LDMuNDgsMy43NCw3LjMsNy4xNiwxMS4wMSwxMC42Ny45Mi44NywyLjAxLDEuNTgsMy4wNSwyLjMxLDEuMTEuNzcsMi4zOC45OSwzLjYzLjQ5LDEuMTgtLjQ3LDIuMy0xLjEsMy40MS0xLjczLDguNjEtNC44OSwxNy4yLTkuODIsMjUuODMtMTQuNjksMS4xLS42MiwyLjM0LTEsMy41Mi0xLjQ1LjY4LS4yNiwyLjA4LjI3LDIuNTcuODkuNDguNjIuMjQsMi4wMi0uNDksMi41MlpNMTgxMi44NiwxNzkuNTdjNC45NC0zLjQ5LDkuODEtNy4wOCwxNC42OS0xMC42NC43Ny0uNTYsMS40Ni0xLjIzLDIuMTctMS44NywxLjA3LS45Ny45OC0zLjE3LS4xNS00LjMtLjIzLS4yMi0uNDEtLjUtLjY1LS43LTguMDQtNi43Ni0xNS44OS0xMy43My0yMy42OS0yMC43Ni0yLjEyLTEuOTEtNC41Mi0zLjUyLTYuODMtNS4yMi0xLjEyLS44My0zLjMyLS4yNS00LjE4LDEuMTEtLjUuNzktMS4wOSwxLjY2LTEuMTgsMi41NS0uMjIsMi4yMS0uMjYsNC40NS0uMjMsNi42Ny4wOCw2LjM3LjIzLDEyLjc0LjM0LDE5LjExLS4wNywwLS4xMywwLS4yLDAsLjE1LDcuOTcuMywxNS45My40NiwyMy45LDAsLjMyLjExLjYzLjE0Ljk1LjA3LjksMS4zNywxLjY4LDIuMDYsMS4yLDUuNzUtMy45OSwxMS41My03Ljk0LDE3LjI1LTExLjk5WiIvPjwvZz48ZyBpZD0iXzQiPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTY0NC4zOCwyNzUuNzZ2LTQwLjg3aC03Ni40NnYtNDAuMjhsNDguNzgtMTc2Ljk1aDgwLjI3djE3NC4xN2gxMy43N3Y0My4wN2gtMTMuNzd2NDAuODdoLTUyLjU5Wk02MTMuOTIsMTkxLjgzaDMwLjQ3VjYxLjlsLTMwLjQ3LDEyOS45M1oiLz48L2c+PGcgaWQ9ImRhdGEiPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE4LjA0LDI3NS42MlYxNy44MWg3MC45YzE4LjU1LDAsMzIuNTIsNS4xNSw0MS44OSwxNS40NSw5LjM4LDEwLjMsMTQuMDYsMjUuMzcsMTQuMDYsNDUuMTl2MTIwLjdjMCwyNC40MS00LjI3LDQzLjI2LTEyLjgyLDU2LjU0LTguNTUsMTMuMjgtMjMuNTEsMTkuOTItNDQuOSwxOS45MkgxOC4wNFpNNjkuOSwyMzAuMDZoOC45NGM5LjQ3LDAsMTQuMjEtNC41OSwxNC4yMS0xMy43N1Y4My4yOGMwLTguNTktMS4xNS0xNC4xNC0zLjQ0LTE2LjYzLTIuMy0yLjQ5LTYuOTYtMy43My0xMy45OS0zLjczaC01LjcxdjE2Ny4xNFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xNTguOTYsMjc1LjYyTDE4My44NiwxNy44MWg4Ny40NWwyNC40NiwyNTcuODFoLTQ4Ljc4bC0zLjY2LTQxLjZoLTMxLjA1bC0zLjIyLDQxLjZoLTUwLjFaTTIxNS45NCwxOTIuODVoMjMuNDRsLTExLjI4LTEzMS4xaC0yLjM0bC05LjgxLDEzMS4xWiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTMyOS45MSwyNzUuNjJWNjcuMzJoLTMwLjYyVjE3LjgxaDExMi43OXY0OS41MWgtMzAuNjJ2MjA4LjNoLTUxLjU2WiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTQxNS42LDI3NS42MmwyNC45LTI1Ny44MWg4Ny40NWwyNC40NiwyNTcuODFoLTQ4Ljc4bC0zLjY2LTQxLjZoLTMxLjA1bC0zLjIyLDQxLjZoLTUwLjFaTTQ3Mi41OCwxOTIuODVoMjMuNDRsLTExLjI4LTEzMS4xaC0yLjM0bC05LjgxLDEzMS4xWiIvPjwvZz48L2c+PC9nPjwvc3ZnPg=="></a>
+    <h1>What a supertanker earns in a day</h1>
+    <p class="standfirst">Weekly earnings for a very large crude carrier on the Middle East to China run, in US dollars per day, since 2019. Hover or tap a point to read the rate.</p>
+  </header>
+
+  <div class="bar">
+    <ul class="legend" aria-label="Series">
+      <li class="baltic">Baltic Exchange TD3C <small id="baltic-span"></small></li>
+      <li class="fearn">Fearnleys VLCC Middle East to Far East <small id="fearn-span"></small></li>
+    </ul>
+    <p class="hint">Arrow keys move along the weeks when the chart is focused.</p>
+  </div>
+
+  <div class="chartbox" id="chartbox">
+    <svg class="chart" id="chart" role="img" tabindex="0" aria-describedby="chart-desc"></svg>
+    <p id="chart-desc" hidden></p>
+    <div class="tip" id="tip" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="source">
+    Baltic Exchange weekly tanker report, TD3C round-trip time charter equivalent
+    for a 270,000-tonne cargo from Ras Tanura to Ningbo, Fridays. Fearnleys weekly
+    report, VLCC Middle East Gulf to Far East time charter equivalent, Friday
+    values; Fearnleys stopped publishing the dollar figure on April 25, 2023.
+    Built by <a href="https://www.data4thepeople.com">Data 4 The People</a>.
+  </p>
+
+  <div class="notes">
+    <p><strong>What the number means.</strong> Brokers quote tanker freight as a
+    percentage of a yearly base rate. The Baltic Exchange and Fearnleys turn that
+    into what the ship earns per day after fuel and port costs, spread over a
+    round trip. That is the figure here. Two publishers are shown because
+    neither covers the whole period alone; where they overlap, they agree
+    within a few thousand dollars a day.</p>
+    <p><strong>Since March 2026</strong> the Baltic figure is an assessment for a
+    voyage few ships are making, because the route loads inside the Strait of
+    Hormuz. It still sets the price of freight contracts and futures, which is
+    why it is the number the market quotes.</p>
+  </div>
+
+  <details class="tbl">
+    <summary>Show the weekly numbers as a table</summary>
+    <div class="tblwrap"><table id="table"></table></div>
+  </details>
+</div>
+
+<script>
+const DATA = {"built":"2026-09-13","baltic":{"name":"Baltic Exchange TD3C","publisher":"Baltic Exchange","route":"Ras Tanura to Ningbo, 270,000 tonnes, round-trip TCE","unit":"US dollars per day","points":[{"d":"2020-12-04","ws":31.0,"tce":11500,"note":"first report to state a TCE"},{"d":"2020-12-11","ws":34.0,"tce":null,"note":"TCE not stated"},{"d":"2020-12-18","ws":35.0,"tce":null,"note":"TCE not stated"},{"d":"2021-01-08","ws":40.5,"tce":null,"note":"TCE not stated; 2021 Worldscale flat rates fell about 17%"},{"d":"2021-01-15","ws":35.0,"tce":null,"note":"'just below WS35'; TCE not stated"},{"d":"2021-01-22","ws":30.0,"tce":-800,"note":null},{"d":"2021-01-29","ws":32.5,"tce":null,"note":"'just about a positive TCE'; not stated"},{"d":"2021-02-05","ws":31.0,"tce":1500,"note":null},{"d":"2021-02-12","ws":31.5,"tce":null,"note":"TCE not stated"},{"d":"2021-02-19","ws":32.75,"tce":null,"note":"WS32.5/33 midpoint; TCE not stated"},{"d":"2021-02-26","ws":31.5,"tce":-2900,"note":null},{"d":"2021-03-05","ws":30.0,"tce":-3300,"note":null},{"d":"2021-03-12","ws":28.25,"tce":-6000,"note":"WS28-28.5 midpoint"},{"d":"2021-03-19","ws":28.5,"tce":-5500,"note":null},{"d":"2021-04-09","ws":31.5,"tce":-500,"note":"'about $500 below zero'"},{"d":"2021-04-30","ws":35.0,"tce":2000,"note":null},{"d":"2021-05-07","ws":32.75,"tce":800,"note":"WS32.5/33 midpoint"},{"d":"2021-05-14","ws":32.5,"tce":-1400,"note":null},{"d":"2021-05-21","ws":34.5,"tce":1700,"note":null},{"d":"2021-05-28","ws":36.25,"tce":3250,"note":"WS36-36.5 midpoint"},{"d":"2021-06-04","ws":34.25,"tce":-100,"note":"WS34-34.5 midpoint"},{"d":"2021-06-11","ws":31.0,"tce":-4100,"note":null},{"d":"2021-06-25","ws":32.5,"tce":-3500,"note":null},{"d":"2021-07-02","ws":31.75,"tce":-4600,"note":"WS31.5-32 midpoint"},{"d":"2021-07-09","ws":31.75,"tce":-5000,"note":"WS31.5-32 midpoint"},{"d":"2021-07-16","ws":31.5,"tce":-5600,"note":null},{"d":"2021-07-23","ws":31.5,"tce":-3200,"note":null},{"d":"2021-07-30","ws":31.5,"tce":-4900,"note":null},{"d":"2021-08-06","ws":31.5,"tce":-4300,"note":null},{"d":"2021-08-13","ws":31.0,"tce":-4200,"note":null},{"d":"2021-08-20","ws":31.32,"tce":-3164,"note":null},{"d":"2021-08-27","ws":32.86,"tce":-1008,"note":null},{"d":"2021-09-03","ws":34.0,"tce":-2000,"note":"'just shy of WS34'"},{"d":"2021-09-10","ws":34.0,"tce":-1900,"note":null},{"d":"2021-09-17","ws":34.6,"tce":-1700,"note":null},{"d":"2021-09-24","ws":39.0,"tce":1900,"note":null},{"d":"2021-10-01","ws":41.0,"tce":3200,"note":null},{"d":"2021-10-08","ws":40.75,"tce":1700,"note":"WS40.5-41 midpoint"},{"d":"2021-10-15","ws":40.25,"tce":-100,"note":null},{"d":"2021-11-05","ws":45.0,"tce":3900,"note":null},{"d":"2021-11-12","ws":43.0,"tce":1100,"note":null},{"d":"2021-11-19","ws":42.5,"tce":1900,"note":null},{"d":"2021-11-26","ws":42.0,"tce":135,"note":null},{"d":"2021-12-03","ws":40.0,"tce":731,"note":null},{"d":"2021-12-10","ws":38.0,"tce":-1300,"note":null},{"d":"2021-12-17","ws":40.05,"tce":891,"note":null},{"d":"2022-01-07","ws":37.0,"tce":-760,"note":null},{"d":"2022-01-14","ws":36.5,"tce":-4200,"note":null},{"d":"2022-01-21","ws":35.5,"tce":-6300,"note":null},{"d":"2022-01-28","ws":35.5,"tce":-5200,"note":null},{"d":"2022-02-04","ws":34.0,"tce":-8300,"note":null},{"d":"2022-02-11","ws":33.0,"tce":-10600,"note":null},{"d":"2022-02-18","ws":32.0,"tce":-13100,"note":null},{"d":"2022-02-25","ws":38.82,"tce":-5800,"note":null},{"d":"2022-03-04","ws":55.0,"tce":5700,"note":null},{"d":"2022-03-11","ws":46.5,"tce":-15300,"note":null},{"d":"2022-03-18","ws":38.5,"tce":-9700,"note":null},{"d":"2022-03-25","ws":36.0,"tce":-18900,"note":null},{"d":"2022-04-01","ws":43.5,"tce":-8600,"note":null},{"d":"2022-04-08","ws":53.5,"tce":3600,"note":null},{"d":"2022-04-22","ws":50.0,"tce":-1800,"note":null},{"d":"2022-04-29","ws":47.0,"tce":-2800,"note":null},{"d":"2022-05-06","ws":44.7,"tce":-8300,"note":null},{"d":"2022-05-13","ws":40.0,"tce":-10800,"note":null},{"d":"2022-05-20","ws":40.0,"tce":-16800,"note":null},{"d":"2022-05-27","ws":41.6,"tce":-17800,"note":null},{"d":"2022-06-10","ws":45.0,"tce":-22200,"note":null},{"d":"2022-06-17","ws":45.0,"tce":-20300,"note":null},{"d":"2022-06-24","ws":49.0,"tce":-14600,"note":null},{"d":"2022-07-01","ws":55.0,"tce":-10600,"note":null},{"d":"2022-07-08","ws":56.5,"tce":-5400,"note":null},{"d":"2022-07-15","ws":58.0,"tce":-700,"note":null},{"d":"2022-07-22","ws":61.5,"tce":4800,"note":null},{"d":"2022-07-29","ws":59.0,"tce":9100,"note":null},{"d":"2022-08-05","ws":57.5,"tce":13200,"note":null},{"d":"2022-08-12","ws":60.0,"tce":16900,"note":null},{"d":"2022-08-19","ws":80.0,"tce":40800,"note":null},{"d":"2022-08-26","ws":80.64,"tce":37270,"note":null},{"d":"2022-09-02","ws":75.73,"tce":35013,"note":null},{"d":"2022-09-09","ws":70.5,"tce":31700,"note":null},{"d":"2022-09-16","ws":88.0,"tce":50600,"note":null},{"d":"2022-09-23","ws":104.0,"tce":68600,"note":null},{"d":"2022-09-30","ws":85.0,"tce":50100,"note":null},{"d":"2022-10-07","ws":81.0,"tce":41700,"note":null},{"d":"2022-10-14","ws":87.5,"tce":47800,"note":null},{"d":"2022-10-21","ws":107.5,"tce":72199,"note":null},{"d":"2022-10-28","ws":98.0,"tce":62800,"note":null},{"d":"2022-11-04","ws":106.5,"tce":71900,"note":null},{"d":"2022-11-11","ws":113.0,"tce":79700,"note":null},{"d":"2022-11-18","ws":128.0,"tce":96400,"note":null},{"d":"2022-11-25","ws":109.75,"tce":76854,"note":null},{"d":"2022-12-02","ws":86.0,"tce":50600,"note":null},{"d":"2022-12-09","ws":72.5,"tce":40500,"note":null},{"d":"2022-12-16","ws":82.88,"tce":50700,"note":null},{"d":"2023-01-06","ws":53.27,"tce":31800,"note":null},{"d":"2023-01-13","ws":44.68,"tce":18500,"note":null},{"d":"2023-01-20","ws":46.73,"tce":18100,"note":null},{"d":"2023-01-27","ws":47.73,"tce":17900,"note":null},{"d":"2023-02-03","ws":49.27,"tce":20300,"note":null},{"d":"2023-02-10","ws":53.0,"tce":26500,"note":null},{"d":"2023-02-17","ws":66.32,"tce":46125,"note":null},{"d":"2023-02-24","ws":62.82,"tce":47300,"note":"Baltic typo WS4.73; corrected to 62.82 (66.32 minus 3.5)"},{"d":"2023-03-03","ws":70.23,"tce":54600,"note":null},{"d":"2023-03-10","ws":98.55,"tce":92522,"note":null},{"d":"2023-03-17","ws":93.77,"tce":89100,"note":null},{"d":"2023-03-24","ws":90.32,"tce":83000,"note":null},{"d":"2023-03-31","ws":80.05,"tce":68900,"note":null},{"d":"2023-04-14","ws":72.64,"tce":56017,"note":null},{"d":"2023-04-21","ws":65.32,"tce":47100,"note":null},{"d":"2023-04-28","ws":56.64,"tce":36400,"note":null},{"d":"2023-05-05","ws":46.41,"tce":27400,"note":null},{"d":"2023-05-12","ws":40.45,"tce":15500,"note":null},{"d":"2023-05-19","ws":49.73,"tce":27500,"note":null},{"d":"2023-05-26","ws":50.14,"tce":27800,"note":null},{"d":"2023-06-02","ws":44.95,"tce":22300,"note":null},{"d":"2023-06-09","ws":48.36,"tce":24978,"note":null},{"d":"2023-06-16","ws":83.41,"tce":73500,"note":null},{"d":"2023-06-23","ws":66.73,"tce":48700,"note":null},{"d":"2023-06-30","ws":51.71,"tce":29700,"note":null},{"d":"2023-07-07","ws":53.96,"tce":32900,"note":null},{"d":"2023-07-14","ws":51.23,"tce":29200,"note":null},{"d":"2023-07-21","ws":52.42,"tce":31200,"note":null},{"d":"2023-07-28","ws":51.33,"tce":27800,"note":null},{"d":"2023-08-04","ws":48.5,"tce":22200,"note":null},{"d":"2023-08-11","ws":47.29,"tce":19431,"note":null},{"d":"2023-08-18","ws":46.21,"tce":18000,"note":"TCE not stated in report; interpolated"},{"d":"2023-08-25","ws":44.13,"tce":16688,"note":null},{"d":"2023-09-01","ws":39.71,"tce":10173,"note":null},{"d":"2023-09-08","ws":36.46,"tce":4661,"note":null},{"d":"2023-09-15","ws":37.0,"tce":4244,"note":null},{"d":"2023-09-22","ws":49.88,"tce":21852,"note":null},{"d":"2023-09-29","ws":50.71,"tce":21812,"note":null},{"d":"2023-10-06","ws":37.08,"tce":5640,"note":null},{"d":"2023-10-13","ws":53.04,"tce":27963,"note":null},{"d":"2023-10-20","ws":55.54,"tce":28774,"note":null},{"d":"2023-10-27","ws":56.38,"tce":31477,"note":null},{"d":"2023-11-03","ws":71.83,"tce":51290,"note":null},{"d":"2023-11-10","ws":68.04,"tce":47145,"note":null},{"d":"2023-11-17","ws":74.04,"tce":54787,"note":null},{"d":"2023-11-24","ws":65.91,"tce":43697,"note":null},{"d":"2023-12-01","ws":66.5,"tce":46000,"note":null},{"d":"2023-12-08","ws":66.5,"tce":48747,"note":null},{"d":"2023-12-15","ws":55.92,"tce":35716,"note":null},{"d":"2024-01-05","ws":57.23,"tce":27395,"note":null},{"d":"2024-01-12","ws":68.5,"tce":42134,"note":null},{"d":"2024-01-19","ws":66.29,"tce":44420,"note":null},{"d":"2024-01-26","ws":58.17,"tce":34397,"note":null},{"d":"2024-02-02","ws":58.0,"tce":33500,"note":null},{"d":"2024-02-09","ws":65.91,"tce":42806,"note":null},{"d":"2024-02-16","ws":89.23,"tce":69784,"note":null},{"d":"2024-02-23","ws":67.86,"tce":44612,"note":null},{"d":"2024-03-01","ws":59.95,"tce":36270,"note":null},{"d":"2024-03-08","ws":71.5,"tce":48914,"note":null},{"d":"2024-03-15","ws":69.14,"tce":49737,"note":null},{"d":"2024-03-22","ws":71.5,"tce":49319,"note":null},{"d":"2024-04-05","ws":65.4,"tce":41729,"note":null},{"d":"2024-04-12","ws":61.95,"tce":38241,"note":null},{"d":"2024-04-19","ws":60.0,"tce":36000,"note":null},{"d":"2024-04-26","ws":60.0,"tce":35700,"note":null},{"d":"2024-05-03","ws":65.75,"tce":43301,"note":null},{"d":"2024-05-10","ws":72.0,"tce":50617,"note":null},{"d":"2024-05-17","ws":72.15,"tce":51163,"note":null},{"d":"2024-05-24","ws":68.48,"tce":47578,"note":null},{"d":"2024-05-31","ws":57.7,"tce":35305,"note":"Baltic typo $35.305 read as $35,305"},{"d":"2024-06-07","ws":53.75,"tce":32300,"note":null},{"d":"2024-06-14","ws":51.1,"tce":28577,"note":null},{"d":"2024-06-21","ws":49.9,"tce":26482,"note":null},{"d":"2024-06-28","ws":49.7,"tce":26135,"note":null},{"d":"2024-07-05","ws":48.45,"tce":24266,"note":null},{"d":"2024-07-12","ws":46.53,"tce":22642,"note":null},{"d":"2024-07-19","ws":46.9,"tce":23262,"note":null},{"d":"2024-07-26","ws":58.8,"tce":36358,"note":null},{"d":"2024-08-02","ws":47.0,"tce":23656,"note":null},{"d":"2024-08-09","ws":45.43,"tce":22429,"note":null},{"d":"2024-08-16","ws":59.25,"tce":36999,"note":null},{"d":"2024-08-23","ws":52.95,"tce":30565,"note":null},{"d":"2024-08-30","ws":44.7,"tce":20733,"note":null},{"d":"2024-09-06","ws":47.5,"tce":24409,"note":null},{"d":"2024-09-13","ws":54.15,"tce":32754,"note":null},{"d":"2024-09-20","ws":60.05,"tce":39068,"note":null},{"d":"2024-09-27","ws":54.35,"tce":32152,"note":null},{"d":"2024-10-04","ws":57.8,"tce":36359,"note":null},{"d":"2024-10-11","ws":58.0,"tce":36206,"note":null},{"d":"2024-10-18","ws":56.6,"tce":34839,"note":null},{"d":"2024-10-25","ws":57.0,"tce":35100,"note":null},{"d":"2024-11-01","ws":52.85,"tce":31265,"note":null},{"d":"2024-11-08","ws":47.05,"tce":24373,"note":null},{"d":"2024-11-15","ws":54.1,"tce":32383,"note":null},{"d":"2024-11-22","ws":53.95,"tce":32721,"note":null},{"d":"2024-11-29","ws":45.35,"tce":23850,"note":null},{"d":"2024-12-06","ws":43.35,"tce":21967,"note":null},{"d":"2024-12-13","ws":39.65,"tce":18626,"note":null},{"d":"2024-12-20","ws":39.0,"tce":18700,"note":null},{"d":"2025-01-10","ws":47.05,"tce":24997,"note":null},{"d":"2025-01-17","ws":77.1,"tce":56891,"note":null},{"d":"2025-01-24","ws":54.15,"tce":31568,"note":null},{"d":"2025-01-31","ws":60.15,"tce":38212,"note":null},{"d":"2025-02-07","ws":67.6,"tce":47309,"note":null},{"d":"2025-02-14","ws":59.4,"tce":37525,"note":null},{"d":"2025-02-21","ws":64.94,"tce":44160,"note":null},{"d":"2025-02-28","ws":58.1,"tce":37997,"note":null},{"d":"2025-03-07","ws":57.1,"tce":38342,"note":null},{"d":"2025-03-14","ws":58.55,"tce":39305,"note":null},{"d":"2025-03-21","ws":58.75,"tce":51536,"note":"as reported; TCE looks high vs adjacent weeks"},{"d":"2025-03-28","ws":58.95,"tce":39224,"note":null},{"d":"2025-04-04","ws":57.25,"tce":36465,"note":null},{"d":"2025-04-11","ws":54.1,"tce":36533,"note":null},{"d":"2025-04-25","ws":70.93,"tce":55010,"note":null},{"d":"2025-05-02","ws":67.0,"tce":51134,"note":null},{"d":"2025-05-09","ws":59.55,"tce":41547,"note":null},{"d":"2025-05-16","ws":64.35,"tce":45668,"note":null},{"d":"2025-05-23","ws":61.15,"tce":42278,"note":null},{"d":"2025-05-30","ws":52.1,"tce":32294,"note":null},{"d":"2025-06-06","ws":44.35,"tce":24332,"note":null},{"d":"2025-06-13","ws":43.6,"tce":22764,"note":null},{"d":"2025-06-20","ws":75.8,"tce":57758,"note":null},{"d":"2025-06-27","ws":55.5,"tce":35281,"note":null},{"d":"2025-07-04","ws":47.4,"tce":26512,"note":null},{"d":"2025-07-11","ws":49.4,"tce":28470,"note":null},{"d":"2025-07-18","ws":53.2,"tce":32978,"note":null},{"d":"2025-07-25","ws":46.15,"tce":25493,"note":null},{"d":"2025-08-01","ws":43.3,"tce":22048,"note":null},{"d":"2025-08-08","ws":56.65,"tce":37158,"note":null},{"d":"2025-08-15","ws":56.0,"tce":37300,"note":null},{"d":"2025-08-22","ws":67.05,"tce":50300,"note":null},{"d":"2025-08-29","ws":66.5,"tce":49034,"note":null},{"d":"2025-09-05","ws":70.22,"tce":53783,"note":null},{"d":"2025-09-12","ws":87.0,"tce":74338,"note":null},{"d":"2025-09-19","ws":105.33,"tce":95835,"note":null},{"d":"2025-09-26","ws":100.0,"tce":90000,"note":null},{"d":"2025-10-03","ws":81.89,"tce":68146,"note":null},{"d":"2025-10-10","ws":72.17,"tce":56800,"note":null},{"d":"2025-10-17","ws":94.72,"tce":85109,"note":null},{"d":"2025-10-24","ws":84.28,"tce":72678,"note":null},{"d":"2025-10-31","ws":127.83,"tce":123776,"note":null},{"d":"2025-11-07","ws":107.0,"tce":98773,"note":null},{"d":"2025-11-14","ws":129.28,"tce":125784,"note":null},{"d":"2025-11-21","ws":133.94,"tce":131252,"note":null},{"d":"2025-11-28","ws":136.06,"tce":138266,"note":null},{"d":"2025-12-05","ws":123.42,"tce":125613,"note":null},{"d":"2025-12-12","ws":125.78,"tce":122676,"note":null},{"d":"2025-12-19","ws":114.61,"tce":109837,"note":null},{"d":"2026-01-09","ws":74.17,"tce":55540,"note":null},{"d":"2026-01-16","ws":112.17,"tce":96338,"note":null},{"d":"2026-01-23","ws":126.5,"tce":112394,"note":null},{"d":"2026-01-30","ws":94.61,"tce":75807,"note":null},{"d":"2026-02-06","ws":137.17,"tce":122666,"note":"recovered from full report text"},{"d":"2026-02-13","ws":132.78,"tce":117360,"note":null},{"d":"2026-02-20","ws":163.28,"tce":151208,"note":null},{"d":"2026-02-27","ws":216.89,"tce":209550,"note":null},{"d":"2026-03-06","ws":473.33,"tce":485959,"note":null},{"d":"2026-03-13","ws":348.89,"tce":326198,"note":null},{"d":"2026-03-20","ws":413.89,"tce":400928,"note":null},{"d":"2026-03-27","ws":400.0,"tce":356483,"note":null},{"d":"2026-04-10","ws":444.0,"tce":444200,"note":null},{"d":"2026-04-17","ws":448.22,"tce":474000,"note":null},{"d":"2026-04-24","ws":459.28,"tce":467408,"note":null},{"d":"2026-05-01","ws":408.13,"tce":407437,"note":null},{"d":"2026-05-08","ws":458.75,"tce":462102,"note":null},{"d":"2026-05-15","ws":447.5,"tce":448502,"note":null},{"d":"2026-05-22","ws":402.5,"tce":397753,"note":null},{"d":"2026-05-29","ws":391.88,"tce":389536,"note":null},{"d":"2026-06-05","ws":402.5,"tce":400700,"note":null},{"d":"2026-06-12","ws":401.94,"tce":402500,"note":null},{"d":"2026-06-19","ws":450.56,"tce":461000,"note":null},{"d":"2026-06-26","ws":318.89,"tce":313000,"note":null},{"d":"2026-07-03","ws":293.89,"tce":286500,"note":null},{"d":"2026-07-10","ws":345.0,"tce":344250,"note":null},{"d":"2026-07-17","ws":372.0,"tce":368900,"note":null},{"d":"2026-07-24","ws":386.78,"tce":382397,"note":null},{"d":"2026-07-31","ws":424.33,"tce":423434,"note":null},{"d":"2026-08-07","ws":475.56,"tce":481286,"note":null},{"d":"2026-08-14","ws":482.0,"tce":490000,"note":"WS derived from week 34 report (WS570 = +88 pts); TCE interpolated, not reported"},{"d":"2026-08-21","ws":570.0,"tce":585000,"note":null},{"d":"2026-08-28","ws":623.0,"tce":647000,"note":null},{"d":"2026-09-04","ws":677.22,"tce":704000,"note":null},{"d":"2026-09-11","ws":821.11,"tce":862150,"note":null}]},"fearnleys":{"name":"Fearnleys VLCC MEG/Far East","publisher":"Fearnleys","route":"Middle East Gulf to Far East, TCE","unit":"US dollars per day","points":[{"d":"2018-05-18","ws":38.0,"tce":null},{"d":"2018-05-25","ws":44.0,"tce":null},{"d":"2018-06-01","ws":47.5,"tce":null},{"d":"2018-06-08","ws":47.5,"tce":null},{"d":"2018-06-15","ws":46.5,"tce":null},{"d":"2018-06-22","ws":55.0,"tce":null},{"d":"2018-06-29","ws":52.0,"tce":null},{"d":"2018-07-06","ws":48.0,"tce":null},{"d":"2018-07-13","ws":47.0,"tce":null},{"d":"2018-07-20","ws":45.0,"tce":null},{"d":"2018-07-27","ws":50.0,"tce":null},{"d":"2018-08-03","ws":51.0,"tce":null},{"d":"2018-08-10","ws":50.0,"tce":null},{"d":"2018-08-17","ws":50.0,"tce":null},{"d":"2018-08-24","ws":56.0,"tce":null},{"d":"2018-08-31","ws":55.0,"tce":null},{"d":"2018-09-07","ws":50.0,"tce":null},{"d":"2018-09-14","ws":52.0,"tce":null},{"d":"2018-09-21","ws":53.0,"tce":null},{"d":"2018-09-28","ws":55.0,"tce":null},{"d":"2018-10-05","ws":66.0,"tce":null},{"d":"2018-10-12","ws":80.0,"tce":null},{"d":"2018-10-19","ws":79.0,"tce":null},{"d":"2018-10-26","ws":78.5,"tce":null},{"d":"2018-11-02","ws":96.5,"tce":null},{"d":"2018-11-09","ws":92.5,"tce":null},{"d":"2018-11-16","ws":86.5,"tce":null},{"d":"2018-11-23","ws":91.0,"tce":null},{"d":"2018-11-30","ws":95.0,"tce":null},{"d":"2018-12-07","ws":90.0,"tce":null},{"d":"2018-12-14","ws":84.0,"tce":null},{"d":"2018-12-21","ws":80.0,"tce":null},{"d":"2018-12-28","ws":80.0,"tce":null},{"d":"2019-01-04","ws":71.0,"tce":null},{"d":"2019-01-11","ws":55.0,"tce":null},{"d":"2019-01-18","ws":55.0,"tce":null},{"d":"2019-01-25","ws":53.0,"tce":null},{"d":"2019-02-01","ws":45.0,"tce":null},{"d":"2019-02-08","ws":39.0,"tce":null},{"d":"2019-02-15","ws":41.5,"tce":null},{"d":"2019-02-22","ws":57.5,"tce":null},{"d":"2019-03-01","ws":67.5,"tce":null},{"d":"2019-03-08","ws":67.5,"tce":null},{"d":"2019-03-15","ws":59.0,"tce":29800},{"d":"2019-03-22","ws":56.0,"tce":26761},{"d":"2019-03-29","ws":44.0,"tce":17300},{"d":"2019-04-05","ws":37.0,"tce":8200},{"d":"2019-04-12","ws":39.0,"tce":9200},{"d":"2019-04-19","ws":43.5,"tce":10300},{"d":"2019-04-26","ws":39.0,"tce":11300},{"d":"2019-05-03","ws":37.0,"tce":8500},{"d":"2019-05-10","ws":36.0,"tce":7200},{"d":"2019-05-17","ws":40.0,"tce":11300},{"d":"2019-05-24","ws":39.0,"tce":10300},{"d":"2019-05-31","ws":37.0,"tce":8200},{"d":"2019-06-07","ws":36.0,"tce":7200},{"d":"2019-06-14","ws":38.5,"tce":9700},{"d":"2019-06-21","ws":50.0,"tce":21600},{"d":"2019-06-28","ws":48.0,"tce":19500},{"d":"2019-07-05","ws":45.0,"tce":16400},{"d":"2019-07-12","ws":42.5,"tce":13900},{"d":"2019-07-19","ws":41.0,"tce":12300},{"d":"2019-07-26","ws":40.0,"tce":11300},{"d":"2019-08-02","ws":44.0,"tce":15400},{"d":"2019-08-09","ws":52.5,"tce":24200},{"d":"2019-08-16","ws":60.0,"tce":31900},{"d":"2019-08-23","ws":64.0,"tce":35000},{"d":"2019-08-30","ws":59.0,"tce":30900},{"d":"2019-09-06","ws":50.0,"tce":21600},{"d":"2019-09-13","ws":52.5,"tce":24200},{"d":"2019-09-20","ws":67.5,"tce":39600},{"d":"2019-09-27","ws":82.5,"tce":55100},{"d":"2019-10-04","ws":115.0,"tce":88600},{"d":"2019-10-11","ws":290.0,"tce":269000},{"d":"2019-10-18","ws":110.0,"tce":83400},{"d":"2019-10-25","ws":95.0,"tce":68000},{"d":"2019-11-01","ws":87.5,"tce":60300},{"d":"2019-11-08","ws":75.0,"tce":47400},{"d":"2019-11-15","ws":76.0,"tce":48400},{"d":"2019-11-22","ws":112.5,"tce":86000},{"d":"2019-11-29","ws":100.0,"tce":73100},{"d":"2019-12-06","ws":97.5,"tce":70600},{"d":"2019-12-13","ws":100.0,"tce":73100},{"d":"2019-12-20","ws":122.5,"tce":96300},{"d":"2019-12-27","ws":135.0,"tce":93800},{"d":"2020-01-03","ws":142.0,"tce":116400},{"d":"2020-01-10","ws":125.0,"tce":98900},{"d":"2020-01-17","ws":87.5,"tce":69700},{"d":"2020-01-24","ws":77.5,"tce":57300},{"d":"2020-01-31","ws":52.5,"tce":26400},{"d":"2020-02-07","ws":41.5,"tce":12900},{"d":"2020-02-14","ws":40.0,"tce":9300},{"d":"2020-02-21","ws":41.0,"tce":10600},{"d":"2020-02-28","ws":47.5,"tce":18600},{"d":"2020-03-06","ws":45.0,"tce":15500},{"d":"2020-03-13","ws":215.0,"tce":227100},{"d":"2020-03-20","ws":112.5,"tce":100500},{"d":"2020-03-27","ws":190.0,"tce":196200},{"d":"2020-04-03","ws":200.0,"tce":206900},{"d":"2020-04-10","ws":185.0,"tce":190100},{"d":"2020-04-17","ws":150.0,"tce":145200},{"d":"2020-04-24","ws":155.0,"tce":151300},{"d":"2020-05-01","ws":75.0,"tce":52500},{"d":"2020-05-08","ws":58.09,"tce":51953},{"d":"2020-05-15","ws":58.92,"tce":54472},{"d":"2020-05-22","ws":51.54,"tce":40522},{"d":"2020-05-29","ws":65.75,"tce":60992},{"d":"2020-06-05","ws":57.33,"tce":48862},{"d":"2020-06-12","ws":60.92,"tce":50436},{"d":"2020-06-19","ws":55.46,"tce":44666},{"d":"2020-06-26","ws":36.38,"tce":21923},{"d":"2020-07-03","ws":35.65,"tce":20076},{"d":"2020-07-10","ws":46.35,"tce":32969},{"d":"2020-07-17","ws":42.25,"tce":27799},{"d":"2020-07-24","ws":35.42,"tce":18228},{"d":"2020-07-31","ws":35.6,"tce":19136},{"d":"2020-08-07","ws":33.67,"tce":16569},{"d":"2020-08-14","ws":32.75,"tce":15413},{"d":"2020-08-21","ws":32.67,"tce":15331},{"d":"2020-08-28","ws":30.0,"tce":11520},{"d":"2020-09-04","ws":24.75,"tce":6833},{"d":"2020-09-11","ws":38.17,"tce":24319},{"d":"2020-09-18","ws":34.42,"tce":18654},{"d":"2020-09-25","ws":27.29,"tce":10166},{"d":"2020-10-02","ws":26.5,"tce":8441},{"d":"2020-10-09","ws":26.58,"tce":8242},{"d":"2020-10-16","ws":29.42,"tce":11596},{"d":"2020-10-23","ws":28.58,"tce":10969},{"d":"2020-10-30","ws":25.67,"tce":8594},{"d":"2020-11-06","ws":26.0,"tce":7897},{"d":"2020-11-13","ws":25.79,"tce":6209},{"d":"2020-11-20","ws":26.04,"tce":6326},{"d":"2020-11-27","ws":28.45,"tce":7998},{"d":"2020-12-04","ws":33.17,"tce":13886},{"d":"2020-12-11","ws":34.17,"tce":14921},{"d":"2020-12-18","ws":35.54,"tce":15075},{"d":"2020-12-24","ws":37.25,"tce":17842},{"d":"2021-01-01","ws":36.5,"tce":17842},{"d":"2021-01-08","ws":39.96,"tce":10667},{"d":"2021-01-15","ws":33.54,"tce":3163},{"d":"2021-01-22","ws":30.88,"tce":369},{"d":"2021-01-29","ws":31.38,"tce":1015},{"d":"2021-02-05","ws":30.75,"tce":-1456},{"d":"2021-02-12","ws":32.15,"tce":-985},{"d":"2021-02-19","ws":32.58,"tce":-1917},{"d":"2021-02-26","ws":31.63,"tce":-3727},{"d":"2021-03-05","ws":29.79,"tce":-3843},{"d":"2021-03-12","ws":28.42,"tce":-6541},{"d":"2021-03-19","ws":28.9,"tce":-4899},{"d":"2021-03-26","ws":34.0,"tce":1774},{"d":"2021-04-01","ws":33.25,"tce":856},{"d":"2021-04-09","ws":31.83,"tce":-1159},{"d":"2021-04-16","ws":35.38,"tce":1701},{"d":"2021-04-23","ws":33.83,"tce":1111},{"d":"2021-04-30","ws":35.21,"tce":1543},{"d":"2021-05-07","ws":32.79,"tce":-1182},{"d":"2021-05-14","ws":32.5,"tce":-1509},{"d":"2021-05-21","ws":36.5,"tce":4143},{"d":"2021-05-28","ws":36.29,"tce":3215},{"d":"2021-06-04","ws":32.32,"tce":-2822},{"d":"2021-06-11","ws":31.07,"tce":-3912},{"d":"2021-06-18","ws":31.36,"tce":-4445},{"d":"2021-06-25","ws":32.64,"tce":-3517},{"d":"2021-07-02","ws":31.59,"tce":-5195},{"d":"2021-07-09","ws":31.43,"tce":-4081},{"d":"2021-07-16","ws":31.5,"tce":-4929},{"d":"2021-07-23","ws":31.86,"tce":-4237},{"d":"2021-07-30","ws":31.5,"tce":-4921},{"d":"2021-08-06","ws":31.39,"tce":-3642},{"d":"2021-08-13","ws":30.84,"tce":-4497},{"d":"2021-08-20","ws":31.3,"tce":-2023},{"d":"2021-08-27","ws":32.0,"tce":-3397},{"d":"2021-09-03","ws":33.82,"tce":-1960},{"d":"2021-09-10","ws":34.61,"tce":-1706},{"d":"2021-09-17","ws":35.61,"tce":-1545},{"d":"2021-09-24","ws":39.09,"tce":1963},{"d":"2021-10-01","ws":40.95,"tce":2961},{"d":"2021-10-08","ws":40.77,"tce":2354},{"d":"2021-10-15","ws":40.36,"tce":-584},{"d":"2021-10-22","ws":43.5,"tce":2179},{"d":"2021-10-29","ws":46.27,"tce":5861},{"d":"2021-11-05","ws":44.94,"tce":3924},{"d":"2021-11-12","ws":43.41,"tce":1907},{"d":"2021-11-19","ws":42.5,"tce":2261},{"d":"2021-11-26","ws":41.65,"tce":10},{"d":"2021-12-03","ws":39.91,"tce":409},{"d":"2021-12-10","ws":37.86,"tce":-1865},{"d":"2021-12-17","ws":41.5,"tce":1480},{"d":"2021-12-24","ws":41.0,"tce":2044},{"d":"2021-12-31","ws":41.0,"tce":2044},{"d":"2022-01-07","ws":37.09,"tce":-1101},{"d":"2022-01-14","ws":36.41,"tce":-4362},{"d":"2022-01-21","ws":35.27,"tce":-6703},{"d":"2022-01-28","ws":35.23,"tce":-5270},{"d":"2022-02-04","ws":33.55,"tce":-9824},{"d":"2022-02-11","ws":32.91,"tce":-11619},{"d":"2022-02-18","ws":32.0,"tce":-13100},{"d":"2022-02-25","ws":45.64,"tce":-716},{"d":"2022-03-04","ws":52.41,"tce":-420},{"d":"2022-03-11","ws":45.91,"tce":-10655},{"d":"2022-03-18","ws":38.32,"tce":-10847},{"d":"2022-03-25","ws":36.77,"tce":-19460},{"d":"2022-04-01","ws":43.95,"tce":-7194},{"d":"2022-04-08","ws":54.64,"tce":7157},{"d":"2022-04-15","ws":51.77,"tce":1211},{"d":"2022-04-22","ws":49.41,"tce":-1370},{"d":"2022-04-29","ws":46.55,"tce":-3568},{"d":"2022-05-06","ws":43.27,"tce":-10852},{"d":"2022-05-13","ws":40.0,"tce":-10873},{"d":"2022-05-20","ws":40.98,"tce":-15366},{"d":"2022-05-27","ws":43.27,"tce":-17112},{"d":"2022-06-03","ws":43.86,"tce":-22756},{"d":"2022-06-10","ws":44.86,"tce":-23913},{"d":"2022-06-17","ws":45.23,"tce":-18740},{"d":"2022-06-24","ws":49.68,"tce":-14845},{"d":"2022-07-01","ws":55.5,"tce":-10867},{"d":"2022-07-08","ws":56.91,"tce":-154},{"d":"2022-07-15","ws":58.55,"tce":2122},{"d":"2022-07-22","ws":61.55,"tce":8914},{"d":"2022-07-29","ws":58.95,"tce":7444},{"d":"2022-08-05","ws":57.45,"tce":13381},{"d":"2022-08-12","ws":61.09,"tce":16095},{"d":"2022-08-19","ws":80.41,"tce":39082},{"d":"2022-08-26","ws":80.18,"tce":36310},{"d":"2022-09-02","ws":75.0,"tce":36514},{"d":"2022-09-09","ws":79.59,"tce":43573},{"d":"2022-09-16","ws":99.23,"tce":64171},{"d":"2022-09-23","ws":103.82,"tce":69435},{"d":"2022-09-30","ws":84.14,"tce":47479},{"d":"2022-10-07","ws":81.64,"tce":40542},{"d":"2022-10-14","ws":93.86,"tce":55558},{"d":"2022-10-21","ws":105.95,"tce":69440},{"d":"2022-10-28","ws":98.59,"tce":61158},{"d":"2022-11-04","ws":107.27,"tce":72938},{"d":"2022-11-11","ws":112.77,"tce":79833},{"d":"2022-11-18","ws":129.59,"tce":99628},{"d":"2022-11-25","ws":108.35,"tce":76493},{"d":"2022-12-02","ws":77.68,"tce":41038},{"d":"2022-12-09","ws":81.32,"tce":49113},{"d":"2022-12-16","ws":83.32,"tce":50469},{"d":"2022-12-23","ws":72.55,"tce":38466},{"d":"2023-01-06","ws":52.91,"tce":30486},{"d":"2023-01-13","ws":44.45,"tce":17099},{"d":"2023-01-20","ws":46.82,"tce":18319},{"d":"2023-01-27","ws":48.09,"tce":17771},{"d":"2023-02-03","ws":49.68,"tce":22533},{"d":"2023-02-10","ws":58.23,"tce":33686},{"d":"2023-02-17","ws":69.32,"tce":51933},{"d":"2023-02-24","ws":64.86,"tce":47203},{"d":"2023-03-03","ws":71.36,"tce":54130},{"d":"2023-03-10","ws":97.0,"tce":90176},{"d":"2023-03-17","ws":97.73,"tce":93850},{"d":"2023-03-24","ws":90.36,"tce":82948},{"d":"2023-03-31","ws":79.36,"tce":67703},{"d":"2023-04-06","ws":67.82,"tce":50500},{"d":"2023-04-14","ws":72.18,"tce":55395},{"d":"2023-04-21","ws":65.18,"tce":48232},{"d":"2023-04-28","ws":55.0,"tce":null},{"d":"2023-05-05","ws":45.0,"tce":null},{"d":"2023-05-12","ws":43.0,"tce":null},{"d":"2023-05-19","ws":52.5,"tce":null},{"d":"2023-05-26","ws":49.0,"tce":null},{"d":"2023-06-02","ws":46.0,"tce":null},{"d":"2023-06-09","ws":50.0,"tce":null},{"d":"2023-06-16","ws":83.5,"tce":null},{"d":"2023-06-23","ws":65.0,"tce":null},{"d":"2023-06-30","ws":55.0,"tce":null},{"d":"2023-07-07","ws":53.0,"tce":null},{"d":"2023-07-14","ws":51.5,"tce":null},{"d":"2023-07-21","ws":52.0,"tce":null},{"d":"2023-07-28","ws":51.0,"tce":null},{"d":"2023-08-02","ws":49.0,"tce":null},{"d":"2023-08-11","ws":47.0,"tce":null},{"d":"2023-08-18","ws":45.5,"tce":null},{"d":"2023-08-24","ws":44.0,"tce":null},{"d":"2023-09-01","ws":37.0,"tce":null},{"d":"2023-09-08","ws":37.0,"tce":null},{"d":"2023-09-15","ws":37.5,"tce":null},{"d":"2023-09-22","ws":51.0,"tce":null},{"d":"2023-09-29","ws":49.5,"tce":null},{"d":"2023-10-06","ws":37.0,"tce":null},{"d":"2023-10-13","ws":57.0,"tce":null},{"d":"2023-10-20","ws":54.5,"tce":null},{"d":"2023-10-27","ws":60.0,"tce":null},{"d":"2023-11-03","ws":71.0,"tce":null},{"d":"2023-11-10","ws":67.0,"tce":null},{"d":"2023-11-17","ws":73.0,"tce":null},{"d":"2023-11-24","ws":68.5,"tce":null},{"d":"2023-12-01","ws":67.0,"tce":null},{"d":"2023-12-08","ws":65.0,"tce":null},{"d":"2023-12-15","ws":55.0,"tce":null},{"d":"2023-12-22","ws":54.0,"tce":null},{"d":"2023-12-29","ws":53.0,"tce":null},{"d":"2024-01-05","ws":56.5,"tce":null},{"d":"2024-01-12","ws":70.0,"tce":null},{"d":"2024-01-19","ws":66.5,"tce":null},{"d":"2024-01-26","ws":57.0,"tce":null},{"d":"2024-02-02","ws":58.0,"tce":null},{"d":"2024-02-09","ws":67.0,"tce":null},{"d":"2024-02-16","ws":92.5,"tce":null},{"d":"2024-02-23","ws":65.0,"tce":null},{"d":"2024-03-01","ws":60.0,"tce":null},{"d":"2024-03-08","ws":69.0,"tce":null},{"d":"2024-03-15","ws":77.5,"tce":null},{"d":"2024-03-22","ws":65.0,"tce":null},{"d":"2024-03-28","ws":64.5,"tce":null},{"d":"2024-04-05","ws":65.0,"tce":null},{"d":"2024-04-12","ws":62.5,"tce":null},{"d":"2024-04-19","ws":59.0,"tce":null},{"d":"2024-04-26","ws":60.0,"tce":null},{"d":"2024-05-03","ws":67.5,"tce":null},{"d":"2024-05-10","ws":70.0,"tce":null},{"d":"2024-05-17","ws":74.0,"tce":null},{"d":"2024-05-24","ws":68.0,"tce":null},{"d":"2024-05-31","ws":58.0,"tce":null},{"d":"2024-06-07","ws":54.0,"tce":null},{"d":"2024-06-14","ws":51.5,"tce":null},{"d":"2024-06-21","ws":49.0,"tce":null},{"d":"2024-06-28","ws":49.5,"tce":null},{"d":"2024-07-05","ws":48.0,"tce":null},{"d":"2024-07-12","ws":46.0,"tce":null},{"d":"2024-07-19","ws":52.5,"tce":null},{"d":"2024-07-26","ws":55.0,"tce":null},{"d":"2024-08-02","ws":47.0,"tce":null},{"d":"2024-08-08","ws":46.0,"tce":null},{"d":"2024-08-16","ws":60.0,"tce":null},{"d":"2024-08-23","ws":53.5,"tce":null},{"d":"2024-08-30","ws":44.0,"tce":null},{"d":"2024-09-06","ws":49.0,"tce":null},{"d":"2024-09-13","ws":55.0,"tce":null},{"d":"2024-09-20","ws":61.0,"tce":null},{"d":"2024-09-27","ws":56.0,"tce":null},{"d":"2024-10-04","ws":60.0,"tce":null},{"d":"2024-10-11","ws":55.0,"tce":null},{"d":"2024-10-18","ws":57.5,"tce":null},{"d":"2024-10-25","ws":57.0,"tce":null},{"d":"2024-11-01","ws":53.0,"tce":null},{"d":"2024-11-08","ws":49.0,"tce":null},{"d":"2024-11-15","ws":55.0,"tce":null},{"d":"2024-11-22","ws":55.0,"tce":null},{"d":"2024-11-29","ws":46.5,"tce":null},{"d":"2024-12-06","ws":43.0,"tce":null},{"d":"2024-12-13","ws":39.0,"tce":null},{"d":"2024-12-20","ws":41.0,"tce":null},{"d":"2024-12-27","ws":41.5,"tce":null},{"d":"2025-01-03","ws":43.0,"tce":null},{"d":"2025-01-10","ws":49.0,"tce":null},{"d":"2025-01-17","ws":77.5,"tce":null},{"d":"2025-01-24","ws":51.5,"tce":null},{"d":"2025-01-31","ws":60.0,"tce":null},{"d":"2025-02-07","ws":67.0,"tce":null},{"d":"2025-02-14","ws":62.0,"tce":null},{"d":"2025-02-21","ws":62.0,"tce":null},{"d":"2025-02-28","ws":57.0,"tce":null},{"d":"2025-03-07","ws":57.0,"tce":null},{"d":"2025-03-14","ws":59.0,"tce":null},{"d":"2025-03-21","ws":66.0,"tce":null},{"d":"2025-03-28","ws":59.0,"tce":null},{"d":"2025-04-04","ws":56.5,"tce":null},{"d":"2025-04-11","ws":54.0,"tce":null},{"d":"2025-04-17","ws":63.0,"tce":null},{"d":"2025-04-25","ws":72.5,"tce":null},{"d":"2025-05-02","ws":66.0,"tce":null},{"d":"2025-05-09","ws":61.0,"tce":null},{"d":"2025-05-16","ws":64.0,"tce":null},{"d":"2025-05-23","ws":60.0,"tce":null},{"d":"2025-05-30","ws":51.0,"tce":null},{"d":"2025-06-06","ws":43.5,"tce":null},{"d":"2025-06-13","ws":50.0,"tce":null},{"d":"2025-06-20","ws":77.0,"tce":null},{"d":"2025-06-27","ws":55.0,"tce":null},{"d":"2025-07-04","ws":47.0,"tce":null},{"d":"2025-07-11","ws":49.5,"tce":null},{"d":"2025-07-18","ws":52.5,"tce":null},{"d":"2025-07-25","ws":45.0,"tce":null},{"d":"2025-08-01","ws":44.0,"tce":null},{"d":"2025-08-08","ws":56.5,"tce":null},{"d":"2025-08-15","ws":56.5,"tce":null},{"d":"2025-08-22","ws":67.5,"tce":null},{"d":"2025-08-29","ws":66.0,"tce":null},{"d":"2025-09-05","ws":80.0,"tce":null},{"d":"2025-09-12","ws":95.0,"tce":null},{"d":"2025-09-19","ws":102.5,"tce":null},{"d":"2025-09-26","ws":100.0,"tce":null},{"d":"2025-10-03","ws":79.0,"tce":null},{"d":"2025-10-10","ws":92.5,"tce":null},{"d":"2025-10-17","ws":96.0,"tce":null},{"d":"2025-10-24","ws":90.0,"tce":null},{"d":"2025-10-31","ws":132.5,"tce":null},{"d":"2025-11-07","ws":102.5,"tce":null},{"d":"2025-11-14","ws":132.5,"tce":null},{"d":"2025-11-21","ws":140.0,"tce":null},{"d":"2025-11-28","ws":132.5,"tce":null},{"d":"2025-12-05","ws":122.5,"tce":null},{"d":"2025-12-12","ws":127.0,"tce":null},{"d":"2025-12-19","ws":115.0,"tce":null},{"d":"2025-12-24","ws":69.0,"tce":null},{"d":"2026-01-02","ws":50.0,"tce":null},{"d":"2026-01-09","ws":77.5,"tce":null},{"d":"2026-01-16","ws":122.5,"tce":null},{"d":"2026-01-23","ws":125.0,"tce":null},{"d":"2026-01-30","ws":97.5,"tce":null},{"d":"2026-02-06","ws":140.0,"tce":null},{"d":"2026-02-13","ws":135.0,"tce":null},{"d":"2026-02-20","ws":167.5,"tce":null},{"d":"2026-02-27","ws":222.5,"tce":null},{"d":"2026-03-06","ws":410.0,"tce":null},{"d":"2026-03-13","ws":325.0,"tce":null},{"d":"2026-03-20","ws":400.0,"tce":null},{"d":"2026-03-27","ws":350.0,"tce":null},{"d":"2026-04-02","ws":350.0,"tce":null},{"d":"2026-04-10","ws":420.0,"tce":null},{"d":"2026-04-17","ws":400.0,"tce":null},{"d":"2026-04-24","ws":400.0,"tce":null},{"d":"2026-05-01","ws":395.0,"tce":null},{"d":"2026-05-08","ws":375.0,"tce":null},{"d":"2026-05-15","ws":370.0,"tce":null},{"d":"2026-05-22","ws":360.0,"tce":null},{"d":"2026-05-29","ws":360.0,"tce":null},{"d":"2026-06-05","ws":370.0,"tce":null},{"d":"2026-06-12","ws":370.0,"tce":null},{"d":"2026-06-19","ws":450.0,"tce":null},{"d":"2026-06-26","ws":295.0,"tce":null},{"d":"2026-07-03","ws":310.0,"tce":null},{"d":"2026-07-10","ws":350.0,"tce":null},{"d":"2026-07-17","ws":375.0,"tce":null},{"d":"2026-07-24","ws":385.0,"tce":null},{"d":"2026-07-31","ws":400.0,"tce":null},{"d":"2026-08-07","ws":440.0,"tce":null},{"d":"2026-08-14","ws":500.0,"tce":null},{"d":"2026-08-21","ws":600.0,"tce":null},{"d":"2026-08-28","ws":600.0,"tce":null},{"d":"2026-09-04","ws":660.0,"tce":null},{"d":"2026-09-11","ws":800.0,"tce":null}]}};
+
+(function () {
+  'use strict';
+  const framed = (function () { try { return window.self !== window.top; } catch (e) { return true; } })();
+  if (framed) document.documentElement.classList.add('embed');
+
+  const B = DATA.baltic.points, F = DATA.fearnleys.points;
+  const bT = B.filter(p => p.tce != null), fT = F.filter(p => p.tce != null);
+  const parse = s => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+  const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const fmtDate = s => `${MON[+s.slice(5,7)-1]} ${+s.slice(8,10)}, ${s.slice(0,4)}`;
+  const fmtUSD = v => (v < 0 ? '-$' : '$') + Math.abs(Math.round(v)).toLocaleString('en-US');
+  const fmtK = v => v === 0 ? '$0' : (v < 0 ? '-$' : '$') + (Math.abs(v) / 1000).toLocaleString('en-US') + 'k';
+
+  // Legend spans, computed from the data.
+  const yr = s => s.slice(0, 4);
+  document.getElementById('baltic-span').textContent = `${fmtDate(bT[0].d)} to ${fmtDate(bT[bT.length-1].d)}`;
+  document.getElementById('fearn-span').textContent = `${fmtDate(fT[0].d)} to ${fmtDate(fT[fT.length-1].d)}`;
+
+  // Union of weekly dates, for the crosshair.
+  const byDate = new Map();
+  for (const p of bT) byDate.set(p.d, { d: p.d, b: p });
+  for (const p of fT) { const o = byDate.get(p.d) || { d: p.d }; o.f = p; byDate.set(p.d, o); }
+  const weeks = [...byDate.values()].sort((a, b) => a.d < b.d ? -1 : 1);
+  const wTimes = weeks.map(w => parse(w.d));
+
+  const latest = bT[bT.length - 1];
+  const peak = bT.reduce((m, p) => p.tce > m.tce ? p : m, bT[0]);
+  document.getElementById('chart-desc').textContent =
+    `Line chart of weekly VLCC earnings from ${fmtDate(fT[0].d)} to ${fmtDate(latest.d)}. ` +
+    `Latest Baltic TD3C reading ${fmtUSD(latest.tce)} a day on ${fmtDate(latest.d)}, the high of the series. ` +
+    `Earlier peaks in October 2019 and March 2020 were near $300,000 a day. The weekly table below the chart lists every value.`;
+
+  // Events annotated on the chart. Each is anchored to the highest weekly
+  // value within the window after the date, so the label points at the spike.
+  const EVENTS = [
+    { d: '2019-10-11', days: 14, text: 'Oct 2019: US sanctions on COSCO tankers' },
+    { d: '2020-03-13', days: 21, text: 'Mar 2020: price war, oil stored at sea' },
+    { d: '2026-02-28', days: 14, text: 'Feb 28, 2026: strikes on Iran, Hormuz closes', beside: true },
+  ];
+
+  const svg = document.getElementById('chart');
+  const box = document.getElementById('chartbox');
+  const tip = document.getElementById('tip');
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (n, a, parent) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); if (parent) parent.appendChild(e); return e; };
+
+  let geo = null, focusIdx = -1;
+
+  function layout() {
+    const W = box.clientWidth;
+    let H;
+    if (framed) {
+      const wrap = document.getElementById('wrap');
+      let other = 0;
+      for (const c of wrap.children) if (c !== box && c.offsetParent !== null) other += c.getBoundingClientRect().height;
+      const cs = getComputedStyle(wrap);
+      H = Math.max(260, document.documentElement.clientHeight - other - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - 4);
+    } else {
+      H = Math.round(Math.min(560, Math.max(340, W * 0.52)));
+    }
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('width', W); svg.setAttribute('height', H);
+    const narrow = W < 560;
+    const m = { l: narrow ? 54 : 70, r: narrow ? 14 : 24, t: 22, b: narrow ? 30 : 36 };
+    const pw = W - m.l - m.r, ph = H - m.t - m.b;
+
+    const allV = bT.map(p => p.tce).concat(fT.map(p => p.tce));
+    const vmax = Math.max(...allV), vmin = Math.min(...allV);
+    const step = vmax > 500000 ? 100000 : 50000;
+    const yMax = Math.ceil(vmax / step) * step + step * 0.35;
+    const yMin = Math.min(0, Math.floor(vmin / step) * step);
+    const t0 = parse(fT[0].d) - 20 * 86400000;
+    const t1 = parse(latest.d) + 45 * 86400000;
+    const x = t => m.l + (t - t0) / (t1 - t0) * pw;
+    const y = v => m.t + (yMax - v) / (yMax - yMin) * ph;
+    return { W, H, m, pw, ph, x, y, yMin, yMax, step, t0, t1, narrow };
+  }
+
+  function pathFor(pts, maxGapDays) {
+    let d = '', prev = null;
+    for (const p of pts) {
+      const t = parse(p.d);
+      const move = !prev || (t - prev) > maxGapDays * 86400000;
+      d += (move ? 'M' : 'L') + geo.x(t).toFixed(1) + ' ' + geo.y(p.tce).toFixed(1);
+      prev = t;
+    }
+    return d;
+  }
+
+  function render() {
+    geo = layout();
+    const { W, H, m, x, y, yMin, yMax, step, t0, t1, narrow } = geo;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    // Gridlines and y ticks
+    const g = el('g', {}, svg);
+    for (let v = yMin; v <= yMax - step * 0.3; v += step) {
+      const yy = y(v);
+      el('line', { x1: m.l, x2: W - m.r, y1: yy, y2: yy, stroke: v === 0 ? 'var(--grid)' : 'var(--hair)', 'stroke-width': 1, 'shape-rendering': 'crispEdges' }, g);
+      const t = el('text', { x: m.l - 8, y: yy + 4, 'text-anchor': 'end', class: 'ytick' }, g);
+      t.textContent = fmtK(v);
+    }
+    const at = el('text', { x: 6, y: m.t - 8, 'text-anchor': 'start', class: 'axis-title' }, g);
+    at.textContent = narrow ? '$/day' : 'US dollars per day';
+
+    // X ticks: one per year
+    const y0 = new Date(t0).getUTCFullYear(), y1 = new Date(t1).getUTCFullYear();
+    for (let yr = y0; yr <= y1; yr++) {
+      const t = Date.UTC(yr, 0, 1);
+      if (t < t0 || t > t1) continue;
+      const xx = x(t);
+      el('line', { x1: xx, x2: xx, y1: H - m.b, y2: H - m.b + 5, stroke: 'var(--grid)', 'stroke-width': 1 }, g);
+      const lab = el('text', { x: xx + 4, y: H - m.b + 17, 'text-anchor': 'start' }, g);
+      lab.textContent = narrow ? "'" + String(yr).slice(2) : String(yr);
+    }
+    el('line', { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, stroke: 'var(--grid)', 'stroke-width': 1, 'shape-rendering': 'crispEdges' }, g);
+
+    // Series (earlier series drawn first, the continuing series on top)
+    el('path', { d: pathFor(fT, 21), fill: 'none', stroke: 'var(--fearn)', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg);
+    el('path', { d: pathFor(bT, 21), fill: 'none', stroke: 'var(--baltic)', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg);
+
+    // End marker and direct label on the latest Baltic reading
+    const ex = x(parse(latest.d)), ey = y(latest.tce);
+    el('circle', { cx: ex, cy: ey, r: 6, fill: 'var(--panel)' }, svg);
+    el('circle', { cx: ex, cy: ey, r: 4, fill: 'var(--baltic)' }, svg);
+    const endlab = el('text', { x: ex - 10, y: ey + (ey < m.t + 18 ? 18 : 4), 'text-anchor': 'end', class: 'endlab' }, svg);
+    endlab.textContent = `${fmtUSD(latest.tce)} a day, ${fmtDate(latest.d)}`;
+
+    // Event annotations (hidden when narrow; the tooltip and notes carry them)
+    if (!narrow) {
+      const ag = el('g', {}, svg);
+      const placed = [];                        // x-extents of labels already on the top rows
+      for (const ev of EVENTS) {
+        const t = parse(ev.d), tEnd = t + ev.days * 86400000;
+        const cands = weeks.filter(w => { const wt = parse(w.d); return wt >= t - 3 * 86400000 && wt <= tEnd; })
+          .map(w => ({ d: w.d, v: Math.max(w.b ? w.b.tce : -Infinity, w.f ? w.f.tce : -Infinity) }))
+          .filter(c => isFinite(c.v));
+        if (!cands.length) continue;
+        const top = cands.reduce((a, c) => c.v > a.v ? c : a);
+        const px = x(parse(top.d)), py = y(top.v);
+        el('circle', { cx: px, cy: py, r: 3.5, fill: 'none', stroke: 'var(--ink)', 'stroke-width': 1 }, ag);
+        if (ev.beside) {                          // label to the left of the point, no leader
+          const lab = el('text', { x: px - 9, y: py + 4, 'text-anchor': 'end', class: 'ann' }, ag);
+          lab.textContent = ev.text;
+          continue;
+        }
+        const approxW = ev.text.length * 6.4;
+        const x0 = px + 6, x1 = px + 6 + approxW;
+        let row = 0;
+        while (placed.some(p => p.row === row && x0 < p.x1 && x1 > p.x0)) row++;
+        const labY = m.t + 14 + row * 18;
+        if (labY + 10 > py) continue;             // no room above the spike: skip
+        placed.push({ row, x0, x1 });
+        el('line', { x1: px, x2: px, y1: labY + 4, y2: py - 7, stroke: 'var(--grid)', 'stroke-width': 1 }, ag);
+        const lab = el('text', { x: x0, y: labY, 'text-anchor': 'start', class: 'ann' }, ag);
+        lab.textContent = ev.text;
+      }
+    }
+
+    // Hover layer
+    const hg = el('g', { id: 'hover', style: 'display:none' }, svg);
+    el('line', { id: 'xh', y1: m.t, y2: H - m.b, stroke: 'var(--muted)', 'stroke-width': 1 }, hg);
+    el('circle', { id: 'hb', r: 4.5, fill: 'var(--baltic)', stroke: 'var(--panel)', 'stroke-width': 2 }, hg);
+    el('circle', { id: 'hf', r: 4.5, fill: 'var(--fearn)', stroke: 'var(--panel)', 'stroke-width': 2 }, hg);
+    el('rect', { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: 'transparent', id: 'hit' }, svg);
+    if (focusIdx >= 0) showWeek(focusIdx, null);
+  }
+
+  function nearest(px) {
+    const t = geo.t0 + (px - geo.m.l) / geo.pw * (geo.t1 - geo.t0);
+    let lo = 0, hi = wTimes.length - 1;
+    while (lo < hi) { const mid = (lo + hi) >> 1; if (wTimes[mid] < t) lo = mid + 1; else hi = mid; }
+    if (lo > 0 && Math.abs(wTimes[lo - 1] - t) < Math.abs(wTimes[lo] - t)) lo--;
+    return lo;
+  }
+
+  function showWeek(i, clientX) {
+    focusIdx = i;
+    const w = weeks[i];
+    const px = geo.x(wTimes[i]);
+    const hg = document.getElementById('hover'); hg.style.display = '';
+    const xh = document.getElementById('xh'); xh.setAttribute('x1', px); xh.setAttribute('x2', px);
+    const hb = document.getElementById('hb'), hf = document.getElementById('hf');
+    if (w.b) { hb.style.display = ''; hb.setAttribute('cx', px); hb.setAttribute('cy', geo.y(w.b.tce)); } else hb.style.display = 'none';
+    if (w.f) { hf.style.display = ''; hf.setAttribute('cx', px); hf.setAttribute('cy', geo.y(w.f.tce)); } else hf.style.display = 'none';
+
+    while (tip.firstChild) tip.removeChild(tip.firstChild);
+    const dd = document.createElement('span'); dd.className = 'tdate'; dd.textContent = 'Week of ' + fmtDate(w.d); tip.appendChild(dd);
+    const row = (cls, val, who) => {
+      const r = document.createElement('div'); r.className = 'row';
+      const k = document.createElement('span'); k.className = 'key ' + cls; r.appendChild(k);
+      const v = document.createElement('span'); v.className = 'val'; v.textContent = val; r.appendChild(v);
+      const s = document.createElement('span'); s.className = 'who'; s.textContent = who; r.appendChild(s);
+      tip.appendChild(r);
+    };
+    if (w.b) row('baltic', fmtUSD(w.b.tce) + ' a day', `Baltic TD3C, WS ${w.b.ws}`);
+    if (w.f) row('fearn', fmtUSD(w.f.tce) + ' a day', 'Fearnleys' + (w.f.ws != null ? `, WS ${w.f.ws}` : ''));
+    if (w.b && w.b.note) { const n = document.createElement('div'); n.className = 'note'; n.textContent = w.b.note; tip.appendChild(n); }
+    tip.classList.add('on');
+    const bw = box.clientWidth, tw = tip.offsetWidth, th = tip.offsetHeight;
+    let left = px + 14; if (left + tw > bw - 4) left = px - tw - 14;
+    const vals = [w.b ? geo.y(w.b.tce) : null, w.f ? geo.y(w.f.tce) : null].filter(v => v != null);
+    let top = Math.min(...vals) - th - 12; if (top < 4) top = Math.max(...vals) + 16;
+    if (top + th > geo.H - 4) top = geo.H - th - 4;
+    tip.style.left = left + 'px'; tip.style.top = top + 'px';
+  }
+  function hide() { document.getElementById('hover').style.display = 'none'; tip.classList.remove('on'); focusIdx = -1; }
+
+  svg.addEventListener('pointermove', e => {
+    const r = svg.getBoundingClientRect();
+    const px = e.clientX - r.left;
+    if (px < geo.m.l - 6 || px > geo.W - geo.m.r + 6) { hide(); return; }
+    showWeek(nearest(px), e.clientX);
+  });
+  svg.addEventListener('pointerleave', hide);
+  svg.addEventListener('keydown', e => {
+    let i = focusIdx < 0 ? weeks.length - 1 : focusIdx;
+    if (e.key === 'ArrowLeft') i = Math.max(0, i - 1);
+    else if (e.key === 'ArrowRight') i = Math.min(weeks.length - 1, i + 1);
+    else if (e.key === 'Home') i = 0;
+    else if (e.key === 'End') i = weeks.length - 1;
+    else if (e.key === 'Escape') { hide(); return; }
+    else return;
+    e.preventDefault(); showWeek(i, null);
+  });
+  svg.addEventListener('blur', hide);
+
+  // Table view: the same numbers, reachable without hovering.
+  const table = document.getElementById('table');
+  const thead = document.createElement('thead'); const hr = document.createElement('tr');
+  for (const h of ['Week of', 'Baltic TD3C, $ per day', 'Baltic WS', 'Fearnleys, $ per day', 'Fearnleys WS', 'Note']) { const th = document.createElement('th'); th.textContent = h; hr.appendChild(th); }
+  thead.appendChild(hr); table.appendChild(thead);
+  const tb = document.createElement('tbody');
+  const fAll = new Map(F.map(p => [p.d, p]));
+  const bAll = new Map(B.map(p => [p.d, p]));
+  const allDates = [...new Set([...bAll.keys(), ...fAll.keys()])].sort().reverse();
+  for (const d of allDates) {
+    const b = bAll.get(d), f = fAll.get(d);
+    const tr = document.createElement('tr');
+    for (const v of [fmtDate(d), b && b.tce != null ? fmtUSD(b.tce) : '', b ? b.ws : '', f && f.tce != null ? fmtUSD(f.tce) : '', f && f.ws != null ? f.ws : '', b && b.note ? b.note : '']) {
+      const td = document.createElement('td'); td.textContent = v == null ? '' : String(v); tr.appendChild(td);
+    }
+    tb.appendChild(tr);
+  }
+  table.appendChild(tb);
+
+  render();
+  let raf = 0;
+  new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(render); }).observe(box);
+  if (framed) window.addEventListener('resize', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(render); });
+})();
+</script>
+</body>
+</html>
