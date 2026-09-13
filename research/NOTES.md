@@ -112,7 +112,7 @@ Lloyd's List; CNBC; Poten via Maritime Executive; World Bank.
   week of April 24 and the spring plateau of $400,000 to $490,000).
 - **Jun 14 to 18.** Memorandum of understanding; blockade lifted; record
   barrels exit in single days but ship counts stay a third of pre-war.
-- **Late June low.** Baltic weekly $286,500 a day (chart).
+- **Early July low.** Baltic weekly $286,500 a day, week of Jul 3 (chart).
 - **Jul 7 to 12.** Talks collapse. Iran attacks ships, US strikes, Iran
   declares the strait "closed until further notice." **Jul 23.** Houthis hit
   two Saudi tankers in the Red Sea; Brent back above $100.
@@ -163,6 +163,61 @@ The point for the narrative: a tanker rate spike is a symptom with more than
 one possible disease. 2019 was ships removed. 2020 was oil nobody wanted.
 2026 is oil that cannot get out. The chart alone does not say which; the
 cause does.
+
+## 3b. 2022 versus 2026: an oil spike without a tanker spike, then both
+
+Eric's observation, checked against the data (chart, and Brent from the EIA
+weekly Europe Brent spot series):
+
+| | 2022 | 2026 |
+|---|---|---|
+| Brent weekly high | $127.40 (week of Jun 10, 2022) | $124.61 (week of Apr 10, 2026) |
+| Baltic TD3C the same week | minus $22,200 a day | $444,200 a day |
+| Baltic from the shock to the Brent peak | Feb 25 to Jul 1, 2022: average minus $10,294 a day; 15 of 17 weeks below zero | Mar 6 to Apr 10, 2026: $326,198 to $485,959 a day |
+| Brent the week before the shock | $97.80 (Feb 18, 2022) | $71.36 (Feb 27, 2026) |
+
+The Baltic series was below zero for 48 weeks between January 22, 2021 and
+July 15, 2022, and VesselsValue called early 2021 to August 2022 the longest
+stretch of negative VLCC earnings on record. Oil went to $127 in the middle of
+that stretch and supertankers still lost money on the Gulf-to-China run.
+
+**Why 2022 did not move VLCCs.** A tanker rate is a price for ships, not for
+oil. It moves when the number of ships needed changes, or when the number
+available changes. In 2022 neither did, at first:
+
+- Russia's barrels never rode VLCCs. They load at Primorsk, Ust-Luga and
+  Novorossiysk, shallow Baltic and Black Sea ports served by Aframaxes and
+  Suezmaxes. The 2022 shock repriced oil and rerouted Russian crude, and the
+  freight boom landed in those smaller ships. The VLCC's home trade, Middle
+  East to Asia, did not change.
+- Middle East loadings were still being held back. OPEC+ was only unwinding
+  its 2020 cuts month by month, so there were fewer Gulf cargoes than the
+  fleet could carry.
+- The fleet was long. Ships hired as floating storage in 2020 came back into
+  the market through 2021, few were scrapped, and China's 2022 lockdowns cut
+  its crude imports.
+- Fuel costs rose with oil, so the same Worldscale rate paid the owner less.
+
+VLCC earnings only turned up in the second half of 2022, once the EU ban on
+Russian crude pushed Europe to buy from the Gulf, West Africa and the US, and
+Asia took the displaced Russian barrels, which lengthened the average voyage.
+The Baltic series reached $96,400 a day on November 18, 2022 (chart).
+https://www.rivieramm.com/opinion/opinion/vesselsvalue-vlcc-supply-and-demand-analysis-72775
+https://oilprice.com/Latest-Energy-News/World-News/Supertanker-Rates-Skyrocket-as-Asia-Rushes-to-Replace-Russian-Oil.html
+
+**Why 2026 moves both at once.** This time the shock hit the ships directly.
+The Strait of Hormuz is the VLCC trade's front door: about 20 million barrels
+a day passed through before the war (IEA). Closing it trapped roughly 58
+VLCCs inside (about 10% of the fleet), withdrew insurance, forced cargoes onto
+shuttle and ship-to-ship arrangements, and sent replacement barrels from the
+Atlantic on trips 2.6 times as long. Fewer usable ships, longer voyages and a
+war-risk premium all pushed the same way. Oil rose because supply was cut;
+freight rose because the surviving oil needed more ship-days per barrel.
+
+**The line for the post.** An oil price spike alone does not make supertankers
+expensive. What does is a shock that changes where ships have to go or how
+many are available. 2022 was the first kind. 2026 is the second, and it is the
+first time since at least 2004 that oil and freight have spiked together.
 
 ## 4. Why supertanker rates matter for oil prices
 

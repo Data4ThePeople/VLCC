@@ -22,4 +22,12 @@ Dates are the Friday of the Baltic weekly report unless stated.
 - Overlap weeks with both dollar figures: 102 (2020-12-04 to 2023-04-21); median absolute gap $827, max $13,571.
 - Overlap Worldscale gap through Apr 2023: median 0.41 points, max 11.23.
 
+- Brent weekly (EIA RBRTE): 2018-01-05 to 2026-09-04; latest $99.09 a barrel.
+- Brent 2022 high: 2022-06-10 $127.40; Baltic TD3C that week (2022-06-10): $-22,200 a day.
+- Brent 2026 high: 2026-04-10 $124.61; Baltic TD3C that week (2026-04-10): $444,200 a day.
+- Baltic Feb 25 to Jul 1, 2022 (invasion to Brent peak): average $-10,294 a day, range $-22,200 to $5,700, 15 of 17 weeks negative.
+- Baltic weeks below zero: 48, from 2021-01-22 to 2022-07-15.
+- Baltic Oct to Dec 2022 high: $96,400 a day (2022-11-18).
+- Brent week of Feb 27, 2026: $71.36 (2026-02-27); week of Sep 4, 2026: $99.09.
+
 Cross-series comparisons are editorial, not published: the Sept 2026 Baltic high is 2.6 times the Baltic TD3C March 2020 peak quoted by Hellenic Shipping News (above $326,000) and 2.9 times the Oct 11, 2019 Baltic figure quoted by Lloyd's List ($300,391).

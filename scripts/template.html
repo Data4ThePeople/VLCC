@@ -6,53 +6,58 @@
 <title>Supertanker Earnings</title>
 <meta name="description" content="What a supertanker earns per day carrying Middle East crude to China, every week since 2019, from the Baltic Exchange and Fearnleys.">
 <style>
-/* Editorial parchment house style, as in the CPI and CPS charts.
-   Single light theme, painted explicitly, so the page holds inside the
-   Prismic frame regardless of the viewer's OS theme. */
+/* Plain white scheme, painted explicitly so the page holds inside the
+   Prismic frame whatever the viewer's OS theme. Neutrals lean slightly cool
+   toward the blue series. */
 :root {
-  --parch: #faf3df;
-  --panel: #f4ead2;
-  --ink:   #2b2317;
-  --muted: #6b5d3f;
-  --grid:  #cdbb96;
-  --hair:  #e2d7bb;
-  --baltic: #2e6485;   /* cool slate: the continuing series */
-  --fearn:  #8a3a1c;   /* warm coral: the earlier series. Cool vs warm
-                          survives protanopia and deuteranopia; both clear
-                          4.5:1 on the parchment. */
-  --serif: Georgia, "Times New Roman", "DejaVu Serif", serif;
+  --bg:    #ffffff;
+  --panel: #ffffff;
+  --ink:   #14181d;
+  --muted: #5b6470;
+  --grid:  #cfd4da;
+  --hair:  #e9ecef;
+  --baltic: #2a78d6;   /* validated categorical slot 1, the continuing series */
+  --fearn:  #eb6834;   /* slot 2, the earlier series; cool vs warm survives CVD */
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 body {
-  margin: 0; background: var(--parch); color: var(--ink);
-  font-family: var(--serif); line-height: 1.5;
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--sans); line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
 }
 .wrap {
-  max-width: 1180px; margin: 0 auto; padding: 28px 24px 48px;
+  max-width: 1180px; margin: 0 auto; padding: 24px 24px 40px;
   container-type: inline-size;
-  display: flex; flex-direction: column; gap: 0;
+  display: flex; flex-direction: column;
 }
-header.masthead { border-bottom: 2px solid var(--grid); padding-bottom: 14px; }
-.logo { height: 26px; width: auto; display: block; margin-bottom: 12px; }
-h1 { font-size: 28px; line-height: 1.2; margin: 0 0 6px; font-weight: 700; text-wrap: balance; }
-.standfirst { font-size: 16px; color: var(--muted); margin: 0; max-width: 72ch; }
+header.masthead { border-bottom: 1px solid var(--grid); padding-bottom: 12px; }
+.logo { height: 24px; width: auto; display: block; margin-bottom: 12px; }
+h1 { font-size: 26px; line-height: 1.2; margin: 0 0 6px; font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
+.standfirst { font-size: 15px; color: var(--muted); margin: 0; max-width: 72ch; }
 
 .bar {
   display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
-  gap: 8px 24px; margin: 16px 0 8px; font-size: 14px;
+  gap: 6px 24px; margin: 12px 0 8px; font-size: 14px;
 }
 .legend { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 0; padding: 0; list-style: none; }
-.legend li { font-weight: 700; }
-.legend .baltic { color: var(--baltic); }
-.legend .fearn  { color: var(--fearn); }
+.legend li { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.legend .key { display: inline-block; width: 18px; height: 3px; border-radius: 2px; flex: 0 0 18px; }
+.legend .baltic .key { background: var(--baltic); }
+.legend .fearn .key  { background: var(--fearn); }
 .legend small { font-weight: 400; color: var(--muted); }
 .hint { color: var(--muted); font-size: 13px; margin: 0; }
+.toggle { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; color: var(--ink); cursor: pointer; }
+.toggle input { width: 15px; height: 15px; margin: 0; accent-color: var(--baltic); }
+.chart .brent-line { stroke: #3c4650; }
+.chart .panel-title { fill: var(--ink); font-size: 12.5px; font-weight: 600; }
+.tip .key.brent { background: #b8c0c9; }
 
 .chartbox { position: relative; }
-svg.chart { display: block; width: 100%; background: var(--panel); border: 1px solid var(--grid); }
+svg.chart { display: block; width: 100%; background: var(--panel); border: 1px solid var(--hair); border-radius: 3px; }
 svg.chart:focus-visible { outline: 2px solid var(--baltic); outline-offset: 2px; }
-.chart text { font-family: var(--serif); fill: var(--muted); font-size: 12px; }
+.chart text { font-family: var(--sans); fill: var(--muted); font-size: 12px; }
 .chart .ytick { font-variant-numeric: tabular-nums; }
 .chart .axis-title { font-size: 12px; fill: var(--muted); }
 .chart .ann { fill: var(--ink); font-size: 12.5px; }
@@ -60,24 +65,24 @@ svg.chart:focus-visible { outline: 2px solid var(--baltic); outline-offset: 2px;
 
 .tip {
   position: absolute; pointer-events: none; z-index: 5;
-  min-width: 230px; max-width: 320px; padding: 10px 13px;
-  background: var(--ink); color: var(--parch);
-  border-radius: 4px; font-size: 13.5px; line-height: 1.4;
-  box-shadow: 0 6px 20px rgba(43,35,23,.3);
+  min-width: 220px; max-width: 320px; padding: 10px 12px;
+  background: var(--ink); color: #fff;
+  border-radius: 6px; font-size: 13.5px; line-height: 1.4;
+  box-shadow: 0 6px 20px rgba(20,24,29,.25);
   opacity: 0; transition: opacity .1s;
 }
 .tip.on { opacity: 1; }
 .tip .tdate { font-weight: 700; display: block; margin-bottom: 5px; }
 .tip .row { display: flex; align-items: baseline; gap: 8px; margin: 2px 0; }
 .tip .key { flex: 0 0 14px; height: 3px; border-radius: 2px; transform: translateY(-3px); }
-.tip .key.baltic { background: #7fb0cf; }
-.tip .key.fearn  { background: #d98a5f; }
+.tip .key.baltic { background: #7fb0e8; }
+.tip .key.fearn  { background: #f4a077; }
 .tip .val { font-weight: 700; font-variant-numeric: tabular-nums; }
-.tip .who { color: var(--grid); font-size: 12.5px; }
-.tip .note { color: var(--grid); font-size: 12px; margin-top: 5px; }
+.tip .who { color: #b8c0c9; font-size: 12.5px; }
+.tip .note { color: #b8c0c9; font-size: 12px; margin-top: 5px; }
 @media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
 
-.source { font-size: 13px; color: var(--muted); margin: 12px 0 0; max-width: 90ch; }
+.source { font-size: 12.5px; color: var(--muted); margin: 10px 0 0; max-width: 90ch; }
 .source a { color: var(--ink); }
 .notes { font-size: 14px; color: var(--ink); max-width: 78ch; margin-top: 14px; }
 .notes p { margin: 0 0 10px; }
@@ -91,21 +96,30 @@ th, td { text-align: right; padding: 4px 10px; border-bottom: 1px solid var(--ha
 th:first-child, td:first-child { text-align: left; }
 th { position: sticky; top: 0; background: var(--panel); font-weight: 700; }
 
-/* Inside the Prismic frame: fill the frame height, trim the chrome. */
+/* Inside the Prismic frame: fill the frame height, trim the chrome, never scroll. */
 html.embed, html.embed body { height: 100%; overflow: hidden; }
-html.embed .wrap { height: 100%; padding: 14px 16px 12px; }
-html.embed .logo { height: 20px; margin-bottom: 8px; }
-html.embed h1 { font-size: 22px; }
-html.embed .standfirst { font-size: 14px; }
+html.embed .wrap { height: 100%; padding: 12px 14px 10px; }
+html.embed .logo { height: 18px; margin-bottom: 6px; }
+html.embed h1 { font-size: 20px; margin-bottom: 4px; }
+html.embed .standfirst { font-size: 13px; }
+html.embed .bar { margin: 8px 0 6px; font-size: 13px; }
 html.embed .chartbox { flex: 1 1 auto; min-height: 0; }
 html.embed svg.chart { height: 100%; }
-html.embed .notes, html.embed details.tbl { display: none; }
-html.embed .source { font-size: 12px; margin-top: 8px; }
+html.embed .notes, html.embed details.tbl, html.embed .hint { display: none; }
+html.embed .toggle { font-size: 12.5px; }
+html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
 
 @container (max-width: 640px) {
-  h1 { font-size: 22px; }
-  .standfirst { font-size: 14px; }
+  h1 { font-size: 20px; }
+  .standfirst { font-size: 13.5px; }
   .hint { display: none; }
+  .legend { gap: 2px 14px; font-size: 13px; }
+  .legend small { display: block; margin-left: 26px; }
+  .legend li { flex-wrap: wrap; }
+}
+@container (max-width: 640px) {
+  html.embed .standfirst { display: none; }
+  html.embed .source { font-size: 10.5px; }
 }
 @media (max-width: 640px) {
   .wrap { padding-left: 16px; padding-right: 16px; }
@@ -122,10 +136,13 @@ html.embed .source { font-size: 12px; margin-top: 8px; }
 
   <div class="bar">
     <ul class="legend" aria-label="Series">
-      <li class="baltic">Baltic Exchange TD3C <small id="baltic-span"></small></li>
-      <li class="fearn">Fearnleys VLCC Middle East to Far East <small id="fearn-span"></small></li>
+      <li class="baltic"><span class="key"></span><span>Baltic Exchange TD3C <small id="baltic-span"></small></span></li>
+      <li class="fearn"><span class="key"></span><span>Fearnleys VLCC Middle East to Far East <small id="fearn-span"></small></span></li>
     </ul>
-    <p class="hint">Arrow keys move along the weeks when the chart is focused.</p>
+    <div style="display:flex;gap:18px;align-items:baseline;flex-wrap:wrap">
+      <label class="toggle"><input type="checkbox" id="brent-toggle"> Show Brent crude oil price</label>
+      <p class="hint">Arrow keys move along the weeks when the chart is focused.</p>
+    </div>
   </div>
 
   <div class="chartbox" id="chartbox">
@@ -139,6 +156,7 @@ html.embed .source { font-size: 12px; margin-top: 8px; }
     for a 270,000-tonne cargo from Ras Tanura to Ningbo, Fridays. Fearnleys weekly
     report, VLCC Middle East Gulf to Far East time charter equivalent, Friday
     values; Fearnleys stopped publishing the dollar figure on April 25, 2023.
+    Brent: U.S. Energy Information Administration, Europe Brent spot price FOB, weekly.
     Built by <a href="https://www.data4thepeople.com">Data 4 The People</a>.
   </p>
 
@@ -169,7 +187,18 @@ html.embed .source { font-size: 12px; margin-top: 8px; }
   const framed = (function () { try { return window.self !== window.top; } catch (e) { return true; } })();
   if (framed) document.documentElement.classList.add('embed');
 
-  const B = DATA.baltic.points, F = DATA.fearnleys.points;
+  const B = DATA.baltic.points, F = DATA.fearnleys.points, BR = DATA.brent.points;
+  const brentBox = document.getElementById('brent-toggle');
+  const brMap = new Map(BR.map(p => [p.d, p.usd]));
+  const brentFor = d => {                         // Brent weeks are Fridays too; allow a 3-day slip
+    if (brMap.has(d)) return brMap.get(d);
+    const t = parse(d);
+    for (let k = 1; k <= 3; k++) for (const s of [-1, 1]) {
+      const c = new Date(t + s * k * 86400000).toISOString().slice(0, 10);
+      if (brMap.has(c)) return brMap.get(c);
+    }
+    return null;
+  };
   const bT = B.filter(p => p.tce != null), fT = F.filter(p => p.tce != null);
   const parse = s => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
   const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -228,7 +257,16 @@ html.embed .source { font-size: 12px; margin-top: 8px; }
     svg.setAttribute('width', W); svg.setAttribute('height', H);
     const narrow = W < 560;
     const m = { l: narrow ? 54 : 70, r: narrow ? 14 : 24, t: 22, b: narrow ? 30 : 36 };
-    const pw = W - m.l - m.r, ph = H - m.t - m.b;
+    const brentOn = brentBox.checked && BR.length > 0;
+    if (!framed && brentOn) H = Math.round(Math.min(700, Math.max(460, W * 0.68)));
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('height', H);
+    const pw = W - m.l - m.r, totalH = H - m.t - m.b;
+    const gap = 34;
+    const ph = brentOn ? Math.round((totalH - gap) * 0.66) : totalH;
+    const pb = m.t + ph;                          // bottom of the earnings plot
+    const bTop = pb + gap, bBot = H - m.b;        // the Brent panel, when shown
+    const bMax = brentOn ? Math.ceil(Math.max(...BR.map(p => p.usd)) / 20) * 20 : 0;
+    const yb = v => bTop + (bMax - v) / bMax * (bBot - bTop);
 
     const allV = bT.map(p => p.tce).concat(fT.map(p => p.tce));
     const vmax = Math.max(...allV), vmin = Math.min(...allV);
@@ -239,7 +277,7 @@ html.embed .source { font-size: 12px; margin-top: 8px; }
     const t1 = parse(latest.d) + 45 * 86400000;
     const x = t => m.l + (t - t0) / (t1 - t0) * pw;
     const y = v => m.t + (yMax - v) / (yMax - yMin) * ph;
-    return { W, H, m, pw, ph, x, y, yMin, yMax, step, t0, t1, narrow };
+    return { W, H, m, pw, ph, pb, x, y, yMin, yMax, step, t0, t1, narrow, brentOn, bTop, bBot, bMax, yb };
   }
 
   function pathFor(pts, maxGapDays) {
@@ -255,7 +293,7 @@ html.embed .source { font-size: 12px; margin-top: 8px; }
 
   function render() {
     geo = layout();
-    const { W, H, m, x, y, yMin, yMax, step, t0, t1, narrow } = geo;
+    const { W, H, m, x, y, yMin, yMax, step, t0, t1, narrow, pb, brentOn, bTop, bBot, bMax, yb } = geo;
     while (svg.firstChild) svg.removeChild(svg.firstChild);
 
     // Gridlines and y ticks
@@ -279,7 +317,35 @@ html.embed .source { font-size: 12px; margin-top: 8px; }
       const lab = el('text', { x: xx + 4, y: H - m.b + 17, 'text-anchor': 'start' }, g);
       lab.textContent = narrow ? "'" + String(yr).slice(2) : String(yr);
     }
-    el('line', { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, stroke: 'var(--grid)', 'stroke-width': 1, 'shape-rendering': 'crispEdges' }, g);
+    el('line', { x1: m.l, x2: W - m.r, y1: pb, y2: pb, stroke: 'var(--grid)', 'stroke-width': 1, 'shape-rendering': 'crispEdges' }, g);
+
+    // Brent panel: same time axis, its own dollar-per-barrel scale
+    if (brentOn) {
+      const bg = el('g', {}, svg);
+      const bstep = bMax > 100 ? 40 : 20;
+      for (let v = 0; v <= bMax; v += bstep) {
+        const yy = yb(v);
+        el('line', { x1: m.l, x2: W - m.r, y1: yy, y2: yy, stroke: v === 0 ? 'var(--grid)' : 'var(--hair)', 'stroke-width': 1, 'shape-rendering': 'crispEdges' }, bg);
+        const t = el('text', { x: m.l - 8, y: yy + 4, 'text-anchor': 'end', class: 'ytick' }, bg);
+        t.textContent = '$' + v;
+      }
+      const pt = el('text', { x: m.l, y: bTop - 9, class: 'panel-title' }, bg);
+      pt.textContent = narrow ? 'Brent crude, $ per barrel' : 'Brent crude oil price, US dollars per barrel';
+      let d = '', prev = null;
+      for (const p of BR) {
+        const t = parse(p.d);
+        if (t < t0 || t > t1) continue;
+        d += (!prev || t - prev > 21 * 86400000 ? 'M' : 'L') + x(t).toFixed(1) + ' ' + yb(p.usd).toFixed(1);
+        prev = t;
+      }
+      el('path', { d, fill: 'none', class: 'brent-line', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, bg);
+      const lastB = BR[BR.length - 1];
+      el('circle', { cx: x(parse(lastB.d)), cy: yb(lastB.usd), r: 3.5, fill: '#3c4650' }, bg);
+      if (!narrow) {
+        const bl = el('text', { x: x(parse(lastB.d)) - 8, y: yb(lastB.usd) - 8, 'text-anchor': 'end', class: 'ann' }, bg);
+        bl.textContent = `$${lastB.usd.toFixed(2)}, ${fmtDate(lastB.d)}`;
+      }
+    }
 
     // Series (earlier series drawn first, the continuing series on top)
     el('path', { d: pathFor(fT, 21), fill: 'none', stroke: 'var(--fearn)', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg);
@@ -328,6 +394,7 @@ html.embed .source { font-size: 12px; margin-top: 8px; }
     el('line', { id: 'xh', y1: m.t, y2: H - m.b, stroke: 'var(--muted)', 'stroke-width': 1 }, hg);
     el('circle', { id: 'hb', r: 4.5, fill: 'var(--baltic)', stroke: 'var(--panel)', 'stroke-width': 2 }, hg);
     el('circle', { id: 'hf', r: 4.5, fill: 'var(--fearn)', stroke: 'var(--panel)', 'stroke-width': 2 }, hg);
+    el('circle', { id: 'hbr', r: 4.5, fill: '#3c4650', stroke: 'var(--panel)', 'stroke-width': 2 }, hg);
     el('rect', { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: 'transparent', id: 'hit' }, svg);
     if (focusIdx >= 0) showWeek(focusIdx, null);
   }
@@ -349,6 +416,8 @@ html.embed .source { font-size: 12px; margin-top: 8px; }
     const hb = document.getElementById('hb'), hf = document.getElementById('hf');
     if (w.b) { hb.style.display = ''; hb.setAttribute('cx', px); hb.setAttribute('cy', geo.y(w.b.tce)); } else hb.style.display = 'none';
     if (w.f) { hf.style.display = ''; hf.setAttribute('cx', px); hf.setAttribute('cy', geo.y(w.f.tce)); } else hf.style.display = 'none';
+    const hbr = document.getElementById('hbr'), bv = geo.brentOn ? brentFor(w.d) : null;
+    if (bv != null) { hbr.style.display = ''; hbr.setAttribute('cx', px); hbr.setAttribute('cy', geo.yb(bv)); } else hbr.style.display = 'none';
 
     while (tip.firstChild) tip.removeChild(tip.firstChild);
     const dd = document.createElement('span'); dd.className = 'tdate'; dd.textContent = 'Week of ' + fmtDate(w.d); tip.appendChild(dd);
@@ -361,6 +430,7 @@ html.embed .source { font-size: 12px; margin-top: 8px; }
     };
     if (w.b) row('baltic', fmtUSD(w.b.tce) + ' a day', `Baltic TD3C, WS ${w.b.ws}`);
     if (w.f) row('fearn', fmtUSD(w.f.tce) + ' a day', 'Fearnleys' + (w.f.ws != null ? `, WS ${w.f.ws}` : ''));
+    if (geo.brentOn) { const bv = brentFor(w.d); if (bv != null) row('brent', '$' + bv.toFixed(2) + ' a barrel', 'Brent crude, EIA'); }
     if (w.b && w.b.note) { const n = document.createElement('div'); n.className = 'note'; n.textContent = w.b.note; tip.appendChild(n); }
     tip.classList.add('on');
     const bw = box.clientWidth, tw = tip.offsetWidth, th = tip.offsetHeight;
@@ -394,7 +464,7 @@ html.embed .source { font-size: 12px; margin-top: 8px; }
   // Table view: the same numbers, reachable without hovering.
   const table = document.getElementById('table');
   const thead = document.createElement('thead'); const hr = document.createElement('tr');
-  for (const h of ['Week of', 'Baltic TD3C, $ per day', 'Baltic WS', 'Fearnleys, $ per day', 'Fearnleys WS', 'Note']) { const th = document.createElement('th'); th.textContent = h; hr.appendChild(th); }
+  for (const h of ['Week of', 'Baltic TD3C, $ per day', 'Baltic WS', 'Fearnleys, $ per day', 'Fearnleys WS', 'Brent, $ per barrel', 'Note']) { const th = document.createElement('th'); th.textContent = h; hr.appendChild(th); }
   thead.appendChild(hr); table.appendChild(thead);
   const tb = document.createElement('tbody');
   const fAll = new Map(F.map(p => [p.d, p]));
@@ -403,13 +473,16 @@ html.embed .source { font-size: 12px; margin-top: 8px; }
   for (const d of allDates) {
     const b = bAll.get(d), f = fAll.get(d);
     const tr = document.createElement('tr');
-    for (const v of [fmtDate(d), b && b.tce != null ? fmtUSD(b.tce) : '', b ? b.ws : '', f && f.tce != null ? fmtUSD(f.tce) : '', f && f.ws != null ? f.ws : '', b && b.note ? b.note : '']) {
+    const bv = brentFor(d);
+    for (const v of [fmtDate(d), b && b.tce != null ? fmtUSD(b.tce) : '', b ? b.ws : '', f && f.tce != null ? fmtUSD(f.tce) : '', f && f.ws != null ? f.ws : '', bv != null ? '$' + bv.toFixed(2) : '', b && b.note ? b.note : '']) {
       const td = document.createElement('td'); td.textContent = v == null ? '' : String(v); tr.appendChild(td);
     }
     tb.appendChild(tr);
   }
   table.appendChild(tb);
 
+  try { if (new URLSearchParams(location.search).get('brent') === '1') brentBox.checked = true; } catch (e) {}
+  brentBox.addEventListener('change', () => { hide(); render(); });
   render();
   let raf = 0;
   new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(render); }).observe(box);
