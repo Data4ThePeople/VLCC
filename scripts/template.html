@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Supertanker Earnings</title>
+<meta name="description" content="What a supertanker earns per day carrying Middle East crude to China, every week since 2019, from the Baltic Exchange and Fearnleys.">
+<style>
+/* Editorial parchment house style, as in the CPI and CPS charts.
+   Single light theme, painted explicitly, so the page holds inside the
+   Prismic frame regardless of the viewer's OS theme. */
+:root {
+  --parch: #faf3df;
+  --panel: #f4ead2;
+  --ink:   #2b2317;
+  --muted: #6b5d3f;
+  --grid:  #cdbb96;
+  --hair:  #e2d7bb;
+  --baltic: #2e6485;   /* cool slate: the continuing series */
+  --fearn:  #8a3a1c;   /* warm coral: the earlier series. Cool vs warm
+                          survives protanopia and deuteranopia; both clear
+                          4.5:1 on the parchment. */
+  --serif: Georgia, "Times New Roman", "DejaVu Serif", serif;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--parch); color: var(--ink);
+  font-family: var(--serif); line-height: 1.5;
+}
+.wrap {
+  max-width: 1180px; margin: 0 auto; padding: 28px 24px 48px;
+  container-type: inline-size;
+  display: flex; flex-direction: column; gap: 0;
+}
+header.masthead { border-bottom: 2px solid var(--grid); padding-bottom: 14px; }
+.logo { height: 26px; width: auto; display: block; margin-bottom: 12px; }
+h1 { font-size: 28px; line-height: 1.2; margin: 0 0 6px; font-weight: 700; text-wrap: balance; }
+.standfirst { font-size: 16px; color: var(--muted); margin: 0; max-width: 72ch; }
+
+.bar {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 8px 24px; margin: 16px 0 8px; font-size: 14px;
+}
+.legend { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 0; padding: 0; list-style: none; }
+.legend li { font-weight: 700; }
+.legend .baltic { color: var(--baltic); }
+.legend .fearn  { color: var(--fearn); }
+.legend small { font-weight: 400; color: var(--muted); }
+.hint { color: var(--muted); font-size: 13px; margin: 0; }
+
+.chartbox { position: relative; }
+svg.chart { display: block; width: 100%; background: var(--panel); border: 1px solid var(--grid); }
+svg.chart:focus-visible { outline: 2px solid var(--baltic); outline-offset: 2px; }
+.chart text { font-family: var(--serif); fill: var(--muted); font-size: 12px; }
+.chart .ytick { font-variant-numeric: tabular-nums; }
+.chart .axis-title { font-size: 12px; fill: var(--muted); }
+.chart .ann { fill: var(--ink); font-size: 12.5px; }
+.chart .endlab { fill: var(--ink); font-size: 13px; font-weight: 700; }
+
+.tip {
+  position: absolute; pointer-events: none; z-index: 5;
+  min-width: 230px; max-width: 320px; padding: 10px 13px;
+  background: var(--ink); color: var(--parch);
+  border-radius: 4px; font-size: 13.5px; line-height: 1.4;
+  box-shadow: 0 6px 20px rgba(43,35,23,.3);
+  opacity: 0; transition: opacity .1s;
+}
+.tip.on { opacity: 1; }
+.tip .tdate { font-weight: 700; display: block; margin-bottom: 5px; }
+.tip .row { display: flex; align-items: baseline; gap: 8px; margin: 2px 0; }
+.tip .key { flex: 0 0 14px; height: 3px; border-radius: 2px; transform: translateY(-3px); }
+.tip .key.baltic { background: #7fb0cf; }
+.tip .key.fearn  { background: #d98a5f; }
+.tip .val { font-weight: 700; font-variant-numeric: tabular-nums; }
+.tip .who { color: var(--grid); font-size: 12.5px; }
+.tip .note { color: var(--grid); font-size: 12px; margin-top: 5px; }
+@media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
+
+.source { font-size: 13px; color: var(--muted); margin: 12px 0 0; max-width: 90ch; }
+.source a { color: var(--ink); }
+.notes { font-size: 14px; color: var(--ink); max-width: 78ch; margin-top: 14px; }
+.notes p { margin: 0 0 10px; }
+
+details.tbl { margin-top: 16px; font-size: 13.5px; }
+details.tbl summary { cursor: pointer; color: var(--muted); }
+details.tbl summary:focus-visible { outline: 2px solid var(--baltic); }
+.tblwrap { overflow-x: auto; margin-top: 8px; max-height: 420px; overflow-y: auto; border: 1px solid var(--grid); }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 4px 10px; border-bottom: 1px solid var(--hair); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { position: sticky; top: 0; background: var(--panel); font-weight: 700; }
+
+/* Inside the Prismic frame: fill the frame height, trim the chrome. */
+html.embed, html.embed body { height: 100%; overflow: hidden; }
+html.embed .wrap { height: 100%; padding: 14px 16px 12px; }
+html.embed .logo { height: 20px; margin-bottom: 8px; }
+html.embed h1 { font-size: 22px; }
+html.embed .standfirst { font-size: 14px; }
+html.embed .chartbox { flex: 1 1 auto; min-height: 0; }
+html.embed svg.chart { height: 100%; }
+html.embed .notes, html.embed details.tbl { display: none; }
+html.embed .source { font-size: 12px; margin-top: 8px; }
+
+@container (max-width: 640px) {
+  h1 { font-size: 22px; }
+  .standfirst { font-size: 14px; }
+  .hint { display: none; }
+}
+@media (max-width: 640px) {
+  .wrap { padding-left: 16px; padding-right: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <header class="masthead">
+    <a href="https://www.data4thepeople.com" aria-label="Data 4 The People"><img class="logo" alt="Data 4 The People" src="__LOGO__"></a>
+    <h1>What a supertanker earns in a day</h1>
+    <p class="standfirst">Weekly earnings for a very large crude carrier on the Middle East to China run, in US dollars per day, since 2019. Hover or tap a point to read the rate.</p>
+  </header>
+
+  <div class="bar">
+    <ul class="legend" aria-label="Series">
+      <li class="baltic">Baltic Exchange TD3C <small id="baltic-span"></small></li>
+      <li class="fearn">Fearnleys VLCC Middle East to Far East <small id="fearn-span"></small></li>
+    </ul>
+    <p class="hint">Arrow keys move along the weeks when the chart is focused.</p>
+  </div>
+
+  <div class="chartbox" id="chartbox">
+    <svg class="chart" id="chart" role="img" tabindex="0" aria-describedby="chart-desc"></svg>
+    <p id="chart-desc" hidden></p>
+    <div class="tip" id="tip" role="status" aria-live="polite"></div>
+  </div>
+
+  <p class="source">
+    Baltic Exchange weekly tanker report, TD3C round-trip time charter equivalent
+    for a 270,000-tonne cargo from Ras Tanura to Ningbo, Fridays. Fearnleys weekly
+    report, VLCC Middle East Gulf to Far East time charter equivalent, Friday
+    values; Fearnleys stopped publishing the dollar figure on April 25, 2023.
+    Built by <a href="https://www.data4thepeople.com">Data 4 The People</a>.
+  </p>
+
+  <div class="notes">
+    <p><strong>What the number means.</strong> Brokers quote tanker freight as a
+    percentage of a yearly base rate. The Baltic Exchange and Fearnleys turn that
+    into what the ship earns per day after fuel and port costs, spread over a
+    round trip. That is the figure here. Two publishers are shown because
+    neither covers the whole period alone; where they overlap, they agree
+    within a few thousand dollars a day.</p>
+    <p><strong>Since March 2026</strong> the Baltic figure is an assessment for a
+    voyage few ships are making, because the route loads inside the Strait of
+    Hormuz. It still sets the price of freight contracts and futures, which is
+    why it is the number the market quotes.</p>
+  </div>
+
+  <details class="tbl">
+    <summary>Show the weekly numbers as a table</summary>
+    <div class="tblwrap"><table id="table"></table></div>
+  </details>
+</div>
+
+<script>
+/*__DATA__*/
+
+(function () {
+  'use strict';
+  const framed = (function () { try { return window.self !== window.top; } catch (e) { return true; } })();
+  if (framed) document.documentElement.classList.add('embed');
+
+  const B = DATA.baltic.points, F = DATA.fearnleys.points;
+  const bT = B.filter(p => p.tce != null), fT = F.filter(p => p.tce != null);
+  const parse = s => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+  const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const fmtDate = s => `${MON[+s.slice(5,7)-1]} ${+s.slice(8,10)}, ${s.slice(0,4)}`;
+  const fmtUSD = v => (v < 0 ? '-$' : '$') + Math.abs(Math.round(v)).toLocaleString('en-US');
+  const fmtK = v => v === 0 ? '$0' : (v < 0 ? '-$' : '$') + (Math.abs(v) / 1000).toLocaleString('en-US') + 'k';
+
+  // Legend spans, computed from the data.
+  const yr = s => s.slice(0, 4);
+  document.getElementById('baltic-span').textContent = `${fmtDate(bT[0].d)} to ${fmtDate(bT[bT.length-1].d)}`;
+  document.getElementById('fearn-span').textContent = `${fmtDate(fT[0].d)} to ${fmtDate(fT[fT.length-1].d)}`;
+
+  // Union of weekly dates, for the crosshair.
+  const byDate = new Map();
+  for (const p of bT) byDate.set(p.d, { d: p.d, b: p });
+  for (const p of fT) { const o = byDate.get(p.d) || { d: p.d }; o.f = p; byDate.set(p.d, o); }
+  const weeks = [...byDate.values()].sort((a, b) => a.d < b.d ? -1 : 1);
+  const wTimes = weeks.map(w => parse(w.d));
+
+  const latest = bT[bT.length - 1];
+  const peak = bT.reduce((m, p) => p.tce > m.tce ? p : m, bT[0]);
+  document.getElementById('chart-desc').textContent =
+    `Line chart of weekly VLCC earnings from ${fmtDate(fT[0].d)} to ${fmtDate(latest.d)}. ` +
+    `Latest Baltic TD3C reading ${fmtUSD(latest.tce)} a day on ${fmtDate(latest.d)}, the high of the series. ` +
+    `Earlier peaks in October 2019 and March 2020 were near $300,000 a day. The weekly table below the chart lists every value.`;
+
+  // Events annotated on the chart. Each is anchored to the highest weekly
+  // value within the window after the date, so the label points at the spike.
+  const EVENTS = [
+    { d: '2019-10-11', days: 14, text: 'Oct 2019: US sanctions on COSCO tankers' },
+    { d: '2020-03-13', days: 21, text: 'Mar 2020: price war, oil stored at sea' },
+    { d: '2026-02-28', days: 14, text: 'Feb 28, 2026: strikes on Iran, Hormuz closes', beside: true },
+  ];
+
+  const svg = document.getElementById('chart');
+  const box = document.getElementById('chartbox');
+  const tip = document.getElementById('tip');
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (n, a, parent) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); if (parent) parent.appendChild(e); return e; };
+
+  let geo = null, focusIdx = -1;
+
+  function layout() {
+    const W = box.clientWidth;
+    let H;
+    if (framed) {
+      const wrap = document.getElementById('wrap');
+      let other = 0;
+      for (const c of wrap.children) if (c !== box && c.offsetParent !== null) other += c.getBoundingClientRect().height;
+      const cs = getComputedStyle(wrap);
+      H = Math.max(260, document.documentElement.clientHeight - other - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - 4);
+    } else {
+      H = Math.round(Math.min(560, Math.max(340, W * 0.52)));
+    }
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('width', W); svg.setAttribute('height', H);
+    const narrow = W < 560;
+    const m = { l: narrow ? 54 : 70, r: narrow ? 14 : 24, t: 22, b: narrow ? 30 : 36 };
+    const pw = W - m.l - m.r, ph = H - m.t - m.b;
+
+    const allV = bT.map(p => p.tce).concat(fT.map(p => p.tce));
+    const vmax = Math.max(...allV), vmin = Math.min(...allV);
+    const step = vmax > 500000 ? 100000 : 50000;
+    const yMax = Math.ceil(vmax / step) * step + step * 0.35;
+    const yMin = Math.min(0, Math.floor(vmin / step) * step);
+    const t0 = parse(fT[0].d) - 20 * 86400000;
+    const t1 = parse(latest.d) + 45 * 86400000;
+    const x = t => m.l + (t - t0) / (t1 - t0) * pw;
+    const y = v => m.t + (yMax - v) / (yMax - yMin) * ph;
+    return { W, H, m, pw, ph, x, y, yMin, yMax, step, t0, t1, narrow };
+  }
+
+  function pathFor(pts, maxGapDays) {
+    let d = '', prev = null;
+    for (const p of pts) {
+      const t = parse(p.d);
+      const move = !prev || (t - prev) > maxGapDays * 86400000;
+      d += (move ? 'M' : 'L') + geo.x(t).toFixed(1) + ' ' + geo.y(p.tce).toFixed(1);
+      prev = t;
+    }
+    return d;
+  }
+
+  function render() {
+    geo = layout();
+    const { W, H, m, x, y, yMin, yMax, step, t0, t1, narrow } = geo;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    // Gridlines and y ticks
+    const g = el('g', {}, svg);
+    for (let v = yMin; v <= yMax - step * 0.3; v += step) {
+      const yy = y(v);
+      el('line', { x1: m.l, x2: W - m.r, y1: yy, y2: yy, stroke: v === 0 ? 'var(--grid)' : 'var(--hair)', 'stroke-width': 1, 'shape-rendering': 'crispEdges' }, g);
+      const t = el('text', { x: m.l - 8, y: yy + 4, 'text-anchor': 'end', class: 'ytick' }, g);
+      t.textContent = fmtK(v);
+    }
+    const at = el('text', { x: 6, y: m.t - 8, 'text-anchor': 'start', class: 'axis-title' }, g);
+    at.textContent = narrow ? '$/day' : 'US dollars per day';
+
+    // X ticks: one per year
+    const y0 = new Date(t0).getUTCFullYear(), y1 = new Date(t1).getUTCFullYear();
+    for (let yr = y0; yr <= y1; yr++) {
+      const t = Date.UTC(yr, 0, 1);
+      if (t < t0 || t > t1) continue;
+      const xx = x(t);
+      el('line', { x1: xx, x2: xx, y1: H - m.b, y2: H - m.b + 5, stroke: 'var(--grid)', 'stroke-width': 1 }, g);
+      const lab = el('text', { x: xx + 4, y: H - m.b + 17, 'text-anchor': 'start' }, g);
+      lab.textContent = narrow ? "'" + String(yr).slice(2) : String(yr);
+    }
+    el('line', { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, stroke: 'var(--grid)', 'stroke-width': 1, 'shape-rendering': 'crispEdges' }, g);
+
+    // Series (earlier series drawn first, the continuing series on top)
+    el('path', { d: pathFor(fT, 21), fill: 'none', stroke: 'var(--fearn)', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg);
+    el('path', { d: pathFor(bT, 21), fill: 'none', stroke: 'var(--baltic)', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg);
+
+    // End marker and direct label on the latest Baltic reading
+    const ex = x(parse(latest.d)), ey = y(latest.tce);
+    el('circle', { cx: ex, cy: ey, r: 6, fill: 'var(--panel)' }, svg);
+    el('circle', { cx: ex, cy: ey, r: 4, fill: 'var(--baltic)' }, svg);
+    const endlab = el('text', { x: ex - 10, y: ey + (ey < m.t + 18 ? 18 : 4), 'text-anchor': 'end', class: 'endlab' }, svg);
+    endlab.textContent = `${fmtUSD(latest.tce)} a day, ${fmtDate(latest.d)}`;
+
+    // Event annotations (hidden when narrow; the tooltip and notes carry them)
+    if (!narrow) {
+      const ag = el('g', {}, svg);
+      const placed = [];                        // x-extents of labels already on the top rows
+      for (const ev of EVENTS) {
+        const t = parse(ev.d), tEnd = t + ev.days * 86400000;
+        const cands = weeks.filter(w => { const wt = parse(w.d); return wt >= t - 3 * 86400000 && wt <= tEnd; })
+          .map(w => ({ d: w.d, v: Math.max(w.b ? w.b.tce : -Infinity, w.f ? w.f.tce : -Infinity) }))
+          .filter(c => isFinite(c.v));
+        if (!cands.length) continue;
+        const top = cands.reduce((a, c) => c.v > a.v ? c : a);
+        const px = x(parse(top.d)), py = y(top.v);
+        el('circle', { cx: px, cy: py, r: 3.5, fill: 'none', stroke: 'var(--ink)', 'stroke-width': 1 }, ag);
+        if (ev.beside) {                          // label to the left of the point, no leader
+          const lab = el('text', { x: px - 9, y: py + 4, 'text-anchor': 'end', class: 'ann' }, ag);
+          lab.textContent = ev.text;
+          continue;
+        }
+        const approxW = ev.text.length * 6.4;
+        const x0 = px + 6, x1 = px + 6 + approxW;
+        let row = 0;
+        while (placed.some(p => p.row === row && x0 < p.x1 && x1 > p.x0)) row++;
+        const labY = m.t + 14 + row * 18;
+        if (labY + 10 > py) continue;             // no room above the spike: skip
+        placed.push({ row, x0, x1 });
+        el('line', { x1: px, x2: px, y1: labY + 4, y2: py - 7, stroke: 'var(--grid)', 'stroke-width': 1 }, ag);
+        const lab = el('text', { x: x0, y: labY, 'text-anchor': 'start', class: 'ann' }, ag);
+        lab.textContent = ev.text;
+      }
+    }
+
+    // Hover layer
+    const hg = el('g', { id: 'hover', style: 'display:none' }, svg);
+    el('line', { id: 'xh', y1: m.t, y2: H - m.b, stroke: 'var(--muted)', 'stroke-width': 1 }, hg);
+    el('circle', { id: 'hb', r: 4.5, fill: 'var(--baltic)', stroke: 'var(--panel)', 'stroke-width': 2 }, hg);
+    el('circle', { id: 'hf', r: 4.5, fill: 'var(--fearn)', stroke: 'var(--panel)', 'stroke-width': 2 }, hg);
+    el('rect', { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: 'transparent', id: 'hit' }, svg);
+    if (focusIdx >= 0) showWeek(focusIdx, null);
+  }
+
+  function nearest(px) {
+    const t = geo.t0 + (px - geo.m.l) / geo.pw * (geo.t1 - geo.t0);
+    let lo = 0, hi = wTimes.length - 1;
+    while (lo < hi) { const mid = (lo + hi) >> 1; if (wTimes[mid] < t) lo = mid + 1; else hi = mid; }
+    if (lo > 0 && Math.abs(wTimes[lo - 1] - t) < Math.abs(wTimes[lo] - t)) lo--;
+    return lo;
+  }
+
+  function showWeek(i, clientX) {
+    focusIdx = i;
+    const w = weeks[i];
+    const px = geo.x(wTimes[i]);
+    const hg = document.getElementById('hover'); hg.style.display = '';
+    const xh = document.getElementById('xh'); xh.setAttribute('x1', px); xh.setAttribute('x2', px);
+    const hb = document.getElementById('hb'), hf = document.getElementById('hf');
+    if (w.b) { hb.style.display = ''; hb.setAttribute('cx', px); hb.setAttribute('cy', geo.y(w.b.tce)); } else hb.style.display = 'none';
+    if (w.f) { hf.style.display = ''; hf.setAttribute('cx', px); hf.setAttribute('cy', geo.y(w.f.tce)); } else hf.style.display = 'none';
+
+    while (tip.firstChild) tip.removeChild(tip.firstChild);
+    const dd = document.createElement('span'); dd.className = 'tdate'; dd.textContent = 'Week of ' + fmtDate(w.d); tip.appendChild(dd);
+    const row = (cls, val, who) => {
+      const r = document.createElement('div'); r.className = 'row';
+      const k = document.createElement('span'); k.className = 'key ' + cls; r.appendChild(k);
+      const v = document.createElement('span'); v.className = 'val'; v.textContent = val; r.appendChild(v);
+      const s = document.createElement('span'); s.className = 'who'; s.textContent = who; r.appendChild(s);
+      tip.appendChild(r);
+    };
+    if (w.b) row('baltic', fmtUSD(w.b.tce) + ' a day', `Baltic TD3C, WS ${w.b.ws}`);
+    if (w.f) row('fearn', fmtUSD(w.f.tce) + ' a day', 'Fearnleys' + (w.f.ws != null ? `, WS ${w.f.ws}` : ''));
+    if (w.b && w.b.note) { const n = document.createElement('div'); n.className = 'note'; n.textContent = w.b.note; tip.appendChild(n); }
+    tip.classList.add('on');
+    const bw = box.clientWidth, tw = tip.offsetWidth, th = tip.offsetHeight;
+    let left = px + 14; if (left + tw > bw - 4) left = px - tw - 14;
+    const vals = [w.b ? geo.y(w.b.tce) : null, w.f ? geo.y(w.f.tce) : null].filter(v => v != null);
+    let top = Math.min(...vals) - th - 12; if (top < 4) top = Math.max(...vals) + 16;
+    if (top + th > geo.H - 4) top = geo.H - th - 4;
+    tip.style.left = left + 'px'; tip.style.top = top + 'px';
+  }
+  function hide() { document.getElementById('hover').style.display = 'none'; tip.classList.remove('on'); focusIdx = -1; }
+
+  svg.addEventListener('pointermove', e => {
+    const r = svg.getBoundingClientRect();
+    const px = e.clientX - r.left;
+    if (px < geo.m.l - 6 || px > geo.W - geo.m.r + 6) { hide(); return; }
+    showWeek(nearest(px), e.clientX);
+  });
+  svg.addEventListener('pointerleave', hide);
+  svg.addEventListener('keydown', e => {
+    let i = focusIdx < 0 ? weeks.length - 1 : focusIdx;
+    if (e.key === 'ArrowLeft') i = Math.max(0, i - 1);
+    else if (e.key === 'ArrowRight') i = Math.min(weeks.length - 1, i + 1);
+    else if (e.key === 'Home') i = 0;
+    else if (e.key === 'End') i = weeks.length - 1;
+    else if (e.key === 'Escape') { hide(); return; }
+    else return;
+    e.preventDefault(); showWeek(i, null);
+  });
+  svg.addEventListener('blur', hide);
+
+  // Table view: the same numbers, reachable without hovering.
+  const table = document.getElementById('table');
+  const thead = document.createElement('thead'); const hr = document.createElement('tr');
+  for (const h of ['Week of', 'Baltic TD3C, $ per day', 'Baltic WS', 'Fearnleys, $ per day', 'Fearnleys WS', 'Note']) { const th = document.createElement('th'); th.textContent = h; hr.appendChild(th); }
+  thead.appendChild(hr); table.appendChild(thead);
+  const tb = document.createElement('tbody');
+  const fAll = new Map(F.map(p => [p.d, p]));
+  const bAll = new Map(B.map(p => [p.d, p]));
+  const allDates = [...new Set([...bAll.keys(), ...fAll.keys()])].sort().reverse();
+  for (const d of allDates) {
+    const b = bAll.get(d), f = fAll.get(d);
+    const tr = document.createElement('tr');
+    for (const v of [fmtDate(d), b && b.tce != null ? fmtUSD(b.tce) : '', b ? b.ws : '', f && f.tce != null ? fmtUSD(f.tce) : '', f && f.ws != null ? f.ws : '', b && b.note ? b.note : '']) {
+      const td = document.createElement('td'); td.textContent = v == null ? '' : String(v); tr.appendChild(td);
+    }
+    tb.appendChild(tr);
+  }
+  table.appendChild(tb);
+
+  render();
+  let raf = 0;
+  new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(render); }).observe(box);
+  if (framed) window.addEventListener('resize', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(render); });
+})();
+</script>
+</body>
+</html>
