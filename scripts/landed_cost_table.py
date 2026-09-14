@@ -13,19 +13,17 @@ OUT = Path(__file__).resolve().parent.parent / "posts" / "supertanker-rates" / "
 BG, INK, MUTED, GRID, HEAD = "#181A1B", "#BBBDC0", "#8f9296", "#2c2f31", "#e6e7e8"
 ACCENT = "#7fb0cf"
 
-cols = ["", "Gulf barrel loading\noutside the strait\n(Murban at Fujairah)", "Gulf barrel shuttled\nout of the strait\n(Saudi grades)", "Atlantic barrel\n(US Gulf, for\ncomparison)"]
+cols = ["", "At the headline rate\n(loads inside the strait,\nBaltic TD3C $862,150 a day)", "The way the oil moves now\n(loads at Fujairah, outside\nthe strait, Murban)", "Atlantic barrel\n(US Gulf, for\ncomparison)"]
 rows = [
-    ("Price at the loading port", "$131", "$115", "$108"),
-    ("Shuttle tanker inside the Gulf, freight and ship-to-ship transfer", "none", "about $2*", "none"),
-    ("War-risk cover on the shuttle, one transit", "none", "$9 to $18*", "none"),
-    ("Supertanker freight to China", "$8 to $11.50", "$8 to $11.50", "about $15"),
-    ("War-risk cover on the supertanker", "about $1", "about $1", "none"),
-    ("War-risk cover on the oil itself", "$0.65 to $1.30*", "$10 to $15*", "none"),
-    ("Landed in China", "$141 to $145", "$145 to $163", "about $123"),
-    ("Days at sea", "about 17", "about 17 plus the shuttle", "about 45"),
+    ("Price at the loading port", "$115", "$131", "$108"),
+    ("Supertanker freight to China", "$18.60 to $22", "$8 to $11.50", "about $15"),
+    ("War-risk cover on the ship, one transit", "$5 to $13", "about $1", "none"),
+    ("War-risk cover on the oil itself", "$10 to $16*", "$0.65 to $1.30*", "none"),
+    ("Landed in China", "$149 to $166", "$141 to $145", "about $123"),
+    ("Days at sea, loading port to China", "about 19", "about 17", "about 45"),
 ]
 
-fig = plt.figure(figsize=(12, 7.6), dpi=150)
+fig = plt.figure(figsize=(12, 6.9), dpi=150)
 fig.patch.set_facecolor(BG)
 ax = fig.add_axes([0, 0, 1, 1]); ax.set_axis_off(); ax.set_xlim(0, 1); ax.set_ylim(0, 1)
 plt.rcParams["font.family"] = "sans-serif"
@@ -56,8 +54,8 @@ for r, (label, *vals) in enumerate(rows):
         fig.text(colx[i] + 0.075, y + row_h / 2, esc(v), fontsize=11 if not total else 13, color=ACCENT if total else INK,
                  fontweight="bold" if total else "normal", ha="center", va="center")
     ax.plot([x0, x1], [y, y], color=GRID, lw=0.8)
-fig.text(0.05, 0.115, "* Our estimate; no published rate. Cover on the oil itself is priced separately from cover on the ship. Much of the shuttled crude moves on\n"
-         "Gulf-state, Iranian or US-escorted ships that carry their own risk, so the shuttle column is what a commercial buyer would be quoted.",
+fig.text(0.05, 0.115, "* Our estimate; no published rate. Cover on the oil itself is priced separately from cover on the ship. The headline rate is the Baltic\n"
+         "Exchange's assessment for a 40-day round trip from Ras Tanura; freight is the day rate times the trip plus fuel and port costs, over 2 million barrels.",
          fontsize=9, color=MUTED, va="top", linespacing=1.35)
 fig.text(0.05, 0.055, "Prices: ICE Futures Abu Dhabi (Murban), Platts (Dubai), ICE (Brent). Freight: Baltic Exchange, Bloomberg. Insurance: Lloyd's List, Marsh, Breakwave, Howden Re.",
          fontsize=9, color=MUTED, va="top")
