@@ -16,13 +16,22 @@ Alt: A supertanker made entirely of polished gold sails across a deep blue ocean
 
 Turns out oil is close to $150, in real life, not on your screen
 
-## 3. Body
+## 3. Body, part one
 
 ```
 In August 2008 I started at Morgan Stanley on the commodity shipping team, one month after the day rate for a supertanker peaked at $196,200. Within a year it had fallen 96%. The shipping industry is supply and demand on steroids, and its swings cascade through the global economy.
 
 Which is why I pulled this data for you. Since the Iran war started, the rate to hire a very large crude carrier on the Middle East to China run has gone vertical. It now sits at $862,150 a day. Anything over $200,000 used to be nosebleed territory. Today's rate is 331% above that mark.
+```
 
+## 4. Chart
+
+`images/01-vlcc-earnings-weekly.png`
+Alt: Line chart of what a supertanker earns per day on the Middle East to China run, weekly from March 2019 to September 2026. Earlier peaks near $270,000 in October 2019 and March 2020 are dwarfed by the 2026 spike, which reaches $862,150 a day on September 11, 2026.
+
+## 5. Body, part two
+
+```
 Why does it matter? Oil is not a number on a screen. To use it, someone has to ship it, and that is where the real price hides. The screen says about $106. A Middle East barrel landed at a refinery in China costs about $140, and up to $166 if it has to come out through the Strait of Hormuz. The $35 to $60 in between is the shipping story.
 
 Back in May, an Exxon executive warned that physical oil cargoes would spike to $150 to $160. On the screen, it never happened. At the refinery gate, it did. The difference is the ship.
@@ -32,11 +41,6 @@ And there is a twist that should worry anyone watching American oil inventories.
 This is a living post. The chart updates every Friday when the new rate is published.
 ```
 
-## 4. Chart
-
-`images/01-vlcc-earnings-weekly.png`
-Alt: Line chart of what a supertanker earns per day on the Middle East to China run, weekly from March 2019 to September 2026. Earlier peaks near $270,000 in October 2019 and March 2020 are dwarfed by the 2026 spike, which reaches $862,150 a day on September 11, 2026.
-
-## 5. Call to action
+## 6. Call to action
 
 **[Read the full report](https://www.data4thepeople.com/p/supertanker-rates)**
