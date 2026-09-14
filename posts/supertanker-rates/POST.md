@@ -48,6 +48,11 @@ A barrel that starts inside the Gulf costs more. It first has to ride a smaller 
 
 So the honest answer to “what does oil cost” is that it depends on where you are standing. The screen says about $106. A refiner in China pays about $140 for the same barrel, and more if every step is insured at market rates. The $35 to $55 in between is the shipping story, and none of it shows up in the number on the screen.
 
+Here is the whole bill in one place. The table shows what a barrel costs at the loading port, what it costs to ship and insure, and what it costs by the time it reaches a refinery in China.
+
+![Table titled What a barrel of oil really costs, landed in China, US dollars per barrel, mid-September 2026. Three columns: a Gulf barrel loading outside the strait at Fujairah, a Gulf barrel shuttled out of the strait, and an Atlantic barrel for comparison. Loading-port prices of $131, $115 and $108. Freight, shuttle and war-risk insurance lines are added. Landed in China: $141 to $145, $145 to $163, and about $123. Days at sea: about 17, about 17 plus the shuttle, and about 45.](images/02-landed-cost-table.png)
+*Prices dated September 11 to 14, 2026. Lines marked with an asterisk are our estimates; no published rate exists for them.*
+
 Which brings me back to that headline. In June 2008, a few weeks before I started, Morgan Stanley told clients oil could reach $150 by the Fourth of July. It got to $147 and then fell about 80%. This past May, an Exxon executive warned that physical Brent cargoes would spike to $150 to $160 once inventories hit record lows. On the screen, that has not happened. Brent is about $106. But a Gulf barrel landed in China costs about $140 today, and up to $160 if every leg of the trip is insured. The forecast came true. It just came true at the refinery gate instead of on the screen, and the difference is the ship.
 
 This analysis is just another example highlighting the difference between the way the world really works and how people think it works. The latter is almost always a very simplified version of the former. But the former is reality. It is how oil gets to refineries, through those refineries, and into our planes, trains, an automobiles. And when it is all said and done, this is what matters for the people.
