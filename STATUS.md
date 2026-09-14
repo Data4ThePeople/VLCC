@@ -6,15 +6,15 @@ Process: ~/.claude/d4tp-process/PROCESS.md
 ## Current
 
 Post: supertanker-rates
-Step: 2a
-Since: 2026-09-13
+Step: 2b
+Since: 2026-09-14
 
 ## Steps
 
 | Step | What | Confirmed | Notes |
 |---|---|---|---|
 | 1  | Exploration and analysis | 2026-09-13 | interactive chart dist/index.html; Brent panel toggle; notes in research/ |
-| 2a | Draft with brackets resolved | | |
+| 2a | Draft with brackets resolved | 2026-09-14 | headline, table image, delivered-cost section, six headers |
 | 2b | Eric's edit, Claude's look-over | | |
 | 2c | Slice markup | | |
 | 2d | Hero 1680x1080 + alt text | | |
@@ -32,3 +32,4 @@ None.
 - 2026-09-13 Step 1 work: Baltic TD3C weekly TCE assembled Dec 2020 to Sep 2026 (Wayback + prior desktop session); Fearnleys VLCC MEG/Far East pulled May 2018 to now (TCE to Apr 2023); interactive chart in dist/index.html; static PNG in charts/; research in research/NOTES.md; tie-out in research/TIEOUT.md; weekly update via scripts/update.py. GitHub remote not created (permission blocked).
 - 2026-09-13 Step 1 confirmed. Slug: supertanker-rates. Step 2a opened.
 - 2026-09-14 GitHub Pages enabled on main. Embed URL: https://data4thepeople.github.io/VLCC/dist/index.html
+- 2026-09-14 Step 2a confirmed. Step 2b opened.
