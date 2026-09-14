@@ -587,6 +587,16 @@ routes land within a few dollars of each other. Gulf of Oman to China day
 rate for the comparison: $358,201 on Sep 9 (Lloyd's List); about $546,000
 implied by WS 450 on Sep 11 (our arithmetic, section j).
 
+Atlantic column verified from data (Sep 14): Fearnleys' VLCC US Gulf to
+Thailand lump sum (`data/fearnleys_vlcc_usg_asia_lumpsum_daily.csv`, $
+million per cargo) was $29.0M on Sep 9, $34.0M on Sep 11, $35.8M on Sep 14;
+over 1.98 million barrels that is $14.65, $17.18 and $18.09 a barrel.
+Reverse check: $275,000 a day (Poten, Sep 11) x 90-day round trip + $4.2M
+fuel and port = $28.9M = $14.63 a barrel. Implied day rates from the lump
+sums: $276,000 (Sep 9), $331,000 (Sep 11), $351,000 (Sep 14). Table and post
+now say $15 to $18 freight, $123 to $126 landed. A year earlier (Sep 12,
+2025) the same lump sum was $9.75M, $4.93 a barrel.
+
 Two cautions. The shuttle column is the most uncertain line in the notes:
 much of that crude moves on Gulf-state, Iranian or US-escorted ships that
 carry their own risk, so the insurance line is what a commercial charterer

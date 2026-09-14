@@ -16,10 +16,10 @@ ACCENT = "#7fb0cf"
 cols = ["", "At the headline rate\n(loads inside the strait,\nBaltic TD3C $862,150 a day)", "The way the oil moves now\n(loads at Fujairah, outside\nthe strait, Murban)", "Atlantic barrel\n(US Gulf, for\ncomparison)"]
 rows = [
     ("Price at the loading port", "$115", "$131", "$108"),
-    ("Supertanker freight to China", "$18.60 to $22", "$8 to $11.50", "about $15"),
+    ("Supertanker freight to China", "$18.60 to $22", "$8 to $11.50", "$15 to $18"),
     ("War-risk cover on the ship, one transit", "$5 to $13", "about $1", "none"),
     ("War-risk cover on the oil itself", "$10 to $16*", "$0.65 to $1.30*", "none"),
-    ("Landed in China", "$149 to $166", "$141 to $145", "about $123"),
+    ("Landed in China", "$149 to $166", "$141 to $145", "$123 to $126"),
     ("Round trip for the ship, days", "about 40", "about 38", "about 90"),
 ]
 
