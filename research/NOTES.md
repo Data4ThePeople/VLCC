@@ -550,9 +550,9 @@ https://www.howdenre.com/sites/howdenre.howdenprod.com/files/2026-03/HowdenRe_St
 https://www.aljazeera.com/economy/2026/7/23/how-shipping-insurance-rates-are-rising-as-hormuz-bab-al-mandeb-shut-down
 
 **l. The whole bill: delivered cost of a barrel in China, mid-September 2026.**
-Adding sections i, j and k. Prices are dated; freight and insurance are
-ranges from the published figures and our arithmetic above. Cargo war-risk
-cover on the oil itself is left out because no figure was found.
+Adding sections i, j, k and k2. Prices are dated; freight and insurance are
+ranges from the published figures and our arithmetic above. The cargo
+war-risk lines are estimates (no published rate; see k2).
 
 | | Murban barrel loading at Fujairah, outside the strait | Saudi barrel shuttled out of the Gulf | Atlantic barrel (US Gulf) for comparison |
 |---|---|---|---|
@@ -561,7 +561,9 @@ cover on the oil itself is left out because no figure was found.
 | War-risk cover on the shuttle transit, 7.5% to 12.5% of an $80 to $100 million Aframax over 700,000 barrels | none | $9 to $18 | none |
 | VLCC freight to China | $8 to $11.50 (Gulf of Oman route, Sep 9 to 11) | $8 to $11.50 | about $15 ($29.5 million voyage, Sep 11) |
 | War-risk cover on the VLCC, about 1% for a ship that never enters the strait | about $1 | about $1 | none |
-| **Landed in China** | **about $140 to $144** | **about $135 to $148** | **about $123** |
+| Cargo war-risk cover on the oil, shuttle leg (estimate, if commercially insured) | none | $9 to $14 | none |
+| Cargo war-risk cover on the oil, VLCC leg (estimate, 0.5% to 1%) | $0.65 to $1.30 | $0.65 to $1.30 | none |
+| **Landed in China** | **about $141 to $145** | **about $145 to $163** | **about $123** |
 | Days at sea | about 17 | about 17 plus the shuttle | about 45 (US Gulf to China via the Cape) |
 
 Two cautions. The shuttle column is the most uncertain line in the notes:
@@ -570,8 +572,10 @@ carry their own risk, so the insurance line is what a commercial charterer
 would be quoted, not necessarily what is paid. And the Dubai price is the
 stale one; if it has moved with Murban since September 11, the Saudi column
 is higher. The point survives either way: the screen says $108, and a Gulf
-barrel in a Chinese refinery costs $135 to $148 today, $30 to $40 of it for
-the trip.
+barrel in a Chinese refinery costs about $141 to $145 today by the route
+that is actually in use, with $10 to $14 of it for the trip and its cover;
+a barrel that has to be shuttled out of the Gulf and insured commercially
+at every step would cost $145 to $163, $30 to $48 of it for the trip.
 
 ## 5. Numbers to reuse (recomputed from the data)
 
