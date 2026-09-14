@@ -38,6 +38,8 @@ Which is why today I have uncovered this data for you. Below, you will see what 
 
 <iframe src="https://data4thepeople.github.io/VLCC/dist/index.html" width="100%" height="780" style="border:0" title="What a supertanker earns in a day"></iframe>
 
+::: spacer 40px
+
 ## Why it matters, and how it happened
 
 So, why does this matter? Because unlike most investors think, oil's true form is not a number on a spreadsheet or website. To actually get oil, you need to ship it across the globe, especially so for countries like Japan, which imports more than 99% of its oil, most of it from the Middle East. And that transport now costs over $862,000 per day for a very large crude carrier.
