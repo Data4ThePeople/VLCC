@@ -42,7 +42,7 @@ We attempted to do that for you.
 
 Start with the barrel. The oil that can actually leave the Gulf right now loads at Fujairah, a port on the far side of the Strait of Hormuz. On September 14 that barrel, a grade called Murban, cost about $131. The Brent price on the screen that day was about $106.
 
-Now ship it. The Baltic Exchange rate for a supertanker from the Gulf of Oman to China worked out to about $11.50 a barrel on September 11, for a trip of about 17 days. Add roughly $1 a barrel for war-risk insurance on the ship and about the same for insurance on the oil itself. That puts a Gulf barrel in a Chinese refinery at roughly $141 to $145.
+Now ship it. The Baltic Exchange rate for a supertanker from the Gulf of Oman to China worked out to about $11.50 a barrel on September 11, for a trip of about 17 days. (At the $862,150 headline rate, which is for a ship loading inside the strait on a 40-day round trip, fuel and port costs included, the same cargo would be $18 to $22 a barrel.) Add roughly $1 a barrel for war-risk insurance on the ship and about the same for insurance on the oil itself. That puts a Gulf barrel in a Chinese refinery at roughly $141 to $145.
 
 A barrel that starts inside the Gulf costs more. It first has to ride a smaller tanker out through the strait, and insuring that one leg can run $9 to $18 a barrel for the ship and as much again for the cargo, if anyone will write the policy. Our estimate is that a fully insured barrel shuttled out of the Gulf lands in China at $145 to $163. Much of that oil now moves on Gulf-state and Iranian ships, or under U.S. Navy escort, because commercial cover at those prices does not add up.
 
