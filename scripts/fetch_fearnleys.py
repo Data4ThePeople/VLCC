@@ -13,7 +13,9 @@ from pathlib import Path
 
 ENDPOINT = "https://pbrokerapp.hasura.app/v1/graphql"
 SERIES = {"ws": 340, "tce_usd_day": 342}
+USG_SERIES = 389   # VLCC US Gulf to Thailand, lump sum in $ million per cargo
 OUT = Path(__file__).resolve().parent.parent / "data" / "fearnleys_vlcc_meg_feast_daily.csv"
+OUT_USG = Path(__file__).resolve().parent.parent / "data" / "fearnleys_vlcc_usg_asia_lumpsum_daily.csv"
 
 def fetch(meta_id):
     q = ('query { rate_meta(where:{id:{_eq:%d}}) { id rate_unit '
@@ -25,7 +27,7 @@ def fetch(meta_id):
     if "errors" in d:
         sys.exit(f"GraphQL error: {d['errors']}")
     m = d["data"]["rate_meta"][0]
-    assert m["info"]["rate_subtype"] == "VLCC" and m["info"]["route"] == "MEG/FEAST", m["info"]
+    assert m["info"]["rate_subtype"] == "VLCC" and m["info"]["route"] in ("MEG/FEAST", "USG/THAILAND"), m["info"]
     return {r["date"]: r["rate"] for r in m["rates"] if r["rate"] is not None}
 
 def main():
@@ -38,6 +40,12 @@ def main():
         w = csv.writer(f); w.writerow(["date", "ws", "tce_usd_day"])
         for d in dates:
             w.writerow([d, cols["ws"].get(d, ""), cols["tce_usd_day"].get(d, "")])
+    usg = fetch(USG_SERIES)
+    with OUT_USG.open("w", newline="") as f:
+        w = csv.writer(f); w.writerow(["date", "lumpsum_usd_million"])
+        for d in sorted(usg):
+            w.writerow([d, usg[d]])
+    print(f"wrote {OUT_USG.name}: {len(usg)} rows, latest {max(usg)} ${usg[max(usg)]}M")
     print(f"wrote {OUT.name}: {len(dates)} rows, {dates[0]} to {dates[-1]}; "
           f"ws n={len(cols['ws'])}, tce n={len(cols['tce_usd_day'])} "
           f"(tce last {max(cols['tce_usd_day'])})")
