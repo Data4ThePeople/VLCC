@@ -24,19 +24,27 @@ One of my first orders of business was to learn all types of ships that are used
 
 The granddaddy of all ships is called the VLCC (very large crude carrier). A VLCC holds two million barrels of crude oil and is about 1,100 feet long. Stand one on end and it would be taller than the Eiffel Tower and only a few stories short of the roof of the Empire State Building. Its cargo is about 84 million gallons of crude, enough to fill 127 Olympic swimming pools, or about a tenth of what the United States burns in a day.
 
+## What 2008 taught me
+
 Now, you know what happened in late 2008. But what you may not know was that one month before I started at Morgan Stanley, the day rate to charter a VLCC out of the Middle East was $196,200. In other words, if you wanted to hire this ship to carry one cargo from the Middle East to China, a round trip of about 40 days, it was going to run you about $7.8 million. Within a year the day rate had plummeted to $13,300 per day, and by the summer of 2009 to $7,200, which translates to just $290,000 for that same trip. In other words, in about a year, I witnessed a 96% drop in VLCC day rates.
 
 Long story short, the shipping industry is not for the faint of heart. It is supply and demand on steroids.
 
-But I learned through this experience that we can’t ignore this market. It’s not operating in a silo, but rather it’s volatility cascades through the global economy.
+But I learned from this experience that we can’t ignore this market. It’s not operating wildly in a silo, but rather it’s volatility cascades through the global economy.
 
-Which is why today I have uncovered this data for you. Below, you will see what has happened to VLCC rates since the Iran war started, including the astounding and terrifying rise since the start of July. Rates now sit at $862,150 per day. I don’t even have words to explain how unprecedented this is. Maybe looking at how the prior shocks impacted rates can help. Anything over $200,000 per day used to be considered nosebleed rates. Today's rate is 331% above that mark.
+## Where rates are now
+
+Which is why today I have uncovered this data for you. Below, you will see what has happened to VLCC rates since the Iran war started, including the astounding and terrifying rise since the start of July. Rates now sit at $862,150 per day. I don’t even have words to explain how unprecedented this is. Maybe looking at how the prior shocks impacted rates can help. Anything over $200,000 per day used to be considered nosebleed rates. Today's rate is 300%+ above that mark.
 
 <iframe src="https://data4thepeople.github.io/VLCC/dist/index.html" width="100%" height="780" style="border:0" title="What a supertanker earns in a day"></iframe>
 
-So, why does this matter? Because unlike most investors think, oil doesn’t live as a number on a spreadsheet or website. To actually get oil, you need to ship it across the globe, especially so for countries like Japan, which imports more than 99% of its oil, most of it from the Middle East. And that transport now costs over $862,000 per day for a very large crude carrier.
+## Why it matters, and how it happened
+
+So, why does this matter? Because unlike most investors think, oil's true form is not a number on a spreadsheet or website. To actually get oil, you need to ship it across the globe, especially so for countries like Japan, which imports more than 99% of its oil, most of it from the Middle East. And that transport now costs over $862,000 per day for a very large crude carrier.
 
 How did this happen? A confluence of factors, stacked on a market that was already tight. Sanctions had already pushed about a fifth of the world's VLCCs out of the trade most buyers can use, and rates were above $200,000 a day the day before the strikes. Then the strait closed. About 58 supertankers, one in ten worldwide, were trapped inside the Gulf. Insurers pulled war-risk cover, and the cover that came back now costs up to 12.5% of a ship's value for a single transit, so only a handful of owners will sail in at any price. The oil that does get out mostly leaves by ship-to-ship transfer, which ties up a second tanker for every cargo. Replacement barrels from the Atlantic take twice as long to reach Asia. And in September the US Navy started sinking Iranian tankers, which shrinks the fleet in the most literal way. Put it together, and good luck finding a VLCC to transport your crude. One caveat: the $862,150 figure is the Baltic Exchange's assessment for a voyage that loads inside the strait, which few ships are making right now. Cargoes that load just outside it pay less, and we use those rates in the arithmetic below. So, while the screen says oil is $105, go and try to buy two million barrels of it and see how much it really is.
+
+## What a barrel really costs
 
 We attempted to do that for you. The table adds it up three ways: a barrel priced at the headline rate, a barrel priced the way oil is actually moving, and an Atlantic barrel for comparison.
 
@@ -53,7 +61,11 @@ Now look at the top line of that column. Murban, the crude that loads at Fujaira
 
 So the honest answer to “what does oil cost” is that it depends on where you are standing. The screen says about $106. A refiner in China pays about $140 for the same barrel, and up to $166 if it has to come out through the strait. The $35 to $60 in between is the shipping story, and none of it shows up in the number on the screen.
 
+## Close to $150, in real life
+
 Which brings me back to that headline. This past May, an Exxon executive warned that physical Brent cargoes would spike to $150 to $160 once inventories hit record lows. On the screen, that has not happened. Brent is about $106. But a Gulf barrel landed in China costs about $140 today, and up to $166 if it has to come out through the strait. The forecast came true. It just came true at the refinery gate instead of on the screen, and the difference is the ship.
+
+## Why this is a living post
 
 This analysis is just another example highlighting the difference between the way the world really works and how people think it works. The latter is almost always a very simplified version of the former. But the former is reality. It is how oil gets to refineries, through those refineries, and into our planes, trains, trucks, and automobiles. And when it is all said and done, this is what matters for the people.
 
