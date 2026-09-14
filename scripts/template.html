@@ -342,7 +342,13 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
       const lastB = BR[BR.length - 1];
       el('circle', { cx: x(parse(lastB.d)), cy: yb(lastB.usd), r: 3.5, fill: '#3c4650' }, bg);
       if (!narrow) {
-        const bl = el('text', { x: x(parse(lastB.d)) - 8, y: yb(lastB.usd) - 8, 'text-anchor': 'end', class: 'ann' }, bg);
+        // Label in the empty band at the bottom right of the panel, with a
+        // leader up to the point, so it never sits on the line. If the last
+        // value is itself near the bottom, put the label just above the point.
+        const lx = x(parse(lastB.d)), ly = yb(lastB.usd), labY = bBot - 8;
+        const below = ly < labY - 34;
+        if (below) el('line', { x1: lx, x2: lx, y1: ly + 6, y2: labY - 13, stroke: 'var(--grid)', 'stroke-width': 1 }, bg);
+        const bl = el('text', { x: lx - 6, y: below ? labY : ly - 10, 'text-anchor': 'end', class: 'ann' }, bg);
         bl.textContent = `$${lastB.usd.toFixed(2)}, ${fmtDate(lastB.d)}`;
       }
     }
