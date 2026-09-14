@@ -55,5 +55,5 @@ watermark, no people.
 
 ## Chosen
 
-File: images/supertanker-rates-hero-source.<ext>
-Alt (under 500 characters): to be written once the image is chosen.
+File: images/supertanker-rates-hero-source.jpg (Gemini, from Prompt 1; cropped center to images/supertanker-rates-hero-1680x1080.png)
+Alt (under 500 characters): A supertanker made entirely of polished gold sails across a deep blue ocean in low afternoon sun, seen from above at a three-quarter angle. The long, low hull rides deep in the water, with gold pipework across the deck and a gold bridge and funnel at the stern. Whitecaps break at the bow and a golden reflection spreads across the water beside the hull under a clear sky.
