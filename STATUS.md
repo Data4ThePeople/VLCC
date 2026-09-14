@@ -6,7 +6,7 @@ Process: ~/.claude/d4tp-process/PROCESS.md
 ## Current
 
 Post: supertanker-rates
-Step: 2e
+Step: 2f
 Since: 2026-09-14
 
 ## Steps
@@ -18,7 +18,7 @@ Since: 2026-09-14
 | 2b | Eric's edit, Claude's look-over | 2026-09-14 | 7 edits applied |
 | 2c | Slice markup | 2026-09-14 | defaults only; 19 slices |
 | 2d | Hero 1680x1080 + alt text | 2026-09-14 | gold VLCC, AI image, center crop |
-| 2e | SEO | | |
+| 2e | SEO | 2026-09-14 | meta, keywords, FAQ schema, internal links, METI source |
 | 2f | Pushed to Prismic (draft) | | |
 | 2g | Mailchimp teaser | | |
 
@@ -36,3 +36,4 @@ None.
 - 2026-09-14 Step 2b confirmed. Step 2c opened.
 - 2026-09-14 Step 2c confirmed. Step 2d opened.
 - 2026-09-14 Step 2d confirmed. Step 2e opened.
+- 2026-09-14 Step 2e confirmed. Step 2f opened.
