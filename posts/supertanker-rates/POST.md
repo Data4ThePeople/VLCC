@@ -1,5 +1,5 @@
 ---
-title: $150 oil arrived. It just came by ship.
+title: Turns out oil is close to $150, just not how we thought.
 subtitle: Supertanker rates are at $862,150 a day. Here is what that does to the price of a barrel.
 slug: supertanker-rates
 date: 2026-09-15
@@ -16,7 +16,7 @@ caption_spacer: 20px
 dividers: true
 ---
 
-# $150 oil arrived. It just came by ship.
+# Turns out oil is close to $150, just not how we thought.
 
 In August of 2008 I started working for Morgan Stanley in Time Square as an associate in their sell side equity research department. I was assigned to the oilfield services and commodity shipping team.
 
@@ -47,6 +47,8 @@ Now ship it. The Baltic Exchange rate for a supertanker from the Gulf of Oman to
 A barrel that starts inside the Gulf costs more. It first has to ride a smaller tanker out through the strait, and insuring that one leg can run $9 to $18 a barrel for the ship and as much again for the cargo, if anyone will write the policy. Our estimate is that a fully insured barrel shuttled out of the Gulf lands in China at $145 to $163. Much of that oil now moves on Gulf-state and Iranian ships, or under U.S. Navy escort, because commercial cover at those prices does not add up.
 
 So the honest answer to “what does oil cost” is that it depends on where you are standing. The screen says about $106. A refiner in China pays about $140 for the same barrel, and more if every step is insured at market rates. The $35 to $55 in between is the shipping story, and none of it shows up in the number on the screen.
+
+Which brings me back to that headline. In June 2008, a few weeks before I started, Morgan Stanley told clients oil could reach $150 by the Fourth of July. It got to $147 and then fell about 80%. This past May, an Exxon executive warned that physical Brent cargoes would spike to $150 to $160 once inventories hit record lows. On the screen, that has not happened. Brent is about $106. But a Gulf barrel landed in China costs about $140 today, and up to $160 if every leg of the trip is insured. The forecast came true. It just came true at the refinery gate instead of on the screen, and the difference is the ship.
 
 This analysis is just another example highlighting the difference between the way the world really works and how people think it works. The latter is almost always a very simplified version of the former. But the former is reality. It is how oil gets to refineries, through those refineries, and into our planes, trains, an automobiles. And when it is all said and done, this is what matters for the people.
 
