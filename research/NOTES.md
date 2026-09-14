@@ -577,6 +577,61 @@ that is actually in use, with $10 to $14 of it for the trip and its cover;
 a barrel that has to be shuttled out of the Gulf and insured commercially
 at every step would cost $145 to $163, $30 to $48 of it for the trip.
 
+**m. Physical oil versus the futures screen.** The Brent price on the news
+is the ICE front-month futures contract. The price a refiner pays for a real
+cargo is Dated Brent, the assessment for North Sea cargoes loading in the
+next few weeks, which the EIA publishes daily as its "Europe Brent spot price
+FOB." The chart's Brent panel now draws both (physical in dark ink, futures
+in light gray) so the gap can be seen; the daily file is
+`data/crude_spot_vs_futures_daily.csv`, futures via Yahoo Finance's relay of
+ICE closes.
+
+The EIA's own description, April 24, 2026: Dated Brent "reflects trading and
+pricing for a given cargo of crude oil as it is loaded from a handful of
+North Sea terminals"; "under normal market conditions, the spread between
+the Dated Brent spot price and the front-month Brent futures price is narrow
+and tends to be positive"; in early April it "reached a premium exceeding
+$25 per barrel" because buyers scrambling for immediate barrels are "better
+represented in spot market prices than in futures contracts, which are
+pricing crude for later delivery."
+https://www.eia.gov/todayinenergy/detail.php?id=67544
+
+Physical minus front-month futures, dollars a barrel (chart data):
+
+| Year | Average gap | Widest | Date |
+|---|---|---|---|
+| 2019 | +$0.16 | +$3.16 | Dec 19, 2019 |
+| 2020 | minus $1.38 | minus $11.25 (contango, storage glut) | Apr 9, 2020 |
+| 2022 | +$2.00 | +$11.10 | Jul 15, 2022 |
+| 2023 | +$0.30 | +$4.21 | Oct 5, 2023 |
+| 2024 | +$0.69 | +$3.78 | Mar 4, 2024 |
+| 2025 | +$0.88 | +$3.29 | Apr 1, 2025 |
+| 2026 to Sep 9 | +$3.71 | +$28.94 (spot $138.21, futures $109.27) | Apr 7, 2026 |
+
+2026 by month: January +$1.82, February +$1.48, March +$3.54, April +$15.19,
+May +$3.59, June +$1.02, July minus $0.07, August +$3.12, September so far
++$5.13. On September 9 physical Brent was $109.51 against $101.21 on the
+screen, a gap of $8.30 and widening for six straight sessions.
+
+The reading for the post: the screen price is a bet on oil in a month or
+more; the physical price is what a cargo costs now. When the strait closed,
+the physical barrel ran $29 ahead of the screen, nearly three times the
+worst day of 2022 ($11.10). It is doing it again in September. In 2020 the
+gap ran the other way, minus $11 in April, because nobody wanted a prompt
+barrel and tankers were being hired to hold them. Same three episodes, same
+signature as the tanker chart.
+
+Parameta Solutions, on the futures curve itself: the spread between the
+front month near $119 and contracts two years out at $70 to $75 reached
+about $50 in early April 2026, "exceeding even the June 2022 dislocation";
+the one-month to twelve-month spread went from about $10 to about $35 in
+four weeks.
+https://www.parametasolutions.com/insights/extreme-brent-backwardation-managing-curve-dislocation-with-otc-oil-data/
+
+Asian physical benchmarks (Dubai, Murban) sit further above the screen
+still; see sections i and l. No free daily history exists for them, which
+is why the panel uses Brent.
+
 ## 5. Numbers to reuse (recomputed from the data)
 
 See `research/TIEOUT.md`, produced by `scripts/build.py`, for the list. The
