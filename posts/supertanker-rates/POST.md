@@ -1,5 +1,5 @@
 ---
-title: Turns out oil is close to $150, just not how we thought.
+title: Turns out oil is close to $150, in real life, not on your screen
 subtitle: Supertanker rates are at $862,150 a day. Here is what that does to the price of a barrel.
 slug: supertanker-rates
 date: 2026-09-15
@@ -16,7 +16,7 @@ caption_spacer: 20px
 dividers: true
 ---
 
-# Turns out oil is close to $150, just not how we thought.
+# Turns out oil is close to $150, in real life, not on your screen
 
 In August of 2008 I started working for Morgan Stanley in Time Square as an associate in their sell side equity research department. I was assigned to the oilfield services and commodity shipping team.
 
