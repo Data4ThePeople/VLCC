@@ -663,6 +663,40 @@ Asian physical benchmarks (Dubai, Murban) sit further above the screen
 still; see sections i and l. No free daily history exists for them, which
 is why the panel uses Brent.
 
+**n. The US export pull, and what the WTI discount says about it.** Eric's
+observation (Sep 14): a US Gulf barrel lands in Asia at $123 to $126, a
+Gulf barrel at $141 to $166, so the arithmetic pulls US crude toward Asia
+at the same moment US inventories are low. The data supports the pull and
+shows the brake on it.
+
+- The pull is real. Atlantic-to-Pacific trips rose from 22% to 35% of VLCC
+  volume by May (Lloyd's List). Exxon's Chapman warned on May 28 that
+  inventories were heading to "unheard of" lows. A landed Murban barrel at
+  about $141 against WTI plus $18 of freight, about $115, leaves an open
+  gap of roughly $25 a barrel for any trader who can find a ship.
+- The brake is in the WTI-to-Brent spread. Physical WTI at Cushing minus
+  physical Brent (EIA daily): about minus $3 through mid-2025, minus $6.50
+  in January and February 2026, minus $11.75 in March, minus $17.66 in
+  April, back to minus $0.83 in June, then minus $7.34 in August and minus
+  $8.61 so far in September, reaching minus $12.25 on September 9 (WTI
+  $97.26, Brent $109.51). A discount that wide means the pipe out of the
+  United States is full: Gulf Coast export terminals, the reverse-lightering
+  needed to fill a VLCC offshore, and the ships themselves cap how fast
+  barrels can leave. Barrels that cannot get out stay home and keep the US
+  price below the world price.
+- So for US consumers the picture is two-sided. The incentive to export is
+  the strongest it has been, and exports are rising. But the logistics
+  ceiling is doing what an export ban would do, and US crude is $12 cheaper
+  than North Sea crude and $30 cheaper than a barrel at Fujairah because of
+  it. In April, at the worst of the strait closure, the discount hit $17.66.
+  Gasoline still tracks the world price more than WTI, because refined
+  products move freely, so the relief at the pump is smaller than the
+  crude discount.
+- Framing that keeps to the house rule: the system is doing the moving, not
+  a party or a person. Say "the export pull" and "the logistics ceiling,"
+  and keep the inventory claim to Chapman's quote or an EIA weekly stocks
+  figure with a date.
+
 ## 5. Numbers to reuse (recomputed from the data)
 
 See `research/TIEOUT.md`, produced by `scripts/build.py`, for the list. The
