@@ -37,3 +37,4 @@ None.
 - 2026-09-14 Step 2c confirmed. Step 2d opened.
 - 2026-09-14 Step 2d confirmed. Step 2e opened.
 - 2026-09-14 Step 2e confirmed. Step 2f opened.
+- 2026-09-14 2c rule change: dividers off, 20px spacers above section headings. Re-converted and re-pushed the Prismic draft (same document).

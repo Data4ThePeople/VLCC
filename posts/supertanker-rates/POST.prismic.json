@@ -49,12 +49,14 @@
       }
     },
     {
-      "slice_type": "divider_dots",
+      "slice_type": "spacer",
       "slice_label": null,
       "variation": "default",
       "version": "initial",
       "items": [],
-      "primary": {}
+      "primary": {
+        "spacer_value": "20px"
+      }
     },
     {
       "slice_type": "paragarph_text",
@@ -92,12 +94,14 @@
       }
     },
     {
-      "slice_type": "divider_dots",
+      "slice_type": "spacer",
       "slice_label": null,
       "variation": "default",
       "version": "initial",
       "items": [],
-      "primary": {}
+      "primary": {
+        "spacer_value": "20px"
+      }
     },
     {
       "slice_type": "paragarph_text",
@@ -157,14 +161,6 @@
       }
     },
     {
-      "slice_type": "divider_dots",
-      "slice_label": null,
-      "variation": "default",
-      "version": "initial",
-      "items": [],
-      "primary": {}
-    },
-    {
       "slice_type": "paragarph_text",
       "slice_label": null,
       "variation": "default",
@@ -205,12 +201,14 @@
       }
     },
     {
-      "slice_type": "divider_dots",
+      "slice_type": "spacer",
       "slice_label": null,
       "variation": "default",
       "version": "initial",
       "items": [],
-      "primary": {}
+      "primary": {
+        "spacer_value": "20px"
+      }
     },
     {
       "slice_type": "paragarph_text",
@@ -243,8 +241,13 @@
       "items": [],
       "primary": {
         "image": {
+          "id": "hul109W6w5ddkaBP",
           "alt": "Table: what a barrel of oil really costs landed in China, mid-September 2026, in US dollars per barrel. Three columns: a Gulf barrel priced at the headline Baltic rate of $862,150 a day loading inside the strait, a Gulf barrel loading at Fujairah outside the strait, and a US Gulf barrel. Loading-port prices $115, $131 and $108, plus freight and war-risk cover. Landed in China: $149 to $166, $141 to $145, and $123 to $126. Round trips of about 40, 38 and 90 days.",
-          "copyright": null
+          "copyright": null,
+          "dimensions": {
+            "width": 1800,
+            "height": 1035
+          }
         },
         "source_text": [
           {
@@ -330,12 +333,14 @@
       }
     },
     {
-      "slice_type": "divider_dots",
+      "slice_type": "spacer",
       "slice_label": null,
       "variation": "default",
       "version": "initial",
       "items": [],
-      "primary": {}
+      "primary": {
+        "spacer_value": "20px"
+      }
     },
     {
       "slice_type": "paragarph_text",
@@ -372,12 +377,14 @@
       }
     },
     {
-      "slice_type": "divider_dots",
+      "slice_type": "spacer",
       "slice_label": null,
       "variation": "default",
       "version": "initial",
       "items": [],
-      "primary": {}
+      "primary": {
+        "spacer_value": "20px"
+      }
     },
     {
       "slice_type": "paragarph_text",
@@ -426,12 +433,14 @@
       }
     },
     {
-      "slice_type": "divider_dots",
+      "slice_type": "spacer",
       "slice_label": null,
       "variation": "default",
       "version": "initial",
       "items": [],
-      "primary": {}
+      "primary": {
+        "spacer_value": "20px"
+      }
     },
     {
       "slice_type": "paragarph_text",
@@ -583,5 +592,23 @@
       }
     }
   ],
-  "schema": "{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"Article\",\n      \"headline\": \"Turns out oil is close to $150, in real life, not on your screen\",\n      \"description\": \"Weekly VLCC supertanker rates since 2019 in one interactive chart, plus what shipping and insurance add to the real cost of a barrel of oil. Updated weekly.\",\n      \"datePublished\": \"2026-09-15T07:00:00-04:00\",\n      \"dateModified\": \"2026-09-15T07:00:00-04:00\",\n      \"articleSection\": \"Data 4 Thought\",\n      \"inLanguage\": \"en-US\",\n      \"isAccessibleForFree\": true,\n      \"keywords\": [\n        \"VLCC rates\",\n        \"supertanker rates\",\n        \"crude oil shipping rates\",\n        \"history of oil shipping rates\",\n        \"how oil delivery works\",\n        \"oil tanker freight rates\",\n        \"Strait of Hormuz shipping\",\n        \"cost to ship a barrel of oil\"\n      ],\n      \"author\": {\n        \"@type\": \"Person\",\n        \"name\": \"Eric Pachman\",\n        \"url\": \"https://www.data4thepeople.com/authors/eric-pachman\"\n      },\n      \"publisher\": {\n        \"@type\": \"Organization\",\n        \"name\": \"Data 4 The People\",\n        \"url\": \"https://data4thepeople.com\"\n      },\n      \"mainEntityOfPage\": {\n        \"@type\": \"WebPage\",\n        \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates\"\n      },\n      \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates#article\"\n    },\n    {\n      \"@type\": \"FAQPage\",\n      \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates#faq\",\n      \"mainEntity\": [\n        {\n          \"@type\": \"Question\",\n          \"name\": \"What is a VLCC?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"A VLCC, or very large crude carrier, is the largest class of oil tanker in regular service. It carries about two million barrels of crude oil, is about 1,100 feet long, and is the workhorse of the long-haul trade from the Middle East to Asia.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"What does a VLCC day rate mean?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"The day rate is what the ship earns per day after paying for fuel and port fees, spread over a full round trip, ballast leg included. Brokers call it the time charter equivalent. The figure quoted in the news, and in this chart, is the Baltic Exchange's assessment for the TD3C route from Ras Tanura in Saudi Arabia to Ningbo in China.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"How much does it cost to ship a barrel of oil from the Middle East to China right now?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"In mid-September 2026, about $8 to $11.50 a barrel for a supertanker loading just outside the Strait of Hormuz, which is how most Gulf crude is moving, and $18.60 to $22 a barrel at the headline rate for a ship loading inside the strait. War-risk insurance comes on top. In a normal year the trip costs $1 to $2 a barrel.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"How often is this chart updated?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"Every week. The Baltic Exchange publishes its weekly tanker report on Fridays, and the chart is updated when the new rate is out.\"\n          }\n        }\n      ]\n    }\n  ]\n}"
+  "featured_image": {
+    "id": "vZhFpEudglinXjlY",
+    "alt": "A supertanker made entirely of polished gold sails across a deep blue ocean in low afternoon sun, seen from above at a three-quarter angle. The long, low hull rides deep in the water, with gold pipework across the deck and a gold bridge and funnel at the stern. Whitecaps break at the bow and a golden reflection spreads across the water beside the hull under a clear sky.",
+    "copyright": null,
+    "dimensions": {
+      "width": 1680,
+      "height": 1080
+    }
+  },
+  "meta_image": {
+    "id": "vZhFpEudglinXjlY",
+    "alt": "A supertanker made entirely of polished gold sails across a deep blue ocean in low afternoon sun, seen from above at a three-quarter angle. The long, low hull rides deep in the water, with gold pipework across the deck and a gold bridge and funnel at the stern. Whitecaps break at the bow and a golden reflection spreads across the water beside the hull under a clear sky.",
+    "copyright": null,
+    "dimensions": {
+      "width": 1680,
+      "height": 1080
+    }
+  },
+  "schema": "{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"Article\",\n      \"headline\": \"Turns out oil is close to $150, in real life, not on your screen\",\n      \"description\": \"Weekly VLCC supertanker rates since 2019 in one interactive chart, plus what shipping and insurance add to the real cost of a barrel of oil. Updated weekly.\",\n      \"image\": \"https://images.prismic.io/data4thepeople/vZhFpEudglinXjlY_supertanker-rates-hero-1680x1080.png?auto=format,compress\",\n      \"datePublished\": \"2026-09-15T07:00:00-04:00\",\n      \"dateModified\": \"2026-09-15T07:00:00-04:00\",\n      \"articleSection\": \"Data 4 Thought\",\n      \"inLanguage\": \"en-US\",\n      \"isAccessibleForFree\": true,\n      \"keywords\": [\n        \"VLCC rates\",\n        \"supertanker rates\",\n        \"crude oil shipping rates\",\n        \"history of oil shipping rates\",\n        \"how oil delivery works\",\n        \"oil tanker freight rates\",\n        \"Strait of Hormuz shipping\",\n        \"cost to ship a barrel of oil\"\n      ],\n      \"author\": {\n        \"@type\": \"Person\",\n        \"name\": \"Eric Pachman\",\n        \"url\": \"https://www.data4thepeople.com/authors/eric-pachman\"\n      },\n      \"publisher\": {\n        \"@type\": \"Organization\",\n        \"name\": \"Data 4 The People\",\n        \"url\": \"https://data4thepeople.com\"\n      },\n      \"mainEntityOfPage\": {\n        \"@type\": \"WebPage\",\n        \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates\"\n      },\n      \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates#article\"\n    },\n    {\n      \"@type\": \"FAQPage\",\n      \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates#faq\",\n      \"mainEntity\": [\n        {\n          \"@type\": \"Question\",\n          \"name\": \"What is a VLCC?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"A VLCC, or very large crude carrier, is the largest class of oil tanker in regular service. It carries about two million barrels of crude oil, is about 1,100 feet long, and is the workhorse of the long-haul trade from the Middle East to Asia.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"What does a VLCC day rate mean?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"The day rate is what the ship earns per day after paying for fuel and port fees, spread over a full round trip, ballast leg included. Brokers call it the time charter equivalent. The figure quoted in the news, and in this chart, is the Baltic Exchange's assessment for the TD3C route from Ras Tanura in Saudi Arabia to Ningbo in China.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"How much does it cost to ship a barrel of oil from the Middle East to China right now?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"In mid-September 2026, about $8 to $11.50 a barrel for a supertanker loading just outside the Strait of Hormuz, which is how most Gulf crude is moving, and $18.60 to $22 a barrel at the headline rate for a ship loading inside the strait. War-risk insurance comes on top. In a normal year the trip costs $1 to $2 a barrel.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"How often is this chart updated?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"Every week. The Baltic Exchange publishes its weekly tanker report on Fridays, and the chart is updated when the new rate is out.\"\n          }\n        }\n      ]\n    }\n  ]\n}"
 }
