@@ -406,6 +406,24 @@ every one of these prices in the post.
 https://www.cnbc.com/2026/05/28/oil-inventory-exxon-strait-hormuz-iran-war.html
 https://www.forbes.com/2008/06/06/oil-energy-update-markets-comm-cx_cg_0606markets27.html
 
+**i. Headline candidate and the $150 arithmetic.** "$150 oil arrived. It
+just came by ship." Chapman's May 28 warning was for physical Brent cargoes,
+a North Sea barrel at the loading port, and that barrel is about $108 in
+mid-September, so the forecast has not come true where he said it would. It
+has in Asia once the ship is counted:
+
+| Barrel | Price at loading port | Freight to China | Landed in China |
+|---|---|---|---|
+| Gulf crude loading outside Hormuz (Murban at Fujairah, Sep 14, ICE Futures Abu Dhabi) | about $131 | about $11.50 (Baltic Gulf of Oman to China, WS 450, Sep 11) | about $142 |
+| Atlantic crude (US Gulf, priced off Brent, Sep 14) | about $108 | about $15 ($29.5 million per VLCC voyage, Bloomberg, Sep 11, over 2 million barrels) | about $123 |
+
+Both are before war-risk insurance, which adds more. The two prices are
+both real: the screen price is what a producer gets, the landed price is
+what a refiner pays, and the gap between them is freight, insurance and the
+premium for a barrel that can leave the Gulf at all. That gap is what the
+tanker chart measures. Keep the claim to Gulf crude: "$150 in Asia" holds
+for a Fujairah barrel, not for every barrel. Date every price.
+
 ## 5. Numbers to reuse (recomputed from the data)
 
 See `research/TIEOUT.md`, produced by `scripts/build.py`, for the list. The
