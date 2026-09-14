@@ -30,4 +30,8 @@ Dates are the Friday of the Baltic weekly report unless stated.
 - Baltic Oct to Dec 2022 high: $96,400 a day (2022-11-18).
 - Brent week of Feb 27, 2026: $71.36 (2026-02-27); week of Sep 4, 2026: $99.09.
 
+- Brent physical vs futures: 2148 matched days 2018-01-02 to 2026-09-09; widest gap 2026-04-07 spot $138.21 vs futures $109.27 = +$28.94; latest 2026-09-09 $109.51 vs $101.21 = +8.30.
+- Brent physical minus futures 2022: average +2.00, widest +11.10 on 2022-07-15.
+- Brent physical minus futures 2026: average +3.71, widest +28.94 on 2026-04-07.
+
 Cross-series comparisons are editorial, not published: the Sept 2026 Baltic high is 2.6 times the Baltic TD3C March 2020 peak quoted by Hellenic Shipping News (above $326,000) and 2.9 times the Oct 11, 2019 Baltic figure quoted by Lloyd's List ($300,391).

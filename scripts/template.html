@@ -51,6 +51,9 @@ h1 { font-size: 26px; line-height: 1.2; margin: 0 0 6px; font-weight: 700; lette
 .toggle { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; color: var(--ink); cursor: pointer; }
 .toggle input { width: 15px; height: 15px; margin: 0; accent-color: var(--baltic); }
 .chart .brent-line { stroke: #3c4650; }
+.chart .fut-line { stroke: #9aa3ad; }
+.chart .panel-key { fill: var(--muted); font-size: 12px; }
+.tip .key.fut { background: #9aa3ad; }
 .chart .panel-title { fill: var(--ink); font-size: 12.5px; font-weight: 600; }
 .tip .key.brent { background: #b8c0c9; }
 
@@ -140,7 +143,7 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
       <li class="fearn"><span class="key"></span><span>Fearnleys VLCC Middle East to Far East <small id="fearn-span"></small></span></li>
     </ul>
     <div style="display:flex;gap:18px;align-items:baseline;flex-wrap:wrap">
-      <label class="toggle"><input type="checkbox" id="brent-toggle"> Show Brent crude oil price</label>
+      <label class="toggle"><input type="checkbox" id="brent-toggle"> Show Brent crude: physical cargoes vs the futures screen</label>
       <p class="hint">Arrow keys move along the weeks when the chart is focused.</p>
     </div>
   </div>
@@ -156,7 +159,8 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
     for a 270,000-tonne cargo from Ras Tanura to Ningbo, Fridays. Fearnleys weekly
     report, VLCC Middle East Gulf to Far East time charter equivalent, Friday
     values; Fearnleys stopped publishing the dollar figure on April 25, 2023.
-    Brent: U.S. Energy Information Administration, Europe Brent spot price FOB, weekly.
+    Brent physical: U.S. Energy Information Administration, Europe Brent spot price FOB (Dated Brent), daily.
+    Brent futures: ICE front-month contract, daily closes via Yahoo Finance.
     Built by <a href="https://www.data4thepeople.com">Data 4 The People</a>.
   </p>
 
@@ -187,18 +191,19 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
   const framed = (function () { try { return window.self !== window.top; } catch (e) { return true; } })();
   if (framed) document.documentElement.classList.add('embed');
 
-  const B = DATA.baltic.points, F = DATA.fearnleys.points, BR = DATA.brent.points;
+  const B = DATA.baltic.points, F = DATA.fearnleys.points, BR = DATA.brent_spot.points, BF = DATA.brent_fut.points;
   const brentBox = document.getElementById('brent-toggle');
-  const brMap = new Map(BR.map(p => [p.d, p.usd]));
-  const brentFor = d => {                         // Brent weeks are Fridays too; allow a 3-day slip
-    if (brMap.has(d)) return brMap.get(d);
+  const brMap = new Map(BR.map(p => [p.d, p.usd])), bfMap = new Map(BF.map(p => [p.d, p.usd]));
+  const lookup = (map, d) => {                    // daily series: the value on the Friday or the nearest day before it
+    if (map.has(d)) return map.get(d);
     const t = parse(d);
-    for (let k = 1; k <= 3; k++) for (const s of [-1, 1]) {
-      const c = new Date(t + s * k * 86400000).toISOString().slice(0, 10);
-      if (brMap.has(c)) return brMap.get(c);
+    for (let k = 1; k <= 4; k++) {
+      const c = new Date(t - k * 86400000).toISOString().slice(0, 10);
+      if (map.has(c)) return map.get(c);
     }
     return null;
   };
+  const brentFor = d => lookup(brMap, d), futFor = d => lookup(bfMap, d);
   const bT = B.filter(p => p.tce != null), fT = F.filter(p => p.tce != null);
   const parse = s => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
   const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -265,7 +270,7 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
     const ph = brentOn ? Math.round((totalH - gap) * 0.66) : totalH;
     const pb = m.t + ph;                          // bottom of the earnings plot
     const bTop = pb + gap, bBot = H - m.b;        // the Brent panel, when shown
-    const bMax = brentOn ? Math.ceil(Math.max(...BR.map(p => p.usd)) / 20) * 20 : 0;
+    const bMax = brentOn ? Math.ceil(Math.max(...BR.map(p => p.usd), ...BF.map(p => p.usd)) / 20) * 20 : 0;
     const yb = v => bTop + (bMax - v) / bMax * (bBot - bTop);
 
     const allV = bT.map(p => p.tce).concat(fT.map(p => p.tce));
@@ -330,15 +335,30 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
         t.textContent = '$' + v;
       }
       const pt = el('text', { x: m.l, y: bTop - 9, class: 'panel-title' }, bg);
-      pt.textContent = narrow ? 'Brent crude, $ per barrel' : 'Brent crude oil price, US dollars per barrel';
-      let d = '', prev = null;
-      for (const p of BR) {
-        const t = parse(p.d);
-        if (t < t0 || t > t1) continue;
-        d += (!prev || t - prev > 21 * 86400000 ? 'M' : 'L') + x(t).toFixed(1) + ' ' + yb(p.usd).toFixed(1);
-        prev = t;
+      pt.textContent = narrow ? 'Brent, $ per barrel' : 'Brent crude oil, US dollars per barrel';
+      if (!narrow) {                              // in-panel key: physical (dark) and futures (light)
+        let kx = m.l + pt.getComputedTextLength() + 18;
+        for (const [cls, label] of [['brent-line', 'physical cargoes (EIA spot)'], ['fut-line', 'front-month futures (ICE)']]) {
+          el('line', { x1: kx, x2: kx + 16, y1: bTop - 13, y2: bTop - 13, class: cls, 'stroke-width': 2.5 }, bg);
+          const kt = el('text', { x: kx + 21, y: bTop - 9, class: 'panel-key' }, bg); kt.textContent = label;
+          kx += 21 + kt.getComputedTextLength() + 16;
+        }
       }
-      el('path', { d, fill: 'none', class: 'brent-line', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, bg);
+      const pathOf = pts => { let d = '', prev = null;
+        for (const p of pts) { const t = parse(p.d); if (t < t0 || t > t1) continue;
+          d += (!prev || t - prev > 21 * 86400000 ? 'M' : 'L') + x(t).toFixed(1) + ' ' + yb(p.usd).toFixed(1); prev = t; }
+        return d; };
+      // Shade the gap between the physical price and the screen on matched days
+      const fm = new Map(BF.map(p => [p.d, p.usd]));
+      const both = BR.filter(p => fm.has(p.d) && parse(p.d) >= t0 && parse(p.d) <= t1);
+      if (both.length > 1) {
+        let d = '';
+        both.forEach((p, i) => { d += (i ? 'L' : 'M') + x(parse(p.d)).toFixed(1) + ' ' + yb(p.usd).toFixed(1); });
+        for (let i = both.length - 1; i >= 0; i--) d += 'L' + x(parse(both[i].d)).toFixed(1) + ' ' + yb(fm.get(both[i].d)).toFixed(1);
+        el('path', { d: d + 'Z', fill: '#3c4650', 'fill-opacity': 0.22, stroke: 'none', 'fill-rule': 'evenodd' }, bg);
+      }
+      el('path', { d: pathOf(BF), fill: 'none', class: 'fut-line', 'stroke-width': 1.5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, bg);
+      el('path', { d: pathOf(BR), fill: 'none', class: 'brent-line', 'stroke-width': 1.5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, bg);
       const lastB = BR[BR.length - 1];
       el('circle', { cx: x(parse(lastB.d)), cy: yb(lastB.usd), r: 3.5, fill: '#3c4650' }, bg);
       if (!narrow) {
@@ -401,6 +421,7 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
     el('circle', { id: 'hb', r: 4.5, fill: 'var(--baltic)', stroke: 'var(--panel)', 'stroke-width': 2 }, hg);
     el('circle', { id: 'hf', r: 4.5, fill: 'var(--fearn)', stroke: 'var(--panel)', 'stroke-width': 2 }, hg);
     el('circle', { id: 'hbr', r: 4.5, fill: '#3c4650', stroke: 'var(--panel)', 'stroke-width': 2 }, hg);
+    el('circle', { id: 'hbf', r: 4.5, fill: '#9aa3ad', stroke: 'var(--panel)', 'stroke-width': 2 }, hg);
     el('rect', { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: 'transparent', id: 'hit' }, svg);
     if (focusIdx >= 0) showWeek(focusIdx, null);
   }
@@ -424,6 +445,8 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
     if (w.f) { hf.style.display = ''; hf.setAttribute('cx', px); hf.setAttribute('cy', geo.y(w.f.tce)); } else hf.style.display = 'none';
     const hbr = document.getElementById('hbr'), bv = geo.brentOn ? brentFor(w.d) : null;
     if (bv != null) { hbr.style.display = ''; hbr.setAttribute('cx', px); hbr.setAttribute('cy', geo.yb(bv)); } else hbr.style.display = 'none';
+    const hbf = document.getElementById('hbf'), fv = geo.brentOn ? futFor(w.d) : null;
+    if (fv != null) { hbf.style.display = ''; hbf.setAttribute('cx', px); hbf.setAttribute('cy', geo.yb(fv)); } else hbf.style.display = 'none';
 
     while (tip.firstChild) tip.removeChild(tip.firstChild);
     const dd = document.createElement('span'); dd.className = 'tdate'; dd.textContent = 'Week of ' + fmtDate(w.d); tip.appendChild(dd);
@@ -436,7 +459,12 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
     };
     if (w.b) row('baltic', fmtUSD(w.b.tce) + ' a day', `Baltic TD3C, WS ${w.b.ws}`);
     if (w.f) row('fearn', fmtUSD(w.f.tce) + ' a day', 'Fearnleys' + (w.f.ws != null ? `, WS ${w.f.ws}` : ''));
-    if (geo.brentOn) { const bv = brentFor(w.d); if (bv != null) row('brent', '$' + bv.toFixed(2) + ' a barrel', 'Brent crude, EIA'); }
+    if (geo.brentOn) {
+      const bv = brentFor(w.d), fv = futFor(w.d);
+      if (bv != null) row('brent', '$' + bv.toFixed(2) + ' a barrel', 'Brent physical cargoes, EIA spot');
+      if (fv != null) row('fut', '$' + fv.toFixed(2) + ' a barrel', 'Brent front-month futures, ICE');
+      if (bv != null && fv != null) { const g = bv - fv; row('fut', (g < 0 ? '-$' : '+$') + Math.abs(g).toFixed(2), 'physical over the screen'); }
+    }
     if (w.b && w.b.note) { const n = document.createElement('div'); n.className = 'note'; n.textContent = w.b.note; tip.appendChild(n); }
     tip.classList.add('on');
     const bw = box.clientWidth, tw = tip.offsetWidth, th = tip.offsetHeight;
@@ -470,7 +498,7 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
   // Table view: the same numbers, reachable without hovering.
   const table = document.getElementById('table');
   const thead = document.createElement('thead'); const hr = document.createElement('tr');
-  for (const h of ['Week of', 'Baltic TD3C, $ per day', 'Baltic WS', 'Fearnleys, $ per day', 'Fearnleys WS', 'Brent, $ per barrel', 'Note']) { const th = document.createElement('th'); th.textContent = h; hr.appendChild(th); }
+  for (const h of ['Week of', 'Baltic TD3C, $ per day', 'Baltic WS', 'Fearnleys, $ per day', 'Fearnleys WS', 'Brent physical, $ per barrel', 'Brent futures, $ per barrel', 'Note']) { const th = document.createElement('th'); th.textContent = h; hr.appendChild(th); }
   thead.appendChild(hr); table.appendChild(thead);
   const tb = document.createElement('tbody');
   const fAll = new Map(F.map(p => [p.d, p]));
@@ -479,8 +507,8 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
   for (const d of allDates) {
     const b = bAll.get(d), f = fAll.get(d);
     const tr = document.createElement('tr');
-    const bv = brentFor(d);
-    for (const v of [fmtDate(d), b && b.tce != null ? fmtUSD(b.tce) : '', b ? b.ws : '', f && f.tce != null ? fmtUSD(f.tce) : '', f && f.ws != null ? f.ws : '', bv != null ? '$' + bv.toFixed(2) : '', b && b.note ? b.note : '']) {
+    const bv = brentFor(d), fv = futFor(d);
+    for (const v of [fmtDate(d), b && b.tce != null ? fmtUSD(b.tce) : '', b ? b.ws : '', f && f.tce != null ? fmtUSD(f.tce) : '', f && f.ws != null ? f.ws : '', bv != null ? '$' + bv.toFixed(2) : '', fv != null ? '$' + fv.toFixed(2) : '', b && b.note ? b.note : '']) {
       const td = document.createElement('td'); td.textContent = v == null ? '' : String(v); tr.appendChild(td);
     }
     tb.appendChild(tr);

@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parent.parent
 BALTIC = ROOT / "data" / "baltic_td3c_weekly.csv"
 FEARN = ROOT / "data" / "fearnleys_vlcc_meg_feast_daily.csv"
 BRENT = ROOT / "data" / "brent_weekly.csv"
+CRUDE = ROOT / "data" / "crude_spot_vs_futures_daily.csv"
 TEMPLATE = ROOT / "scripts" / "template.html"
 DIST = ROOT / "dist"
 TIEOUT = ROOT / "research" / "TIEOUT.md"
@@ -78,11 +79,26 @@ def load_brent():
     return [OrderedDict(d=r["date"], usd=float(r["brent_usd_bbl"])) for r in rows]
 
 
+def load_crude_daily():
+    """Daily physical Brent (EIA spot) and ICE front-month futures closes."""
+    spot, fut = [], []
+    seen = set()
+    for r in csv.DictReader(CRUDE.open()):
+        if r["date"] in seen:
+            sys.exit("crude daily: duplicate date")
+        seen.add(r["date"])
+        if r["brent_spot_eia"]:
+            spot.append(OrderedDict(d=r["date"], usd=float(r["brent_spot_eia"])))
+        if r["brent_fut1_yahoo"]:
+            fut.append(OrderedDict(d=r["date"], usd=float(r["brent_fut1_yahoo"])))
+    return spot, fut
+
+
 def fmt(v):
     return "n/a" if v is None else f"${v:,.0f}"
 
 
-def tieout(baltic, fearn, fearn_daily, brent):
+def tieout(baltic, fearn, fearn_daily, brent, spot, fut):
     b = {r["d"]: r for r in baltic}
     f = {r["d"]: r for r in fearn}
     lines = ["# Tie-out", "",
@@ -153,6 +169,14 @@ def tieout(baltic, fearn, fearn_daily, brent):
     L(f"- Baltic Oct to Dec 2022 high: {fmt(max(r['tce'] for r in h22))} a day ({max(h22, key=lambda r: r['tce'])['d']}).")
     d26, v26 = near_b("2026-02-27"); L(f"- Brent week of Feb 27, 2026: ${v26:.2f} ({d26}); week of Sep 4, 2026: ${br.get('2026-09-04', float('nan')):.2f}.")
     L("")
+    fm = {r["d"]: r["usd"] for r in fut}
+    pairs = [(r["d"], r["usd"], fm[r["d"]]) for r in spot if r["d"] in fm]
+    wide = max(pairs, key=lambda x: x[1] - x[2]); last = pairs[-1]
+    L(f"- Brent physical vs futures: {len(pairs)} matched days {pairs[0][0]} to {last[0]}; widest gap {wide[0]} spot ${wide[1]:.2f} vs futures ${wide[2]:.2f} = +${wide[1]-wide[2]:.2f}; latest {last[0]} ${last[1]:.2f} vs ${last[2]:.2f} = {last[1]-last[2]:+.2f}.")
+    for y in ("2022", "2026"):
+        ys = [x for x in pairs if x[0].startswith(y)]
+        L(f"- Brent physical minus futures {y}: average {sum(x[1]-x[2] for x in ys)/len(ys):+.2f}, widest {max(x[1]-x[2] for x in ys):+.2f} on {max(ys, key=lambda x: x[1]-x[2])[0]}.")
+    L("")
     L("Cross-series comparisons are editorial, not published: the Sept 2026 Baltic high "
       f"is {pk['tce']/326000:.1f} times the Baltic TD3C March 2020 peak quoted by Hellenic "
       f"Shipping News (above $326,000) and {pk['tce']/300391:.1f} times the Oct 11, 2019 "
@@ -165,6 +189,7 @@ def main():
     fearn = load_fearnleys_weekly()
     fearn_daily = list(csv.DictReader(FEARN.open()))
     brent = load_brent()
+    spot, fut = load_crude_daily()
     data = OrderedDict(
         built=date.today().isoformat(),
         baltic=OrderedDict(name="Baltic Exchange TD3C", publisher="Baltic Exchange",
@@ -176,6 +201,12 @@ def main():
         brent=OrderedDict(name="Brent crude oil spot price", publisher="U.S. Energy Information Administration",
                           route="Europe Brent spot price FOB, weekly (series RBRTE)",
                           unit="US dollars per barrel", points=brent),
+        brent_spot=OrderedDict(name="Brent physical (Dated Brent) spot price", publisher="U.S. Energy Information Administration",
+                               route="Europe Brent spot price FOB, daily (series RBRTE)",
+                               unit="US dollars per barrel", points=spot),
+        brent_fut=OrderedDict(name="ICE Brent front-month futures", publisher="ICE, daily closes via Yahoo Finance (BZ=F)",
+                              route="front-month contract, daily close",
+                              unit="US dollars per barrel", points=fut),
     )
     DIST.mkdir(exist_ok=True)
     (DIST / "data.json").write_text(json.dumps(data, indent=1))
@@ -188,7 +219,7 @@ def main():
     html = (tpl.replace("/*__DATA__*/", "const DATA = " + json.dumps(data, separators=(",", ":")) + ";")
                .replace("__LOGO__", logo_uri))
     (DIST / "index.html").write_text(html)
-    TIEOUT.write_text(tieout(baltic, fearn, fearn_daily, brent))
+    TIEOUT.write_text(tieout(baltic, fearn, fearn_daily, brent, spot, fut))
     print(f"dist/index.html {len(html)//1024} KB; baltic {len(baltic)} weeks, fearnleys {len(fearn)} weeks")
     print(TIEOUT.read_text())
 
