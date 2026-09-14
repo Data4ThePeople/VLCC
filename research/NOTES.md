@@ -578,6 +578,15 @@ the Baltic says its TD3C assessment already carries a risk premium for
 entering the strait, so the low end is the more likely figure. The post's
 table now uses this column in place of the shuttle column.
 
+The access premium (post section, Sep 14): Murban at Fujairah $131 against
+Dubai $115 inside the strait and Brent $106 on the screen. Murban normally
+trades within a dollar or two of Brent, so the roughly $25 gap is the price
+of a barrel that can be shipped. Buyers pay for strait access in the oil
+price at Fujairah, or in freight and insurance at Ras Tanura, and the two
+routes land within a few dollars of each other. Gulf of Oman to China day
+rate for the comparison: $358,201 on Sep 9 (Lloyd's List); about $546,000
+implied by WS 450 on Sep 11 (our arithmetic, section j).
+
 Two cautions. The shuttle column is the most uncertain line in the notes:
 much of that crude moves on Gulf-state, Iranian or US-escorted ships that
 carry their own risk, so the insurance line is what a commercial charterer
