@@ -74,7 +74,11 @@ This analysis is just another example highlighting the difference between the wa
 
 And that’s the reason why we are making this Data 4 Thought a living post. We will update this each week when the data drops so we can all see shipping rates. The data is technically public but buried in hundreds of individual files. We put that together for you so we can see it all: the good, the bad, and the (right now) very ugly.
 
-How we built this: the chart draws on 277 weekly Baltic Exchange assessments of the TD3C route, Ras Tanura to Ningbo, from December 2020; Fearnleys' daily assessments of the same trade, in dollars from March 2019 to April 2023 and in Worldscale points to today; the U.S. Energy Information Administration's daily Brent spot price; and ICE Brent futures closes. The data and code are public at [github.com/Data4ThePeople/VLCC](https://github.com/Data4ThePeople/VLCC).
+::: spacer
+
+::: blurb How we built this
+The chart draws on 277 weekly Baltic Exchange assessments of the TD3C route, Ras Tanura to Ningbo, from December 2020; Fearnleys' daily assessments of the same trade, in dollars from March 2019 to April 2023 and in Worldscale points to today; the U.S. Energy Information Administration's daily Brent spot price; and ICE Brent futures closes. The data and code are public at [github.com/Data4ThePeople/VLCC](https://github.com/Data4ThePeople/VLCC).
+:::
 
 ::: divider
 
