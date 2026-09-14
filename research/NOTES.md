@@ -1,4 +1,4 @@
-# Supertanker rates: research notes for the Data 4 Thought piece
+can you# Supertanker rates: research notes for the Data 4 Thought piece
 
 Working notes for Eric, compiled September 13, 2026. Everything here is
 background for the narrative. Numbers marked "chart" are recomputed from the
@@ -218,6 +218,121 @@ freight rose because the surviving oil needed more ship-days per barrel.
 expensive. What does is a shock that changes where ships have to go or how
 many are available. 2022 was the first kind. 2026 is the second, and it is the
 first time since at least 2004 that oil and freight have spiked together.
+
+## 3c. 2008 to 2009: the peak, the crash, the bottom
+
+For the intro. Free sources give three views of the same slide, saved in
+`data/history_2008_2009.csv` and `data/history_2008_2009_quarterly.csv`:
+the Baltic Dirty Tanker Index (a daily composite of crude routes, monthly
+averages here), the Drewry monthly Worldscale assessment for Persian Gulf to
+Japan as reprinted by UNCTAD, and two owners' quarterly spot earnings for
+VLCCs. OSG's figure is its own conversion of Arabian Gulf fixtures (60% east,
+40% west) and is the one that shows the highs and lows within each quarter.
+Frontline's is what its modern double-hull ships actually earned. No free
+source gives a weekly dollar figure for 2008.
+
+| | Baltic Dirty Tanker Index, monthly avg | OSG Arabian Gulf VLCC spot, $/day (quarter avg; high / low) | Frontline double-hull VLCC spot, $/day | Drewry WS, Gulf to Japan |
+|---|---|---|---|---|
+| Jan to Mar 2008 | 1,396 / 1,093 / 1,313 | $83,600 (high $250,000) | $104,700 | |
+| Apr to Jun 2008 | 1,539 / 1,939 / 1,943 | $108,300 (high $199,300) | $105,200 | |
+| Jul 2008 | 2,072; all-2008 high 2,347 on Jul 23 | | | |
+| Aug 2008 | 1,510 | Q3: $77,600 (high $196,200, low $7,200) | Q3: $88,600 | |
+| Sep 2008 | 1,498 | | | |
+| Oct 2008 | 1,377 | | | |
+| Nov 2008 | 1,065 | Q4: $54,900 (high $104,000, low $32,900) | Q4: $59,800 | |
+| Dec 2008 | 1,280 | | | 66 |
+| Jan to Mar 2009 | 718 / 590 / 635 | $40,400 (high $80,700, low $15,500) | $56,200 | 51 / 44 / 41 |
+| Apr to Jun 2009 | 480 / 478 / 613; low 453 on Apr 15 | $13,300 (low minus $4,500) | $38,700 | 27 / 27 / 46 |
+| Jul to Sep 2009 | 516 / 485 / 514 | $7,200 (low minus $5,800) | $26,800 | 42 / 40 / 33 |
+| Oct to Dec 2009 | 565 / 634 / 753 | $17,000 | $30,400 | 43 / 44 / 56 |
+| Jan 2010 | 1,127 | | | 104 |
+| Full year | | 2008 $81,100; 2009 $19,500 (down 76%) | 2008 $74,500; 2009 $38,300 | |
+
+Sources: BDTI daily history (Baltic Exchange, via the yieldchaser mirror);
+UNCTAD Review of Maritime Transport 2010, table 4.2, from Drewry Shipping
+Insight; OSG 2008 and 2009 annual reports; Frontline quarterly releases 2008
+and 2009.
+https://unctad.org/system/files/official-document/rmt2010_en.pdf
+https://www.annualreports.com/HostedData/AnnualReportArchive/o/NYSE_OSG_2008.pdf
+https://www.annualreports.com/HostedData/AnnualReportArchive/o/NYSE_OSG_2009.pdf
+https://www.frontline.bm/fro-third-quarter-2008-results/
+https://www.frontline.bm/fro-preliminary-fourth-quarter-and-financial-year-2009-results/
+
+**What August and September 2008 looked like from a desk.** The peak was
+already behind the market. Rates for the Gulf-to-Asia run had touched about
+$200,000 a day in the second week of July, then, in Frontline's words, "the
+market took such a sudden fall at the end of July" that its strategy of
+fixing short voyages "proved wrong." OSG's Gulf index printed a low of
+$7,200 a day somewhere in the third quarter, and the Baltic dirty index
+dropped from 2,347 on July 23 to a monthly average of about 1,500 in August
+and September, roughly the level of the previous spring. Third-quarter
+averages were still very good money: $77,600 (OSG) to $88,600 (Frontline) a
+day against a cash cost of running a VLCC of roughly $10,000 a day at the
+time. Anyone starting in September 2008 walked into a market that had just
+halved from a record and still looked strong by any historical standard.
+Lehman filed on September 15. Oil had already fallen from $147 on July 11
+to about $90.
+
+**Why rates had been so high in the first half of 2008.**
+- OPEC, led by Saudi Arabia and Iraq, had raised output by about 900,000
+  barrels a day over 2007, and most of it moved long-haul out of the Gulf.
+  Chinese crude imports rose 12% in 2008, with imports from the Middle East
+  and South America each up 20% (OSG).
+- The VLCC fleet did not grow. Conversions to dry bulk and storage plus
+  scrapping offset deliveries; OSG counted no net change in 2008, with the
+  fleet ending the year at 519 ships.
+- Iran had put unsold heavy crude on ten or more of its own VLCCs, taking
+  them off the market.
+- Bunker fuel hit its record in July, so ships slowed down, which tightened
+  supply further. Asian refiners were also refusing single-hull ships after
+  the Hebei Spirit spill off Korea in December 2007, which split the market
+  and pushed modern-ship rates higher.
+- Traders were long oil and long freight together. UNCTAD's read: "high oil
+  prices fuelled higher demand as traders sought speculative positions.
+  Ultimately, this bubble collapsed when the market saw that oil prices had
+  reached a peak, and consequently freight rates collapsed too."
+
+**Fourth quarter 2008: the demand shock.** World oil demand fell 2.5% year
+on year in the quarter, the opposite of the usual winter rise. OPEC
+announced cuts on October 24 (1.5 million barrels a day) and December 17 in
+Oran (2.2 million, the largest single cut it had ever made), 4.2 million a
+day in total from September levels, effective January 1, 2009. Fewer Gulf
+cargoes means fewer VLCC fixtures, and the cuts fell hardest on the long-haul
+grades. Quarterly VLCC earnings fell about 29% from the third quarter. Two
+things cushioned the drop: oil went into a steep contango as spot prices
+collapsed to about $35 a barrel, so traders hired VLCCs to store crude for
+later delivery (as many as 35 ships by early 2009, OSG), and Somali piracy
+pushed some ships around the Cape. Secondhand tanker values fell 35% to 40%
+from their third-quarter highs, and scrap steel fell from $740 to about $300
+a ton. Nine VLCCs delivered in the fourth quarter alone.
+
+**2009: the slide to the bottom.** Middle East OPEC production ran 1.8
+million barrels a day below 2008 and West Africa 200,000 lower, while the
+fleet grew 4.5% as the ships ordered in the boom arrived (31.9 million
+deadweight tons of tankers delivered across all sizes in 2009 against 8.4
+million scrapped). Refiners outside China cut runs. OSG's Gulf VLCC index
+fell every quarter: $40,400, $13,300, $7,200, then $17,000. Its quarterly
+lows went negative in the second and third quarters, meaning a ship could
+finish a voyage having paid to carry the cargo. The Drewry Worldscale
+assessment for Gulf to Japan bottomed at WS 27 in April and May 2009, the
+Baltic dirty index at 453 on April 15, 2009, the lowest since the index
+began in 1998. Frontline's modern ships did better than the index, at
+$38,700 in the second quarter and $26,800 in the third, because charterers
+paid up for double hulls. Floating storage was the only thing soaking up
+ships: about 100 million barrels at sea during 2009, and UNCTAD counts 143
+million barrels on 129 tankers in October 2009. The market turned in
+December 2009 as winter demand and a colder-than-usual season met a fleet
+partly tied up in storage; the Drewry assessment doubled to WS 104 in
+January 2010. The recovery was brief. Deliveries from the 2007 to 2008
+orderbook kept VLCC earnings weak until 2013, with the single-hull phase-out
+of 2010 the only relief.
+
+**Numbers for the intro.** From the July 2008 peak (about $200,000 a day on
+the Gulf-to-Asia run) to the summer of 2009 (OSG quarter average $7,200,
+Frontline $26,800), earnings fell by more than 90% on the index measure and
+by about 85% for a modern ship. On the Baltic dirty index, the drop from the
+July 23, 2008 high to the April 15, 2009 low was 81%. It took about nine
+months from Lehman to the bottom, and the bottom lasted most of a year.
 
 ## 4. Why supertanker rates matter for oil prices
 
