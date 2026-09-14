@@ -75,6 +75,8 @@ And that’s the reason why we are making this Data 4 Thought a living post. We 
 
 How we built this: the chart draws on 277 weekly Baltic Exchange assessments of the TD3C route, Ras Tanura to Ningbo, from December 2020; Fearnleys' daily assessments of the same trade, in dollars from March 2019 to April 2023 and in Worldscale points to today; the U.S. Energy Information Administration's daily Brent spot price; and ICE Brent futures closes. The data and code are public at [github.com/Data4ThePeople/VLCC](https://github.com/Data4ThePeople/VLCC).
 
+::: divider
+
 ## Common questions
 
 ### What is a VLCC?

@@ -443,14 +443,12 @@
       }
     },
     {
-      "slice_type": "spacer",
+      "slice_type": "divider_dots",
       "slice_label": null,
       "variation": "default",
       "version": "initial",
       "items": [],
-      "primary": {
-        "spacer_value": "20px"
-      }
+      "primary": {}
     },
     {
       "slice_type": "paragarph_text",
