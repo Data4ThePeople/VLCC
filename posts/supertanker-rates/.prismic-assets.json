@@ -1,14 +1,14 @@
 {
-  "images/02-landed-cost-table.png": {
-    "id": "hul109W6w5ddkaBP",
-    "width": 1800,
-    "height": 1035,
-    "url": "https://images.prismic.io/data4thepeople/hul109W6w5ddkaBP_02-landed-cost-table.png?auto=format,compress"
-  },
   "images/supertanker-rates-hero-1680x1080.png": {
     "id": "vZhFpEudglinXjlY",
     "width": 1680,
     "height": 1080,
     "url": "https://images.prismic.io/data4thepeople/vZhFpEudglinXjlY_supertanker-rates-hero-1680x1080.png?auto=format,compress"
+  },
+  "images/02-landed-cost-table.png": {
+    "id": "AigqLmVsop-2J7Eh",
+    "width": 1800,
+    "height": 1035,
+    "url": "https://images.prismic.io/data4thepeople/AigqLmVsop-2J7Eh_02-landed-cost-table.png?auto=format,compress"
   }
 }

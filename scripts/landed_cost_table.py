@@ -13,7 +13,7 @@ OUT = Path(__file__).resolve().parent.parent / "posts" / "supertanker-rates" / "
 BG, INK, MUTED, GRID, HEAD = "#181A1B", "#BBBDC0", "#8f9296", "#2c2f31", "#e6e7e8"
 ACCENT = "#7fb0cf"
 
-cols = ["", "At the headline rate\n(loads inside the strait,\nBaltic TD3C $862,150 a day)", "The way the oil moves now\n(loads at Fujairah, outside\nthe strait, Murban)", "Atlantic barrel\n(US Gulf, for\ncomparison)"]
+cols = ["", "At the headline rate\n(loads inside the strait,\nBaltic TD3C $862,150 a day)", "The way the oil moves now\n(loads at Fujairah, outside\nthe strait, Murban)", "Atlantic barrel\n(Gulf of Mexico,\nfor comparison)"]
 rows = [
     ("Price at the loading port", "$115", "$131", "$108"),
     ("Supertanker freight to China", "$18.60 to $22", "$8 to $11.50", "$15 to $18"),
