@@ -692,6 +692,19 @@ shows the brake on it.
   Gasoline still tracks the world price more than WTI, because refined
   products move freely, so the relief at the pump is smaller than the
   crude discount.
+- The feedback loop (Eric, Sep 14): the export pull itself removes VLCC
+  capacity. A Fujairah-to-Asia cargo ties up a ship for about 38 days, a
+  US Gulf-to-Asia cargo for about 90, so each barrel that switches needs
+  2.4 times the ship-days. Moving the Atlantic share of VLCC cargoes from
+  22% to 35% raises ship-days per barrel by about 14% (0.35 x 90 + 0.65 x
+  38 = 56.2 against 0.22 x 90 + 0.78 x 38 = 49.4), before the 58 trapped
+  ships and the second tanker each shuttle cargo consumes. That is why
+  volumes could fall 36% in May while rates doubled year on year. The loop:
+  freight up, Gulf barrels priced out, more Atlantic cargoes, longer trips,
+  fewer free ships, freight up. It needs no further escalation to run, only
+  buyers doing the rational thing. What ends it is demand destruction at
+  $141 to $166 landed and the roughly 40 VLCC deliveries this year with an
+  orderbook of 40% of the fleet behind them.
 - Framing that keeps to the house rule: the system is doing the moving, not
   a party or a person. Say "the export pull" and "the logistics ceiling,"
   and keep the inventory claim to Chapman's quote or an EIA weekly stocks
