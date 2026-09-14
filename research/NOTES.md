@@ -515,6 +515,30 @@ https://lmalloyds.com/safety-concerns-not-insurance-availability-driving-reduced
 https://finance.yahoo.com/news/marine-insurers-cancel-war-risk-082111845.html
 https://www.weforum.org/stories/2026/04/how-middle-east-war-turning-governments-into-insurers-last-resort/
 
+**l. The whole bill: delivered cost of a barrel in China, mid-September 2026.**
+Adding sections i, j and k. Prices are dated; freight and insurance are
+ranges from the published figures and our arithmetic above. Cargo war-risk
+cover on the oil itself is left out because no figure was found.
+
+| | Murban barrel loading at Fujairah, outside the strait | Saudi barrel shuttled out of the Gulf | Atlantic barrel (US Gulf) for comparison |
+|---|---|---|---|
+| Price at the loading port | $131 (Murban, Sep 14) | $115 (Dubai, Sep 11, three-day lag) | $108 (Brent, Sep 14) |
+| Shuttle inside the Gulf, freight plus ship-to-ship | none | about $2 (estimate) | none |
+| War-risk cover on the shuttle transit, 7.5% to 12.5% of an $80 to $100 million Aframax over 700,000 barrels | none | $9 to $18 | none |
+| VLCC freight to China | $8 to $11.50 (Gulf of Oman route, Sep 9 to 11) | $8 to $11.50 | about $15 ($29.5 million voyage, Sep 11) |
+| War-risk cover on the VLCC, about 1% for a ship that never enters the strait | about $1 | about $1 | none |
+| **Landed in China** | **about $140 to $144** | **about $135 to $148** | **about $123** |
+| Days at sea | about 17 | about 17 plus the shuttle | about 45 (US Gulf to China via the Cape) |
+
+Two cautions. The shuttle column is the most uncertain line in the notes:
+much of that crude moves on Gulf-state, Iranian or US-escorted ships that
+carry their own risk, so the insurance line is what a commercial charterer
+would be quoted, not necessarily what is paid. And the Dubai price is the
+stale one; if it has moved with Murban since September 11, the Saudi column
+is higher. The point survives either way: the screen says $108, and a Gulf
+barrel in a Chinese refinery costs $135 to $148 today, $30 to $40 of it for
+the trip.
+
 ## 5. Numbers to reuse (recomputed from the data)
 
 See `research/TIEOUT.md`, produced by `scripts/build.py`, for the list. The
