@@ -1,0 +1,372 @@
+{
+  "page_title": "Turns out oil is close to $150, in real life, not on your screen",
+  "page_subtitle": "Supertanker rates are at $862,150 a day. Here is what that does to the price of a barrel.",
+  "published_date": "2026-09-15",
+  "updated_date": "2026-09-15",
+  "make_this_main_post": false,
+  "slices": [
+    {
+      "slice_type": "drop_cap",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "drop_cap_text": [
+          {
+            "type": "paragraph",
+            "text": "In August of 2008 I started working for Morgan Stanley in Times Square as an associate in their sell side equity research department. I was assigned to the oilfield services and commodity shipping team.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    {
+      "slice_type": "paragarph_text",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "paragraph_text": [
+          {
+            "type": "paragraph",
+            "text": "One of my first orders of business was to learn all types of ships that are used to transport oil and \u201cdry bulk\u201d products (think, iron ore and coal). I still recall my boss handing me a book called \u201cThe Ships of the World.\u201d It was like one of those pamphlets you get at a baseball game detailing all the players on the team, except instead of players, it was the majestic ships that transport our bulk products all over the globe.",
+            "spans": [],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "The granddaddy of all ships is called the VLCC (very large crude carrier). A VLCC holds two million barrels of crude oil and is about 1,100 feet long. Stand one on end and it would be taller than the Eiffel Tower and only a few stories short of the roof of the Empire State Building. Its cargo is about 84 million gallons of crude, enough to fill 127 Olympic swimming pools, or about a tenth of what the United States burns in a day.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    {
+      "slice_type": "divider_dots",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {}
+    },
+    {
+      "slice_type": "paragarph_text",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "paragraph_text": [
+          {
+            "type": "heading2",
+            "text": "What 2008 taught me",
+            "spans": [],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "Now, you know what happened in late 2008. But what you may not know was that one month before I started at Morgan Stanley, the day rate to charter a VLCC out of the Middle East was $196,200. In other words, if you wanted to hire this ship to carry one cargo from the Middle East to China, a round trip of about 40 days, it was going to run you about $7.8 million. Within a year the day rate had plummeted to $13,300 per day, and by the summer of 2009 to $7,200, which translates to just $290,000 for that same trip. In other words, in about a year, I witnessed a 96% drop in VLCC day rates.",
+            "spans": [],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "Long story short, the shipping industry is not for the faint of heart. It is supply and demand on steroids.",
+            "spans": [],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "But I learned from this experience that we can\u2019t ignore this market. It\u2019s not operating wildly in a silo, but rather its volatility cascades through the global economy.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    {
+      "slice_type": "divider_dots",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {}
+    },
+    {
+      "slice_type": "paragarph_text",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "paragraph_text": [
+          {
+            "type": "heading2",
+            "text": "Where rates are now",
+            "spans": [],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "Which is why today I have uncovered this data for you. Below, you will see what has happened to VLCC rates since the Iran war started, including the astounding and terrifying rise since the start of July. Rates now sit at $862,150 per day. I don\u2019t even have words to explain how unprecedented this is. Maybe looking at how the prior shocks impacted rates can help. Anything over $200,000 per day used to be considered nosebleed rates. Today's rate is 331% above that mark.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    {
+      "slice_type": "spacer",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "spacer_value": "20px"
+      }
+    },
+    {
+      "slice_type": "html_embed",
+      "slice_label": null,
+      "variation": "fullWidth",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "html_content": [
+          {
+            "type": "preformatted",
+            "text": "<iframe src=\"https://data4thepeople.github.io/VLCC/dist/index.html\" width=\"100%\" height=\"780\" style=\"border:0\" title=\"What a supertanker earns in a day\"></iframe>",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ],
+        "embed_height": "780px"
+      }
+    },
+    {
+      "slice_type": "divider_dots",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {}
+    },
+    {
+      "slice_type": "paragarph_text",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "paragraph_text": [
+          {
+            "type": "heading2",
+            "text": "Why it matters, and how it happened",
+            "spans": [],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "So, why does this matter? Because unlike most investors think, oil's true form is not a number on a spreadsheet or website. To actually get oil, you need to ship it across the globe, especially so for countries like Japan, which imports more than 99% of its oil, most of it from the Middle East. And that transport now costs over $862,000 per day for a very large crude carrier.",
+            "spans": [],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "How did this happen? A confluence of factors, stacked on a market that was already tight. Sanctions had already pushed about a fifth of the world's VLCCs out of the trade most buyers can use, and rates were above $200,000 a day the day before the strikes. Then the strait closed. About 58 supertankers, one in ten worldwide, were trapped inside the Gulf. Insurers pulled war-risk cover, and the cover that came back now costs up to 12.5% of a ship's value for a single transit, so only a handful of owners will sail in at any price. The oil that does get out mostly leaves by ship-to-ship transfer, which ties up a second tanker for every cargo. Replacement barrels from the Atlantic take twice as long to reach Asia. And in September the US Navy started sinking Iranian tankers, which shrinks the fleet in the most literal way. Put it together, and good luck finding a VLCC to transport your crude. One caveat: the $862,150 figure is the Baltic Exchange's assessment for a voyage that loads inside the strait, which few ships are making right now. Cargoes that load just outside it pay less, and we use those rates in the arithmetic below. So, while the screen says oil is $106, go and try to buy two million barrels of it and see how much it really is.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    {
+      "slice_type": "divider_dots",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {}
+    },
+    {
+      "slice_type": "paragarph_text",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "paragraph_text": [
+          {
+            "type": "heading2",
+            "text": "What a barrel really costs",
+            "spans": [],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "We attempted to do that for you. The table adds it up three ways.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    {
+      "slice_type": "blog_body_content_image",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "image": {
+          "alt": "Table: what a barrel of oil really costs landed in China, mid-September 2026, in US dollars per barrel. Three columns: a Gulf barrel priced at the headline Baltic rate of $862,150 a day loading inside the strait, a Gulf barrel loading at Fujairah outside the strait, and a US Gulf barrel. Loading-port prices $115, $131 and $108, plus freight and war-risk cover. Landed in China: $149 to $166, $141 to $145, and $123 to $126. Round trips of about 40, 38 and 90 days.",
+          "copyright": null
+        },
+        "source_text": [
+          {
+            "type": "paragraph",
+            "text": "Prices dated September 11 to 14, 2026. Lines marked with an asterisk are our estimates; no published rate exists for them.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    {
+      "slice_type": "spacer",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "spacer_value": "20px"
+      }
+    },
+    {
+      "slice_type": "paragarph_text",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "paragraph_text": [
+          {
+            "type": "paragraph",
+            "text": "Column one is the headline rate. The $862,150 a day is quoted for a supertanker loading inside the strait. Turn the day rate into a cost per barrel, add war-risk cover for the ship and for the cargo, and that barrel lands in China at $149 to $166. Almost no oil moves that way. The rate is real, because contracts and futures settle on it, but very few ships will make the trip.",
+            "spans": [
+              {
+                "start": 0,
+                "end": 32,
+                "type": "strong"
+              }
+            ],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "Column two is how the oil actually moves out of the Middle East, heading east. It is carried just outside the strait to Fujairah and loaded there. Freight for that trip is $8 to $11.50 a barrel and cover is about $2, so the barrel lands at $141 to $145. Now look at the top line. Murban, the crude that loads at Fujairah, was $131 on September 14 while Brent on the screen was $106. Murban normally trades within a dollar or two of Brent. The extra $25 is the price of a barrel that can be shipped. Buyers pay the toll either in freight or at the loading port, which is why the two Gulf columns land close together.",
+            "spans": [
+              {
+                "start": 0,
+                "end": 78,
+                "type": "strong"
+              }
+            ],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "Column three is the barrel that stays out of it. A cargo from the US Gulf pays no war premium and lands in China at $123 to $126, cheaper than Gulf oil delivered from next door (relatively speaking). So Asian refiners have the incentive to buy more American crude, which kicks off an unfavorable feedback loop. A US-to-Asia round trip takes about 90 days against 38 from Fujairah, so every barrel that switches ties up a supertanker more than twice as long. Fewer ships are free, freight rises, more Middle East barrels get priced out, more American barrels get pulled across the Pacific, and those barrels come out of American storage tanks while the world's tankers sail the long way around. This is complexity in action. This isn't some on-again off-again reality television show. It's a complex web of economic incentives and physical supply bottlenecks that, if we really pay attention, we are watching unfold in real time.",
+            "spans": [
+              {
+                "start": 0,
+                "end": 48,
+                "type": "strong"
+              }
+            ],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "So the honest answer to \u201cwhat does oil cost\u201d is that it depends on where you are standing. The screen says about $106. A refiner in China pays about $140 for the same barrel, and up to $166 if it has to come out through the strait. The $35 to $60 in between is the shipping story, and none of it shows up in the number on the screen.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    {
+      "slice_type": "divider_dots",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {}
+    },
+    {
+      "slice_type": "paragarph_text",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "paragraph_text": [
+          {
+            "type": "heading2",
+            "text": "Close to $150, in real life",
+            "spans": [],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "Which brings me back to that headline. This past May, an Exxon executive warned that physical Brent cargoes would spike to $150 to $160 once inventories hit record lows. On the screen, that has not happened. Brent is about $106. But a Gulf barrel landed in China costs about $140 today, and up to $166 if it has to come out through the strait. The forecast came true. It just came true at the refinery gate instead of on the screen, and the difference is the ship.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    {
+      "slice_type": "divider_dots",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {}
+    },
+    {
+      "slice_type": "paragarph_text",
+      "slice_label": null,
+      "variation": "default",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "paragraph_text": [
+          {
+            "type": "heading2",
+            "text": "Why this is a living post",
+            "spans": [],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "This analysis is just another example highlighting the difference between the way the world really works and how people think it works. The latter is almost always a very simplified version of the former. But the former is reality. It is how oil gets to refineries, through those refineries, and into our planes, trains, trucks, and automobiles. And when it is all said and done, this is what matters for the people.",
+            "spans": [],
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "text": "And that\u2019s the reason why we are making this Data 4 Thought a living post. We will update this each week when the data drops so we can all see shipping rates. The data is technically public but buried in hundreds of individual files. We put that together for you so we can see it all: the good, the bad, and the (right now) very ugly.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      }
+    }
+  ],
+  "schema": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Article\",\n  \"headline\": \"Turns out oil is close to $150, in real life, not on your screen\",\n  \"description\": \"\",\n  \"datePublished\": \"2026-09-15T07:00:00-04:00\",\n  \"dateModified\": \"2026-09-15T07:00:00-04:00\",\n  \"articleSection\": \"Data 4 Thought\",\n  \"inLanguage\": \"en-US\",\n  \"isAccessibleForFree\": true,\n  \"author\": {\n    \"@type\": \"Person\",\n    \"name\": \"Eric Pachman\",\n    \"url\": \"https://www.data4thepeople.com/authors/eric-pachman\"\n  },\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"Data 4 The People\",\n    \"url\": \"https://data4thepeople.com\"\n  },\n  \"mainEntityOfPage\": {\n    \"@type\": \"WebPage\",\n    \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates\"\n  }\n}"
+}
