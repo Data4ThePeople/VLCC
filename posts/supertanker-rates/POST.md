@@ -40,6 +40,8 @@ The chart below is a free interactive visualization of weekly VLCC earnings on t
 
 <iframe src="https://data4thepeople.github.io/VLCC/dist/index.html" width="100%" height="780" style="border:0" title="What a supertanker earns in a day"></iframe>
 
+::: spacer 40px
+
 ## Why it matters, and how it happened
 
 So, why does this matter? Because unlike most investors think, oil's true form is not a number on a spreadsheet or website. To actually get oil, you need to ship it across the globe, especially so for countries like Japan, which [imports more than 99% of its oil](https://www.enecho.meti.go.jp/en/category/special/article/energyissue2019_01.html), most of it from the Middle East. And that transport now costs over $862,000 per day for a very large crude carrier.
