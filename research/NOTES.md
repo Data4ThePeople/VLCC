@@ -710,6 +710,18 @@ shows the brake on it.
   and keep the inventory claim to Chapman's quote or an EIA weekly stocks
   figure with a date.
 
+
+**o. Japan source (2e).** METI's Agency for Natural Resources and Energy:
+"Ratios of dependence on imports for fossil fuels in 2018 were 99.7% for
+oil" and "About 88% of crude oil is imported from the Middle East" (2019
+special content page, linked in the post). METI brochure Japan's Energy
+2024: "Japan depends on the Middle East for more than 90% of its crude oil
+imports." Argus, citing METI: Middle Eastern crude was 94% of Japan's crude
+imports in 2025; PAJ says more than 90%.
+https://www.enecho.meti.go.jp/en/category/special/article/energyissue2019_01.html
+https://www.enecho.meti.go.jp/en/category/brochures/pdf/japan_energy_2024.pdf
+https://www.argusmedia.com/en/news-and-insights/latest-market-news/2829724-japan-must-lower-dependence-on-middle-east-crude-paj
+
 ## 5. Numbers to reuse (recomputed from the data)
 
 See `research/TIEOUT.md`, produced by `scripts/build.py`, for the list. The

@@ -181,7 +181,18 @@
           {
             "type": "paragraph",
             "text": "So, why does this matter? Because unlike most investors think, oil's true form is not a number on a spreadsheet or website. To actually get oil, you need to ship it across the globe, especially so for countries like Japan, which imports more than 99% of its oil, most of it from the Middle East. And that transport now costs over $862,000 per day for a very large crude carrier.",
-            "spans": [],
+            "spans": [
+              {
+                "start": 229,
+                "end": 261,
+                "type": "hyperlink",
+                "data": {
+                  "link_type": "Web",
+                  "url": "https://www.enecho.meti.go.jp/en/category/special/article/energyissue2019_01.html",
+                  "target": "_blank"
+                }
+              }
+            ],
             "direction": "ltr"
           },
           {
