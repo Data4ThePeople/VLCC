@@ -59,6 +59,8 @@ Now the second column, the way the oil actually moves. Most Gulf crude that leav
 
 Now look at the top line of that column. Murban, the crude that loads at Fujairah, was $131 a barrel on September 14. Dubai, the benchmark for Gulf crude inside the strait, was $115. Brent on the screen was $106. Murban normally trades within a dollar or two of Brent. The extra $25 is the price of a barrel that can actually be shipped. In our view that is the most important number in the table: buyers are paying for access to the strait in the price of the oil, not just in the price of the ship. It is also why the two Gulf columns end up within a few dollars of each other. One pays the toll in freight and insurance, the other pays it at the loading port.
 
+The third column is the barrel that stays out of it. A cargo from the US Gulf pays no war-risk premium and lands in China at about $123, which is why Asian refiners have been buying more of them. Even so, its freight is about $15 a barrel, roughly ten times a normal year. In day-rate terms that trip was paying a supertanker $210,000 to $275,000 a day in the second week of September, over a round trip of about 90 days around the Cape of Good Hope. The crisis has made every tanker on earth expensive, not just the ones near the strait.
+
 So the honest answer to “what does oil cost” is that it depends on where you are standing. The screen says about $106. A refiner in China pays about $140 for the same barrel, and up to $166 if it has to come out through the strait. The $35 to $60 in between is the shipping story, and none of it shows up in the number on the screen.
 
 ## Close to $150, in real life
