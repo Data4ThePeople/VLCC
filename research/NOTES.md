@@ -515,6 +515,40 @@ https://lmalloyds.com/safety-concerns-not-insurance-availability-driving-reduced
 https://finance.yahoo.com/news/marine-insurers-cancel-war-risk-082111845.html
 https://www.weforum.org/stories/2026/04/how-middle-east-war-turning-governments-into-insurers-last-resort/
 
+**k2. Cargo war-risk cover, the oil itself.** No published 2026 rate was
+found for crude cargoes through Hormuz, and every broker piece prices the
+ship, not the oil. What the sources do say: Howden Re's March 26 report lists
+cargo war risk for energy and bulk commodities as "available at standard
+rates" before the war and "voyage-by-voyage basis only, significant
+increase, +50% to more than 1,000%" after it, and adds that "the cargo could
+now be worth almost the same value as the ship that carries it, possibly
+doubling the insurance premium if the cargo is also insured by the
+shipowner." Al Jazeera (July 23) quotes 0.5% for Bab al-Mandeb transits and
+0.1% in the northern Red Sea, which is the nearest published crisis rate.
+Pre-war, cargo war risk on a Gulf voyage was a few hundredths of a percent.
+
+Our arithmetic, labeled as an estimate:
+
+| Cargo | Value | Rate assumed | Premium | Per barrel |
+|---|---|---|---|---|
+| 1.98 million barrels of Murban at $131 on a VLCC loading at Fujairah, never entering the strait | $259 million | 0.5% to 1% | $1.3 million to $2.6 million | $0.65 to $1.30 |
+| Same cargo if the VLCC transited Hormuz at hull-like rates of 7.5% to 12.5% (Howden's "doubling") | $259 million | 7.5% to 12.5% | $19 million to $32 million | $10 to $16 |
+| 700,000 barrels at $115 on a shuttle Aframax through the strait, if commercially insured | $80 million | 7.5% to 12.5% | $6 million to $10 million | $9 to $14 |
+
+For the route in use, the cargo line on the big ship is small, roughly $1 a
+barrel. The exposure sits on the shuttle leg, where cargo cover at
+hull-like rates would add as much again as the hull cover. In practice most
+of that oil moves on Gulf-state, Iranian and US-escorted ships, and the
+producers self-insure or run without cover, so treat the shuttle lines as
+what a commercial charterer would face rather than what is being paid.
+
+With cargo cover added, the landed cost in section l becomes about $141 to
+$145 for the Murban barrel, and $135 to about $162 for a shuttled Saudi
+barrel if every leg were commercially insured. Use the Murban figure in the
+post; it is the one built on published numbers.
+https://www.howdenre.com/sites/howdenre.howdenprod.com/files/2026-03/HowdenRe_Strait_of_Hormuz_report_March272026.pdf
+https://www.aljazeera.com/economy/2026/7/23/how-shipping-insurance-rates-are-rising-as-hormuz-bab-al-mandeb-shut-down
+
 **l. The whole bill: delivered cost of a barrel in China, mid-September 2026.**
 Adding sections i, j and k. Prices are dated; freight and insurance are
 ranges from the published figures and our arithmetic above. Cargo war-risk
