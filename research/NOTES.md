@@ -391,6 +391,21 @@ down 0.8 mb/d in March, 1.5 mb/d more in Q2). Rates fell by about half in
 the two months after the March peak when traffic partially resumed, then
 tripled again when it did not hold (chart).
 
+**h. The two $150 calls, for the intro.** In June 2008 Morgan Stanley told
+clients crude could reach $150 by July 4, citing Asian demand and falling
+inventories; WTI peaked at $147 on July 11 and never got there. In May 2026
+Exxon's Neil Chapman warned that physical Brent cargoes would spike to $150
+to $160 once inventories hit record lows. On the futures screen Brent is
+about $108 in mid-September, so on paper that call has not come true either.
+Landed in Asia it has: Murban at Fujairah was about $131 on September 14
+(ICE Futures Abu Dhabi, 16-minute delay) and the Gulf of Oman to China
+freight about $11.50 a barrel, so a Gulf barrel that can actually leave
+costs roughly $142 delivered before war-risk insurance. Dubai was about $115
+(Platts, three-day lag), above Brent, which it normally trades below. Date
+every one of these prices in the post.
+https://www.cnbc.com/2026/05/28/oil-inventory-exxon-strait-hormuz-iran-war.html
+https://www.forbes.com/2008/06/06/oil-energy-update-markets-comm-cx_cg_0606markets27.html
+
 ## 5. Numbers to reuse (recomputed from the data)
 
 See `research/TIEOUT.md`, produced by `scripts/build.py`, for the list. The
