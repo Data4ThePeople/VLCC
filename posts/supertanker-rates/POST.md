@@ -6,9 +6,9 @@ date: 2026-09-15
 section: Data 4 Thought
 hero: images/supertanker-rates-hero-1680x1080.png
 hero_alt: A supertanker made entirely of polished gold sails across a deep blue ocean in low afternoon sun, seen from above at a three-quarter angle. The long, low hull rides deep in the water, with gold pipework across the deck and a gold bridge and funnel at the stern. Whitecaps break at the bow and a golden reflection spreads across the water beside the hull under a clear sky.
-meta_title:
-description:
-keywords:
+meta_title: VLCC Rates: What a Supertanker Earns a Day, Updated Weekly
+description: Weekly VLCC supertanker rates since 2019 in one interactive chart, plus what shipping and insurance add to the real cost of a barrel of oil. Updated weekly.
+keywords: VLCC rates, supertanker rates, crude oil shipping rates, history of oil shipping rates, how oil delivery works, oil tanker freight rates, Strait of Hormuz shipping, cost to ship a barrel of oil
 schema_type: article
 drop_cap: true
 heading_spacer: 20px
