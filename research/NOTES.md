@@ -566,6 +566,18 @@ war-risk lines are estimates (no published rate; see k2).
 | **Landed in China** | **about $141 to $145** | **about $145 to $163** | **about $123** |
 | Days at sea | about 17 | about 17 plus the shuttle | about 45 (US Gulf to China via the Cape) |
 
+Priced straight off the headline rate instead (added Sep 14 after Eric asked
+why the $862,150 was not in the table): a Ras Tanura barrel at Dubai $115,
+freight $18.60 to $22 (the TD3C day rate times a 40-day round trip plus
+about $2 million of fuel and port costs, over 1.98 million barrels; or WS
+821 times the flat rate), hull war-risk for the transit $5 to $13, cargo
+cover at hull-like rates $10 to $16, lands at about $149 to $166. That is
+within a few dollars of the shuttle model above, which is reassuring: two
+ways of pricing the same barrel land in the same place. Possible overlap:
+the Baltic says its TD3C assessment already carries a risk premium for
+entering the strait, so the low end is the more likely figure. The post's
+table now uses this column in place of the shuttle column.
+
 Two cautions. The shuttle column is the most uncertain line in the notes:
 much of that crude moves on Gulf-state, Iranian or US-escorted ships that
 carry their own risk, so the insurance line is what a commercial charterer
