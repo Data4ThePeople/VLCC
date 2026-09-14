@@ -424,6 +424,43 @@ premium for a barrel that can leave the Gulf at all. That gap is what the
 tanker chart measures. Keep the claim to Gulf crude: "$150 in Asia" holds
 for a Fujairah barrel, not for every barrel. Date every price.
 
+**j. The math on the route in use now: Gulf of Oman to China.** Gulf crude
+that leaves today loads outside Hormuz, either grades that already load
+there (Murban at Fujairah) or barrels shuttled out of the Gulf by smaller
+tankers and transferred ship-to-ship. The published freight for that leg is
+the Baltic's Gulf of Oman to China route, WS 450 on September 11, which
+Reuters put at about $11.50 a barrel.
+
+Voyage assumptions (ours, stated so they can be checked): Fujairah to Ningbo
+about 5,400 nautical miles via Malacca; 13 knots laden, 13.5 in ballast; four
+days in port; 270,000-tonne cargo, 7.33 barrels a tonne, 1.98 million
+barrels; bunkers 70 tonnes a day laden, 55 in ballast, at $650 a tonne.
+
+| | Value |
+|---|---|
+| Sailing time, Fujairah to Ningbo, laden | about 17 days |
+| Round trip including port time | about 38 days |
+| Freight at WS 450 (2026 flat rate backed out of the Reuters figure, about $18.70 a tonne) | $84 a tonne, $22.8 million a cargo, $11.50 a barrel |
+| Same cargo at the Lloyd's List Oman to China earnings of $358,201 a day (Sep 9) | $15.6 million, about $7.90 a barrel |
+| Cost of each extra day at sea, per barrel | $0.18 to $0.23 |
+| For comparison, the TD3C assessment (Ras Tanura, WS 821.11, about 5,750 nm, 40-day round trip) | $18.50 to $22 a barrel |
+| For comparison, Yanbu around the Cape to Ningbo | about 11,200 nm, 36 days laden, 76-day round trip |
+
+The two Gulf of Oman figures differ because the market rose between
+September 9 and 11 and because Reuters' conversion assumes a flat rate we
+cannot see. Use "$8 to $11.50 a barrel, about 17 days at sea" for the post.
+
+If the barrel starts inside the Gulf, add the shuttle: an Aframax at roughly
+$150,000 a day for a six-day round trip carrying 700,000 barrels, war-risk
+cover of $1 to $2 million per transit, and ship-to-ship fees, which comes to
+roughly $3 to $5 a barrel on top. This is our estimate; no published figure
+was found, so mark it as an estimate or leave it out.
+
+So the landed cost of a Murban barrel in China on September 14 is about
+$131 plus $8 to $11.50, or $139 to $143, before war-risk insurance on the
+main leg. A Saudi barrel shuttled out of the Gulf would be a few dollars
+more.
+
 ## 5. Numbers to reuse (recomputed from the data)
 
 See `research/TIEOUT.md`, produced by `scripts/build.py`, for the list. The
