@@ -564,7 +564,7 @@ war-risk lines are estimates (no published rate; see k2).
 | Cargo war-risk cover on the oil, shuttle leg (estimate, if commercially insured) | none | $9 to $14 | none |
 | Cargo war-risk cover on the oil, VLCC leg (estimate, 0.5% to 1%) | $0.65 to $1.30 | $0.65 to $1.30 | none |
 | **Landed in China** | **about $141 to $145** | **about $145 to $163** | **about $123** |
-| Days at sea | about 17 | about 17 plus the shuttle | about 45 (US Gulf to China via the Cape) |
+| Round trip for the ship | about 40 days (Ras Tanura) or 38 (Fujairah) | about 38 plus the shuttle | about 90 (US Gulf to China via the Cape and back) |
 
 Priced straight off the headline rate instead (added Sep 14 after Eric asked
 why the $862,150 was not in the table): a Ras Tanura barrel at Dubai $115,

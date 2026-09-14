@@ -20,7 +20,7 @@ rows = [
     ("War-risk cover on the ship, one transit", "$5 to $13", "about $1", "none"),
     ("War-risk cover on the oil itself", "$10 to $16*", "$0.65 to $1.30*", "none"),
     ("Landed in China", "$149 to $166", "$141 to $145", "about $123"),
-    ("Days at sea, loading port to China", "about 19", "about 17", "about 45"),
+    ("Round trip for the ship, days", "about 40", "about 38", "about 90"),
 ]
 
 fig = plt.figure(figsize=(12, 6.9), dpi=150)
