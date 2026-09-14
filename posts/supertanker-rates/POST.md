@@ -13,7 +13,7 @@ schema_type: article
 drop_cap: true
 heading_spacer: 20px
 caption_spacer: 20px
-dividers: true
+dividers: false
 ---
 
 # Turns out oil is close to $150, in real life, not on your screen
