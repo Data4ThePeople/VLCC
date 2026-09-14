@@ -18,6 +18,7 @@ Turns out oil is close to $150, in real life, not on your screen
 
 ## 3. Body
 
+```
 In August 2008 I started at Morgan Stanley on the commodity shipping team, one month after the day rate for a supertanker peaked at $196,200. Within a year it had fallen 96%. The shipping industry is supply and demand on steroids, and its swings cascade through the global economy.
 
 Which is why I pulled this data for you. Since the Iran war started, the rate to hire a very large crude carrier on the Middle East to China run has gone vertical. It now sits at $862,150 a day. Anything over $200,000 used to be nosebleed territory. Today's rate is 331% above that mark.
@@ -27,6 +28,7 @@ Why does it matter? Oil is not a number on a screen. To use it, someone has to s
 Back in May, an Exxon executive warned that physical oil cargoes would spike to $150 to $160. On the screen, it never happened. At the refinery gate, it did. The difference is the ship.
 
 This is a living post. The chart updates every Friday when the new rate is published.
+```
 
 ## 4. Chart
 
