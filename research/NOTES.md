@@ -461,6 +461,60 @@ $131 plus $8 to $11.50, or $139 to $143, before war-risk insurance on the
 main leg. A Saudi barrel shuttled out of the Gulf would be a few dollars
 more.
 
+**k. War-risk insurance: how much, and whether it can be had.** War-risk
+cover is a separate policy from hull insurance, bought per transit of a
+listed area and quoted day by day. Underwriters can cancel it on seven days'
+notice (Lloyd's wordings) or 48 hours (US wordings), which is what happened
+on March 1, when Gard, Skuld, NorthStandard, the London Club and the
+American Club gave notice effective March 5. The Joint War Committee listed
+the whole Arabian Gulf as a conflict zone that week.
+
+Premiums, as a share of the ship's insured value, per transit:
+
+| When | Rate | Source |
+|---|---|---|
+| Before Feb 28, 2026 | about 0.25% (some say 0.15%) | The National, Hormuz Strait Monitor |
+| Mar 11 | 2.5% for a plain Hormuz transit; 5% to 10% for ships with a US, UK or Israeli connection; "10% minimum" after a bad night | Lloyd's List |
+| July | 3% to 10%; up from 1% to 3% a few weeks earlier | The National, Jul 17; S&P Global on Marsh, Jul 22 |
+| Sep 8, before the tanker strikes | 7.5% to 12.5% | Breakwave bi-weekly report |
+| 1980s tanker war, for scale | about 5% | Lloyd's List |
+
+Dollars per barrel, our arithmetic on a 1.98-million-barrel VLCC:
+
+| Ship and leg | Insured value | Premium per transit | Per barrel |
+|---|---|---|---|
+| VLCC through Hormuz at 7.5% to 12.5% | $138 million (Lloyd's List's five-year-old example) | $10 million to $17 million | $5 to $9 |
+| Same, on a $210 million modern VLCC | $210 million | $16 million to $26 million | $8 to $13 |
+| VLCC loading at Fujairah, never entering the strait, at roughly 1% for static tonnage in the listed area | $138 million to $210 million | $1.4 million to $2.1 million | about $1 |
+| Aframax shuttle through the strait, 700,000 barrels, at 7.5% to 12.5% | $80 million to $100 million | $6 million to $12.5 million | $9 to $18 |
+
+Lloyd's List's own March example: $10 million to $14 million for a US-linked
+VLCC transit, "to the charterer's rather than owner's account." So on the
+route in use now, the cover on the big ship is cheap (about $1 a barrel)
+and the cost sits on the shuttle leg inside the Gulf, where it can exceed
+the freight itself. That is why so much Gulf crude moves under US escort or
+on Gulf-state and Iranian ships that carry their own risk, and why the STS
+model took over. Cargo war-risk cover (on the oil rather than the ship) is
+priced separately; no published figure was found.
+
+Can it be had? Yes, at a price. The Lloyd's Market Association said in
+March that reports of cover being unavailable or unaffordable were "not
+accurate," and Marsh in July described plentiful regional capacity with an
+"inconsistent response" among insurers. In practice quotes are withdrawn
+overnight after an attack, insurers cap their exposure on any one ship, and
+some decline ships with the wrong ownership or flag. The World Economic
+Forum described governments stepping in as insurers of last resort in
+April (the article could not be fetched; verify before citing). Marsh's
+Marcus Baker: "War rates have been on a roller coaster mirroring the
+development of the price of oil."
+https://www.lloydslist.com/LL1156586/Gulf-war-risk-premiums-topping-double-digit-millions-of-dollars-per-trip
+https://www.thenationalnews.com/business/2026/07/17/war-risk-shipping-premium-surges-again-as-tensions-escalate-at-strait-of-hormuz/
+https://www.spglobal.com/energy/en/news-research/latest-news/shipping/072226-middle-east-shipping-insurance-costs-rise-on-hormuz-risks-marsh
+https://www.breakwaveadvisors.com/insights/980026wetreportkju458-ook57
+https://lmalloyds.com/safety-concerns-not-insurance-availability-driving-reduced-vessel-traffic-in-the-strait-of-hormuz/
+https://finance.yahoo.com/news/marine-insurers-cancel-war-risk-082111845.html
+https://www.weforum.org/stories/2026/04/how-middle-east-war-turning-governments-into-insurers-last-resort/
+
 ## 5. Numbers to reuse (recomputed from the data)
 
 See `research/TIEOUT.md`, produced by `scripts/build.py`, for the list. The
