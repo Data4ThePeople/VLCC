@@ -6,7 +6,7 @@ Process: ~/.claude/d4tp-process/PROCESS.md
 ## Current
 
 Post: supertanker-rates
-Step: 2c
+Step: 2d
 Since: 2026-09-14
 
 ## Steps
@@ -16,7 +16,7 @@ Since: 2026-09-14
 | 1  | Exploration and analysis | 2026-09-13 | interactive chart dist/index.html; Brent panel toggle; notes in research/ |
 | 2a | Draft with brackets resolved | 2026-09-14 | headline, table image, delivered-cost section, six headers |
 | 2b | Eric's edit, Claude's look-over | 2026-09-14 | 7 edits applied |
-| 2c | Slice markup | | |
+| 2c | Slice markup | 2026-09-14 | defaults only; 19 slices |
 | 2d | Hero 1680x1080 + alt text | | |
 | 2e | SEO | | |
 | 2f | Pushed to Prismic (draft) | | |
@@ -34,3 +34,4 @@ None.
 - 2026-09-14 GitHub Pages enabled on main. Embed URL: https://data4thepeople.github.io/VLCC/dist/index.html
 - 2026-09-14 Step 2a confirmed. Step 2b opened.
 - 2026-09-14 Step 2b confirmed. Step 2c opened.
+- 2026-09-14 Step 2c confirmed. Step 2d opened.
