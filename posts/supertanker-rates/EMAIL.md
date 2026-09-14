@@ -27,7 +27,7 @@ Why does it matter? Oil is not a number on a screen. To use it, someone has to s
 
 Back in May, an Exxon executive warned that physical oil cargoes would spike to $150 to $160. On the screen, it never happened. At the refinery gate, it did. The difference is the ship.
 
-And there is a twist that should worry anyone watching American oil inventories. A barrel from the Gulf of Mexico now lands in China cheaper than a barrel from the Middle East, so Asian refiners are buying American crude. Each of those cargoes ties up a supertanker for about 90 days instead of 38. Fewer ships are free, freight rises, more Middle East oil gets priced out, and more American barrels get pulled across the Pacific, straight out of American storage tanks. Nothing in that loop needs the war to get worse. In the post, I walk through the whole bill, line by line.
+And there is a twist that should worry anyone watching American oil inventories. A barrel from the Gulf of Mexico now lands in China cheaper than a barrel from the Middle East, so Asian refiners have the incentive to buy American crude. Each of those cargoes ties up a supertanker for about 90 days instead of 38. Fewer ships are free, freight rises, more Middle East oil gets priced out, and more American barrels get pulled across the Pacific, straight out of American storage tanks. Nothing in that loop needs the war to get worse. In the post, I walk through the whole bill, line by line.
 
 This is a living post. The chart updates every Friday when the new rate is published.
 ```
