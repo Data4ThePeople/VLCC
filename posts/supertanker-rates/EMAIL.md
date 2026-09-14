@@ -10,7 +10,10 @@ Preview:  Supertankers now earn $862,150 a day. Here is what that does to a barr
 ## 1. Hero
 
 `images/supertanker-rates-hero-1680x1080.png`, linked to the post. Email export: `images/supertanker-rates-hero-email.jpg` (JPG under 300KB).
-Alt: A supertanker made entirely of polished gold sails across a deep blue ocean in low afternoon sun, seen from above at a three-quarter angle. The long, low hull rides deep in the water, with gold pipework across the deck and a gold bridge and funnel at the stern. Whitecaps break at the bow and a golden reflection spreads across the water beside the hull under a clear sky.
+Alt:
+```
+A supertanker made entirely of polished gold sails across a deep blue ocean in low afternoon sun, seen from above at a three-quarter angle. The long, low hull rides deep in the water, with gold pipework across the deck and a gold bridge and funnel at the stern. Whitecaps break at the bow and a golden reflection spreads across the water beside the hull under a clear sky.
+```
 
 ## 2. Headline
 
@@ -27,7 +30,10 @@ Which is why I pulled this data for you. Since the Iran war started, the rate to
 ## 4. Chart
 
 `images/01-vlcc-earnings-weekly.png`
-Alt: Line chart of what a supertanker earns per day on the Middle East to China run, weekly from March 2019 to September 2026. Earlier peaks near $270,000 in October 2019 and March 2020 are dwarfed by the 2026 spike, which reaches $862,150 a day on September 11, 2026.
+Alt:
+```
+Line chart of what a supertanker earns per day on the Middle East to China run, weekly from March 2019 to September 2026. Earlier peaks near $270,000 in October 2019 and March 2020 are dwarfed by the 2026 spike, which reaches $862,150 a day on September 11, 2026.
+```
 
 ## 5. Body, part two
 
