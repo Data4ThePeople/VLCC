@@ -6,7 +6,7 @@ Process: ~/.claude/d4tp-process/PROCESS.md
 ## Current
 
 Post: supertanker-rates
-Step: 2g
+Step: complete
 Since: 2026-09-14
 
 ## Steps
@@ -20,7 +20,7 @@ Since: 2026-09-14
 | 2d | Hero 1680x1080 + alt text | 2026-09-14 | gold VLCC, AI image, center crop |
 | 2e | SEO | 2026-09-14 | meta, keywords, FAQ schema, internal links, METI source |
 | 2f | Pushed to Prismic (draft) | 2026-09-14 | doc aqhiwxEAACoAjvRa, Migration Release |
-| 2g | Mailchimp teaser | | |
+| 2g | Mailchimp teaser | 2026-09-14 | EMAIL.md approved; email hero JPG exported |
 
 ## Stale
 
@@ -39,3 +39,4 @@ None.
 - 2026-09-14 Step 2e confirmed. Step 2f opened.
 - 2026-09-14 2c rule change: dividers off, 20px spacers above section headings. Re-converted and re-pushed the Prismic draft (same document).
 - 2026-09-14 Step 2f confirmed. Step 2g opened.
+- 2026-09-14 Step 2g confirmed. Post complete. Weekly updates continue via scripts/update.py.
