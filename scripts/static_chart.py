@@ -70,8 +70,8 @@ for s in ("top", "right", "left"):
 ax.spines["bottom"].set_color(GRID)
 ax.tick_params(length=0, labelsize=10.5)
 ax.set_ylabel("US dollars per day", fontsize=10.5, color=MUTED)
-fig.text(0.085, 0.955, "What a supertanker earns in a day", fontsize=17, fontweight="bold", color=INK, va="top")
-fig.text(0.085, 0.905, "Weekly earnings for a very large crude carrier, Middle East to China, since 2019",
+fig.text(0.085, 0.955, "VLCC time charter rates, by the day", fontsize=17, fontweight="bold", color=INK, va="top")
+fig.text(0.085, 0.905, "Weekly time charter rates for a very large crude carrier, Middle East to China, since 2019",
          fontsize=11.5, color=MUTED, va="top")
 fb = [p for p in D["fearnleys"]["points"] if p["tce"] is not None]
 def span(p): return f"{date.fromisoformat(p[0]['d']).strftime('%b %Y')} to {date.fromisoformat(p[-1]['d']).strftime('%b %Y')}"
