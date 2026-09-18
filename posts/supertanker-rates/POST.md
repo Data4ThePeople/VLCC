@@ -19,6 +19,11 @@ dividers: false
 
 # Turns out oil is close to $150, in real life, not on your screen
 
+::: blurb
+Please note: this post was first published on September 14, 2026. All of the text, and the numbers in the static table, describe the market as it stood that week. The interactive chart is live and updates every Friday with the latest VLCC rate from the Baltic Exchange. As time passes, the chart and the text will drift apart. Keep that in mind as you read.
+:::
+
+::: dropcap
 In August of 2008 I started working for Morgan Stanley in Times Square as an associate in their sell side equity research department. I was assigned to the oilfield services and commodity shipping team.
 
 One of my first orders of business was to learn all types of ships that are used to transport oil and “dry bulk” products (think, iron ore and coal). I still recall my boss handing me a book called “The Ships of the World.” It was like one of those pamphlets you get at a baseball game detailing all the players on the team, except instead of players, it was the majestic ships that transport our bulk products all over the globe.

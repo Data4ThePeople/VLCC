@@ -9,6 +9,23 @@
   "make_this_main_post": false,
   "slices": [
     {
+      "slice_type": "highlited_page_blurb",
+      "slice_label": null,
+      "variation": "noTitle",
+      "version": "initial",
+      "items": [],
+      "primary": {
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Please note: this post was first published on September 14, 2026. All of the text, and the numbers in the static table, describe the market as it stood that week. The interactive chart is live and updates every Friday with the latest VLCC rate from the Baltic Exchange. As time passes, the chart and the text will drift apart. Keep that in mind as you read.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    {
       "slice_type": "drop_cap",
       "slice_label": null,
       "variation": "default",
@@ -152,7 +169,7 @@
         "html_content": [
           {
             "type": "preformatted",
-            "text": "<iframe src=\"https://data4thepeople.github.io/VLCC/dist/index.html\" width=\"100%\" height=\"780\" style=\"border:0\" title=\"What a supertanker earns in a day\"></iframe>",
+            "text": "<style>html,body{margin:0;padding:0;overflow:hidden}iframe{display:block}</style><iframe src=\"https://data4thepeople.github.io/VLCC/dist/index.html\" width=\"100%\" height=\"780\" style=\"border:0\" title=\"What a supertanker earns in a day\"></iframe>",
             "spans": [],
             "direction": "ltr"
           }
@@ -263,7 +280,13 @@
           {
             "type": "paragraph",
             "text": "Prices dated September 11 to 14, 2026. Lines marked with an asterisk are our estimates; no published rate exists for them.",
-            "spans": [],
+            "spans": [
+              {
+                "start": 0,
+                "end": 122,
+                "type": "em"
+              }
+            ],
             "direction": "ltr"
           }
         ]
@@ -640,5 +663,5 @@
       "height": 1080
     }
   },
-  "schema": "{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"Article\",\n      \"headline\": \"Turns out oil is close to $150, in real life, not on your screen\",\n      \"description\": \"Weekly VLCC supertanker rates since 2019 in one interactive chart, plus what shipping and insurance add to the real cost of a barrel of oil. Updated weekly.\",\n      \"image\": \"https://images.prismic.io/data4thepeople/vZhFpEudglinXjlY_supertanker-rates-hero-1680x1080.png?auto=format,compress\",\n      \"datePublished\": \"2026-09-14T17:30:00-04:00\",\n      \"dateModified\": \"2026-09-14T17:30:00-04:00\",\n      \"articleSection\": \"Data 4 Thought\",\n      \"inLanguage\": \"en-US\",\n      \"isAccessibleForFree\": true,\n      \"keywords\": [\n        \"VLCC rates\",\n        \"supertanker rates\",\n        \"crude oil shipping rates\",\n        \"history of oil shipping rates\",\n        \"how oil delivery works\",\n        \"oil tanker freight rates\",\n        \"Strait of Hormuz shipping\",\n        \"cost to ship a barrel of oil\"\n      ],\n      \"author\": {\n        \"@type\": \"Person\",\n        \"name\": \"Eric Pachman\",\n        \"url\": \"https://www.data4thepeople.com/authors/eric-pachman\"\n      },\n      \"publisher\": {\n        \"@type\": \"Organization\",\n        \"name\": \"Data 4 The People\",\n        \"url\": \"https://data4thepeople.com\"\n      },\n      \"mainEntityOfPage\": {\n        \"@type\": \"WebPage\",\n        \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates\"\n      },\n      \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates#article\"\n    },\n    {\n      \"@type\": \"FAQPage\",\n      \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates#faq\",\n      \"mainEntity\": [\n        {\n          \"@type\": \"Question\",\n          \"name\": \"What is a VLCC?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"A VLCC, or very large crude carrier, is the largest class of oil tanker in regular service. It carries about two million barrels of crude oil, is about 1,100 feet long, and is the workhorse of the long-haul trade from the Middle East to Asia.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"What does a VLCC day rate mean?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"The day rate is what the ship earns per day after paying for fuel and port fees, spread over a full round trip, ballast leg included. Brokers call it the time charter equivalent. The figure quoted in the news, and in this chart, is the Baltic Exchange's assessment for the TD3C route from Ras Tanura in Saudi Arabia to Ningbo in China.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"How much does it cost to ship a barrel of oil from the Middle East to China right now?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"In mid-September 2026, about $8 to $11.50 a barrel for a supertanker loading just outside the Strait of Hormuz, which is how most Middle East crude is moving, and $18.60 to $22 a barrel at the headline rate for a ship loading inside the strait. War-risk insurance comes on top. In a normal year the trip costs $1 to $2 a barrel.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"How often is this chart updated?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"Every week. The Baltic Exchange publishes its weekly tanker report on Fridays, and the chart is updated when the new rate is out.\"\n          }\n        }\n      ]\n    }\n  ]\n}"
+  "schema": "{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"Article\",\n      \"headline\": \"Turns out oil is close to $150, in real life, not on your screen\",\n      \"description\": \"Weekly VLCC supertanker rates since 2019 in one interactive chart, plus what shipping and insurance add to the real cost of a barrel of oil. Updated weekly.\",\n      \"image\": \"https://images.prismic.io/data4thepeople/vZhFpEudglinXjlY_supertanker-rates-hero-1680x1080.png?auto=format,compress\",\n      \"datePublished\": \"2026-09-14T17:30:00-04:00\",\n      \"dateModified\": \"2026-09-14T17:30:00-04:00\",\n      \"articleSection\": \"Data 4 Thought\",\n      \"license\": \"https://www.data4thepeople.com/terms-of-use\",\n      \"inLanguage\": \"en-US\",\n      \"isAccessibleForFree\": true,\n      \"keywords\": [\n        \"VLCC rates\",\n        \"supertanker rates\",\n        \"crude oil shipping rates\",\n        \"history of oil shipping rates\",\n        \"how oil delivery works\",\n        \"oil tanker freight rates\",\n        \"Strait of Hormuz shipping\",\n        \"cost to ship a barrel of oil\"\n      ],\n      \"author\": {\n        \"@type\": \"Person\",\n        \"name\": \"Eric Pachman\",\n        \"url\": \"https://www.data4thepeople.com/authors/eric-pachman\"\n      },\n      \"publisher\": {\n        \"@type\": \"Organization\",\n        \"name\": \"Data 4 The People\",\n        \"url\": \"https://data4thepeople.com\"\n      },\n      \"mainEntityOfPage\": {\n        \"@type\": \"WebPage\",\n        \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates\"\n      },\n      \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates#article\"\n    },\n    {\n      \"@type\": \"FAQPage\",\n      \"@id\": \"https://www.data4thepeople.com/p/supertanker-rates#faq\",\n      \"mainEntity\": [\n        {\n          \"@type\": \"Question\",\n          \"name\": \"What is a VLCC?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"A VLCC, or very large crude carrier, is the largest class of oil tanker in regular service. It carries about two million barrels of crude oil, is about 1,100 feet long, and is the workhorse of the long-haul trade from the Middle East to Asia.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"What does a VLCC day rate mean?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"The day rate is what the ship earns per day after paying for fuel and port fees, spread over a full round trip, ballast leg included. Brokers call it the time charter equivalent. The figure quoted in the news, and in this chart, is the Baltic Exchange's assessment for the TD3C route from Ras Tanura in Saudi Arabia to Ningbo in China.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"How much does it cost to ship a barrel of oil from the Middle East to China right now?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"In mid-September 2026, about $8 to $11.50 a barrel for a supertanker loading just outside the Strait of Hormuz, which is how most Middle East crude is moving, and $18.60 to $22 a barrel at the headline rate for a ship loading inside the strait. War-risk insurance comes on top. In a normal year the trip costs $1 to $2 a barrel.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"How often is this chart updated?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"Every week. The Baltic Exchange publishes its weekly tanker report on Fridays, and the chart is updated when the new rate is out.\"\n          }\n        }\n      ]\n    }\n  ]\n}"
 }
