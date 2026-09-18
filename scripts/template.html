@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Supertanker Earnings</title>
-<meta name="description" content="What a supertanker earns per day carrying Middle East crude to China, every week since 2019, from the Baltic Exchange and Fearnleys.">
+<title>Supertanker Time Charter Rates</title>
+<meta name="description" content="Weekly VLCC time charter rates, Middle East to China, in US dollars per day since 2019, from the Baltic Exchange and Fearnleys.">
 <style>
 /* Plain white scheme, painted explicitly so the page holds inside the
    Prismic frame whatever the viewer's OS theme. Neutrals lean slightly cool
@@ -133,8 +133,8 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
 <div class="wrap" id="wrap">
   <header class="masthead">
     <a href="https://www.data4thepeople.com" aria-label="Data 4 The People"><img class="logo" alt="Data 4 The People" src="__LOGO__"></a>
-    <h1>What a supertanker earns in a day</h1>
-    <p class="standfirst">Weekly earnings for a very large crude carrier on the Middle East to China run, in US dollars per day, since 2019. Hover or tap a point to read the rate.</p>
+    <h1>VLCC time charter rates, by the day</h1>
+    <p class="standfirst">Weekly time charter rates for a very large crude carrier on the Middle East to China run, in US dollars per day, since 2019. Hover or tap a point to read the rate.</p>
   </header>
 
   <div class="bar">
@@ -226,7 +226,7 @@ html.embed .source { font-size: 11.5px; margin-top: 6px; line-height: 1.35; }
   const latest = bT[bT.length - 1];
   const peak = bT.reduce((m, p) => p.tce > m.tce ? p : m, bT[0]);
   document.getElementById('chart-desc').textContent =
-    `Line chart of weekly VLCC earnings from ${fmtDate(fT[0].d)} to ${fmtDate(latest.d)}. ` +
+    `Line chart of weekly VLCC time charter rates from ${fmtDate(fT[0].d)} to ${fmtDate(latest.d)}. ` +
     `Latest Baltic TD3C reading ${fmtUSD(latest.tce)} a day on ${fmtDate(latest.d)}, the high of the series. ` +
     `Earlier peaks in October 2019 and March 2020 were near $300,000 a day. The weekly table below the chart lists every value.`;
 

@@ -44,7 +44,7 @@ Which is why today I have uncovered this data for you. Below, you will see what 
 
 The chart below is a free interactive visualization of weekly VLCC earnings on the Middle East to China route, from March 2019 to today, built from the Baltic Exchange and Fearnleys weekly tanker reports. Hover over any week to read the rate, and tick the box to add the price of Brent crude, physical cargoes against the futures screen. We update it every Friday when the new rate is published.
 
-<iframe src="https://data4thepeople.github.io/VLCC/dist/index.html" width="100%" height="780" style="border:0" title="What a supertanker earns in a day"></iframe>
+<iframe src="https://data4thepeople.github.io/VLCC/dist/index.html" width="100%" height="780" style="border:0" title="VLCC time charter rates, by the day"></iframe>
 
 ::: spacer 40px
 
