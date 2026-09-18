@@ -3,7 +3,7 @@
   "page_subtitle": "Supertanker rates are at $862,150 a day. Here is what that does to the price of a barrel.",
   "published_date": "2026-09-14",
   "updated_date": "2026-09-14",
-  "meta_title": "VLCC Rates: What a Supertanker Earns a Day, Updated Weekly",
+  "meta_title": "VLCC Time Charter Rates, Updated Weekly",
   "meta_description": "Weekly VLCC supertanker rates since 2019 in one interactive chart, plus what shipping and insurance add to the real cost of a barrel of oil. Updated weekly.",
   "meta_keywords": "VLCC rates, supertanker rates, crude oil shipping rates, history of oil shipping rates, how oil delivery works, oil tanker freight rates, Strait of Hormuz shipping, cost to ship a barrel of oil",
   "make_this_main_post": false,
@@ -142,7 +142,7 @@
           },
           {
             "type": "paragraph",
-            "text": "The chart below is a free interactive visualization of weekly VLCC earnings on the Middle East to China route, from March 2019 to today, built from the Baltic Exchange and Fearnleys weekly tanker reports. Hover over any week to read the rate, and tick the box to add the price of Brent crude, physical cargoes against the futures screen. We update it every Friday when the new rate is published.",
+            "text": "The chart below is a free interactive visualization of weekly VLCC time charter rates on the Middle East to China route, from March 2019 to today, built from the Baltic Exchange and Fearnleys weekly tanker reports. Hover over any week to read the rate, and tick the box to add the price of Brent crude, physical cargoes against the futures screen. We update it every Friday when the new rate is published.",
             "spans": [],
             "direction": "ltr"
           }

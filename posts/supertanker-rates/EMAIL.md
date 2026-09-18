@@ -32,7 +32,7 @@ Which is why I pulled this data for you. Since the Iran war started, the rate to
 `images/01-vlcc-earnings-weekly.png`
 Alt:
 ```
-Line chart of what a supertanker earns per day on the Middle East to China run, weekly from March 2019 to September 2026. Earlier peaks near $270,000 in October 2019 and March 2020 are dwarfed by the 2026 spike, which reaches $862,150 a day on September 11, 2026.
+Line chart of weekly VLCC time charter rates, in dollars per day, on the Middle East to China run, from March 2019 to September 2026. Earlier peaks near $270,000 in October 2019 and March 2020 are dwarfed by the 2026 spike, which reaches $862,150 a day on September 11, 2026.
 ```
 
 ## 5. Body, part two
