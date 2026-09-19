@@ -41,3 +41,4 @@ None.
 - 2026-09-14 Step 2f confirmed. Step 2g opened.
 - 2026-09-14 Step 2g confirmed. Post complete. Weekly updates continue via scripts/update.py.
 - 2026-09-18 Added a "first published September 14, 2026" note at the top of the post (blurb, then the drop cap). Re-converted; Prismic re-push pending (classifier blocked it). Week 38 Baltic report not yet published at 12:42 London time; weekly row still to add.
+- 2026-09-19 Weekly update: week 38 Baltic row added (Sep 18, WS 1,140, TCE \$1,212,503) via the r.jina.ai reader proxy, which gets past the Baltic site block; update.py now tries it first and the parser handles the from/to sentence form. Fearnleys through Sep 18 (WS 1100).

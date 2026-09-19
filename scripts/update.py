@@ -8,9 +8,9 @@
 What it does
   1. Refreshes the Fearnleys daily file (open API, always works).
   2. Adds one Baltic TD3C row for the report date. The Baltic site blocks
-     scripted downloads, so the automatic path tries two mirrors that do not:
-     Hellenic Shipping News, which sometimes republishes the report, and the
-     Wayback Machine. If neither has it, open the report in a browser and pass
+     scripted downloads, so the automatic path goes through the r.jina.ai reader
+     proxy first, then two mirrors: Hellenic Shipping News, which sometimes
+     republishes the report, and the Wayback Machine. If neither has it, open the report in a browser and pass
      --ws and --tce from the VLCC paragraph ("270,000mt Middle East Gulf to
      China ... WS xxx ... round-trip TCE of $yyy"). The Claude desktop app's
      in-app browser can also read the page.
@@ -68,14 +68,23 @@ def parse_vlcc(text):
     if k < 0:
         k = sent.find("China")
     seg = sent[k:]
-    for stop in (" for 280,000", " while ", " whilst ", "260,000", "West Africa", "US Gulf"):
+    for stop in (" for 280,000", " while ", " whilst ", "260,000", "West Africa", "US Gulf", "TD34", "Gulf of Oman", "TD15", "TD22"):
         cut = seg.find(stop)
         if cut > 0:
             seg = seg[:cut]
-    wsre = r"\bW[S]?\s?(\d{2,4}(?:\.\d+)?)(?:\s?[-/]\s?(\d{2,4}(?:\.\d+)?))?"
-    m = re.search(wsre, seg)
+    wsre = r"\bW[S]?\s?(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d{2,4}(?:\.\d+)?)(?:\s?[-/]\s?(\d{2,4}(?:\.\d+)?))?"
+    ms = list(re.finditer(wsre, seg))
+    m = ms[-1] if ms else None             # "from WS929.44 last Friday to WS1,140 on Thursday": the last one is this week's
     if m:
         after = seg[m.end():]
+        # the TCE is often in the next sentence: "This gives a daily round-trip TCE of $1,212,503"
+        nxt = sents[sents.index(sent) + 1] if sents.index(sent) + 1 < len(sents) else ""
+        for stop in ("TD34", "Gulf of Oman", "TD15", "TD22"):
+            cut = nxt.find(stop)
+            if cut > 0:
+                nxt = nxt[:cut]
+        if "TCE" not in after and "TCE" in nxt:
+            after += " " + nxt
     else:                                   # "WS31 (about $11,500 per day) for 270,000mt ME Gulf to China"
         before = sent[:sent.find("270,000")]
         ms = list(re.finditer(wsre, before))
@@ -83,7 +92,7 @@ def parse_vlcc(text):
             return None
         m = ms[-1]
         after = before[m.end():]
-    ws = float(m.group(1))
+    ws = float(m.group(1).replace(",", ""))
     if m.group(2) and 0 < float(m.group(2)) - ws <= 5:
         ws = (ws + float(m.group(2))) / 2
     money = r"(minus\s+|-\s?)?\$\s?(-?)\s?(\d[\d,]*(?:\.\d+)?)\s*(k)?"
@@ -133,6 +142,26 @@ def try_hsn(d):
     return None
 
 
+def try_jina(d):
+    """The r.jina.ai reader proxy fetches the Baltic page server-side and gets
+    past the JavaScript challenge that blocks a direct request (works as of
+    September 2026)."""
+    u = report_url(d)
+    try:
+        t = fetch("https://r.jina.ai/" + u)
+    except Exception as e:
+        print(f"  jina: {e}")
+        return None
+    if "Tanker report" not in t or "VLCC" not in t:
+        print("  jina: page not published yet, or no VLCC text")
+        return None
+    r = parse_vlcc(re.sub(r"\s+", " ", t))
+    if r:
+        print(f"  found via r.jina.ai: {u}")
+        return r, u
+    return None
+
+
 def try_wayback(d):
     u = report_url(d)
     try:
@@ -176,7 +205,7 @@ def main():
         note = a.note or "entered by hand from the Baltic report"
     else:
         print(f"looking for the Baltic report of {d} ...")
-        got = try_hsn(d) or try_wayback(d)
+        got = try_jina(d) or try_hsn(d) or try_wayback(d)
         if not got:
             sys.exit(f"could not fetch the report for {d}. Open {src} and rerun with --ws and --tce.")
         (ws, tce), src = got
