@@ -3,8 +3,8 @@
 Every number below is recomputed from `data/` by `scripts/build.py`.
 Dates are the Friday of the Baltic weekly report unless stated.
 
-- Latest Baltic TD3C: 2026-09-18, WS 1140, $1,212,503 a day.
-- Baltic weekly high: 2026-09-18, $1,212,503 a day.
+- Latest Baltic TD3C: 2026-09-25, WS 1157.5, $1,235,414 a day.
+- Baltic weekly high: 2026-09-25, $1,235,414 a day.
 - Baltic 2026-02-27: WS 216.89, $209,550 a day.
 - Baltic 2026-03-06: WS 473.33, $485,959 a day.
 - Baltic 2026 low between May and July: 2026-07-03, $286,500 a day.
@@ -12,11 +12,11 @@ Dates are the Friday of the Baltic weekly report unless stated.
 - Baltic 2022 to 2025 average: $36,402 a day over 196 weeks.
 - Baltic weekly high before 2026: 2025-11-28, $138,266 a day.
 - Baltic first reading: 2020-12-04; first with a dollar figure: 2020-12-04.
-- Baltic weeks with TCE: 271 of 278 rows; flagged rows: 24.
+- Baltic weeks with TCE: 272 of 279 rows; flagged rows: 24.
 - Baltic gaps longer than a week: 16: 2020-12-18 to 2021-01-08; 2021-03-19 to 2021-04-09; 2021-04-09 to 2021-04-30; 2021-06-11 to 2021-06-25; 2021-10-15 to 2021-11-05; 2021-12-17 to 2022-01-07; 2022-04-08 to 2022-04-22; 2022-05-27 to 2022-06-10; 2022-12-16 to 2023-01-06; 2023-03-31 to 2023-04-14; 2023-12-15 to 2024-01-05; 2024-03-22 to 2024-04-05; 2024-12-20 to 2025-01-10; 2025-04-11 to 2025-04-25; 2025-12-19 to 2026-01-09; 2026-03-27 to 2026-04-10
 
 - Fearnleys dollar series: 2019-03-15 to 2023-04-21, 214 weekly points.
-- Fearnleys Worldscale series: 2018-05-18 to 2026-09-18, 435 weekly points; latest WS 1140.
+- Fearnleys Worldscale series: 2018-05-18 to 2026-09-25, 436 weekly points; latest WS 1150.
 - Fearnleys 2019 high: weekly 2019-10-11 $269,000; daily 2019-10-11 $269,000.
 - Fearnleys 2020 high: weekly 2020-03-13 $227,100; daily 2020-03-16 $239,500.
 - Overlap weeks with both dollar figures: 102 (2020-12-04 to 2023-04-21); median absolute gap $827, max $13,571.
@@ -34,4 +34,4 @@ Dates are the Friday of the Baltic weekly report unless stated.
 - Brent physical minus futures 2022: average +2.00, widest +11.10 on 2022-07-15.
 - Brent physical minus futures 2026: average +3.71, widest +28.94 on 2026-04-07.
 
-Cross-series comparisons are editorial, not published: the Sept 2026 Baltic high is 3.7 times the Baltic TD3C March 2020 peak quoted by Hellenic Shipping News (above $326,000) and 4.0 times the Oct 11, 2019 Baltic figure quoted by Lloyd's List ($300,391).
+Cross-series comparisons are editorial, not published: the Sept 2026 Baltic high is 3.8 times the Baltic TD3C March 2020 peak quoted by Hellenic Shipping News (above $326,000) and 4.1 times the Oct 11, 2019 Baltic figure quoted by Lloyd's List ($300,391).
