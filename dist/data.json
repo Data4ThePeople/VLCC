@@ -1,5 +1,5 @@
 {
- "built": "2026-09-19",
+ "built": "2026-09-25",
  "baltic": {
   "name": "Baltic Exchange TD3C",
   "publisher": "Baltic Exchange",
@@ -1673,6 +1673,12 @@
     "ws": 1140.0,
     "tce": 1212503,
     "note": "from the week 38 report via r.jina.ai; report says WS929.44 on Friday Sep 11 vs WS821.11 quoted for Thursday in the week 37 report"
+   },
+   {
+    "d": "2026-09-25",
+    "ws": 1157.5,
+    "tce": 1235414,
+    "note": null
    }
   ]
  },
@@ -3855,6 +3861,11 @@
    {
     "d": "2026-09-18",
     "ws": 1140.0,
+    "tce": null
+   },
+   {
+    "d": "2026-09-25",
+    "ws": 1150.0,
     "tce": null
    }
   ]
