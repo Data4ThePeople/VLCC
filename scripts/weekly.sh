@@ -4,7 +4,7 @@
 #   2. Baltic TD3C row for last Friday plus Fearnleys (update.py). If the row is
 #      already there, Fearnleys is refreshed and the chart rebuilt anyway.
 #   3. If anything changed: STATUS.md log line, commit, push.
-# A failure posts a macOS notification; details are in logs/weekly.log.
+# Success and failure each show a macOS alert box; details are in logs/weekly.log.
 set -u
 ROOT="${0:A:h:h}"
 PY="$ROOT/.venv/bin/python3"
@@ -14,9 +14,16 @@ exec >>"$LOG" 2>&1
 cd "$ROOT" || exit 1
 echo "\n=== $(date '+%Y-%m-%d %H:%M %Z') ==="
 
+# An alert box stays on screen until clicked; a banner notification can come
+# and go unseen. "Open chart" opens the live page.
+alert() {
+  b=$(osascript -e "display alert \"$1\" message \"$2\" buttons {\"Open chart\", \"OK\"} default button \"OK\" giving up after 86400" 2>/dev/null)
+  [[ "$b" == *"Open chart"* ]] && open "https://data4thepeople.github.io/VLCC/dist/index.html"
+}
+
 fail() {
   echo "FAILED: $1"
-  osascript -e "display notification \"$1\" with title \"VLCC weekly update failed\"" 2>/dev/null
+  alert "VLCC weekly update failed" "$1. Details in logs/weekly.log."
   exit 1
 }
 
@@ -49,3 +56,5 @@ git add STATUS.md data dist research
 git commit -q -m "supertanker-rates: automatic weekly update $(date +%F)" || fail "git commit"
 git push -q || fail "git push"
 echo "pushed: $line"
+msg=${line#- * }
+alert "VLCC chart updated" "${msg//\\/}"
