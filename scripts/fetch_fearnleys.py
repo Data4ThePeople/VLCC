@@ -8,6 +8,28 @@ April 25, 2023, when Fearnleys stopped publishing the TCE branch).
 
 Writes data/fearnleys_vlcc_meg_feast_daily.csv with one row per date.
 """
+# Contact address for the User-Agent: read at run time, never hardcoded in the repo.
+# Set D4TP_CONTACT_EMAIL in the environment or in ~/.claude/d4tp-process/.env.
+import os as _os
+
+
+def _d4tp_contact():
+    v = _os.environ.get("D4TP_CONTACT_EMAIL")
+    if v:
+        return v
+    try:
+        with open(_os.path.expanduser("~/.claude/d4tp-process/.env"), encoding="utf-8") as fh:
+            for line in fh:
+                if line.strip().startswith("D4TP_CONTACT_EMAIL="):
+                    return line.split("=", 1)[1].strip().strip("'\"")
+    except OSError:
+        pass
+    return ""
+
+
+D4TP_CONTACT = _d4tp_contact()
+
+
 import csv, json, sys, urllib.request
 from pathlib import Path
 
@@ -22,7 +44,7 @@ def fetch(meta_id):
          'info { rate_type rate_subtype route } rates(order_by:{date:asc}) { date rate } } }' % meta_id)
     req = urllib.request.Request(ENDPOINT, data=json.dumps({"query": q}).encode(),
         headers={"Content-Type": "application/json", "Origin": "https://fearnpulse.com",
-                 "User-Agent": "Mozilla/5.0 (Data 4 The People research; D4TP_CONTACT_EMAIL)"})
+                 "User-Agent": f"Mozilla/5.0 (Data 4 The People research; {D4TP_CONTACT})"})
     d = json.load(urllib.request.urlopen(req, timeout=120))
     if "errors" in d:
         sys.exit(f"GraphQL error: {d['errors']}")

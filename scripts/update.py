@@ -19,13 +19,35 @@ What it does
 Baltic report URL pattern (ISO week number of the Friday):
   https://www.balticexchange.com/en/data-services/WeeklyRoundup/tanker/news/<year>/tanker-report-week-<n>.html
 """
+# Contact address for the User-Agent: read at run time, never hardcoded in the repo.
+# Set D4TP_CONTACT_EMAIL in the environment or in ~/.claude/d4tp-process/.env.
+import os as _os
+
+
+def _d4tp_contact():
+    v = _os.environ.get("D4TP_CONTACT_EMAIL")
+    if v:
+        return v
+    try:
+        with open(_os.path.expanduser("~/.claude/d4tp-process/.env"), encoding="utf-8") as fh:
+            for line in fh:
+                if line.strip().startswith("D4TP_CONTACT_EMAIL="):
+                    return line.split("=", 1)[1].strip().strip("'\"")
+    except OSError:
+        pass
+    return ""
+
+
+D4TP_CONTACT = _d4tp_contact()
+
+
 import argparse, csv, html as htmlmod, json, re, subprocess, sys, urllib.request
 from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BALTIC = ROOT / "data" / "baltic_td3c_weekly.csv"
-UA = {"User-Agent": "Mozilla/5.0 (Data 4 The People research; D4TP_CONTACT_EMAIL)"}
+UA = {"User-Agent": f"Mozilla/5.0 (Data 4 The People research; {D4TP_CONTACT})"}
 
 
 def last_friday(today=None):

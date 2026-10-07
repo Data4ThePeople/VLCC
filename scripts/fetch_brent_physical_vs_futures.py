@@ -7,13 +7,35 @@ month (CL=F) daily closes as relayed by Yahoo Finance; EIA's own NYMEX WTI
 contract 1 series (RCLC1) is pulled too as the official cross-check.
 Writes data/crude_spot_vs_futures_daily.csv from 2018.
 """
+# Contact address for the User-Agent: read at run time, never hardcoded in the repo.
+# Set D4TP_CONTACT_EMAIL in the environment or in ~/.claude/d4tp-process/.env.
+import os as _os
+
+
+def _d4tp_contact():
+    v = _os.environ.get("D4TP_CONTACT_EMAIL")
+    if v:
+        return v
+    try:
+        with open(_os.path.expanduser("~/.claude/d4tp-process/.env"), encoding="utf-8") as fh:
+            for line in fh:
+                if line.strip().startswith("D4TP_CONTACT_EMAIL="):
+                    return line.split("=", 1)[1].strip().strip("'\"")
+    except OSError:
+        pass
+    return ""
+
+
+D4TP_CONTACT = _d4tp_contact()
+
+
 import csv, json, os, sys, urllib.parse, urllib.request, datetime
 from pathlib import Path
 sys.path.insert(0, os.path.expanduser("~/.claude/d4tp-process"))
 from d4tp_env import load_env, get_key
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "crude_spot_vs_futures_daily.csv"
-UA = {"User-Agent": "Mozilla/5.0 (Data 4 The People research; D4TP_CONTACT_EMAIL)"}
+UA = {"User-Agent": f"Mozilla/5.0 (Data 4 The People research; {D4TP_CONTACT})"}
 
 def eia(series, path):
     load_env()
