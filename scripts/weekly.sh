@@ -27,7 +27,18 @@ fail() {
   exit 1
 }
 
-git pull -q --rebase || fail "git pull"
+# A run that dies partway leaves edited files behind, and git pull refuses to
+# run over them. Files this run rewrites from scratch are reset to the last
+# commit. Anything else left over (a Baltic row, a STATUS.md line) is set aside
+# by --autostash and put back after the pull. If putting it back conflicts with
+# the pulled commits, stop rather than commit a file with conflict markers.
+REGEN=(data/brent_weekly.csv data/crude_spot_vs_futures_daily.csv
+       data/fearnleys_vlcc_meg_feast_daily.csv data/fearnleys_vlcc_usg_asia_lumpsum_daily.csv
+       dist/index.html dist/data.json research/TIEOUT.md)
+git diff --quiet || echo "leftover changes from an earlier run: $(git diff --name-only | tr '\n' ' ')"
+git checkout -q -- $REGEN || fail "reset of generated files"
+git pull -q --rebase --autostash || fail "git pull"
+[[ -z "$(git diff --name-only --diff-filter=U)" ]] || fail "leftover changes conflict with pulled commits; resolve by hand"
 "$PY" scripts/fetch_brent.py || fail "Brent weekly fetch"
 "$PY" scripts/fetch_brent_physical_vs_futures.py || fail "Brent daily fetch"
 
@@ -58,3 +69,4 @@ git push -q || fail "git push"
 echo "pushed: $line"
 msg=${line#- * }
 alert "VLCC chart updated" "${msg//\\/}"
+exit 0
