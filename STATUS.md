@@ -60,3 +60,4 @@ None.
 - 2026-10-30 Automatic weekly update. Baltic 2026-10-30: WS 1262.5, $1,345,710 a day. Brent weekly through 2026-10-23 (\$121.02).
 - 2026-10-31 Automatic weekly update. Brent weekly through 2026-10-23 (\$121.02).
 - 2026-11-02 Automatic weekly update. Brent weekly through 2026-10-23 (\$121.02).
+- 2026-11-08 Automatic weekly update. Baltic 2026-11-06: WS 1220.63, $1,303,616 a day. Brent weekly through 2026-10-30 (\$121.17).
